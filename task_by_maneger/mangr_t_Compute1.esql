@@ -1,0 +1,29 @@
+
+
+CREATE COMPUTE MODULE mangr_t_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+       CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		
+		--SET OutputLocalEnvironment.Destination.File.Directory='C:\Users\Sreenivas Bandaru\Documents\task_manger\override';
+		
+		--SET OutputLocalEnvironment.Destination.File.yash ='C:\Users\Sreenivas Bandaru\Documents\task_manger\ot_overide';
+		
+	END;
+END MODULE;

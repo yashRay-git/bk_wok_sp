@@ -1,0 +1,25 @@
+CREATE DATABASE MODULE  database_n0de_flow_Database
+
+CREATE FUNCTION Main() RETURNS BOOLEAN
+
+BEGIN
+
+	DECLARE query CHARACTER;
+	
+	 DECLARE eid  CHARACTER Root.XMLNSC.Employee_Details.EMP_ID;
+	 	 DECLARE ename CHARACTER  Root.XMLNSC.Employee_Details.EMP_NAME;
+	 	 	 	 DECLARE dest CHARACTER  Root.XMLNSC.Employee_Details.DESIGNATION;
+	 	 	 	 	 	 	 	 DECLARE add CHARACTER  Root.XMLNSC.Employee_Details.ADDRESS;
+	 	 	 	 
+	 	 	 	 
+
+ set query= 'INSERT INTO EMP1 (EMP_ID, EMP_NAME, DESIGNATION, ADDRESS) VALUES (?,?,?,?)';
+ PASSTHRU(query, eid,ename,dest,add);
+
+	
+
+RETURN TRUE;
+
+END;
+
+END MODULE;

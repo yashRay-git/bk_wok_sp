@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmAggregateControl.msgnode="ComIbmAggregateControl.msgnode" xmlns:ComIbmAggregateReply.msgnode="ComIbmAggregateReply.msgnode" xmlns:ComIbmAggregateRequest.msgnode="ComIbmAggregateRequest.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFileExists.msgnode="ComIbmFileExists.msgnode" xmlns:ComIbmFileInput.msgnode="ComIbmFileInput.msgnode" xmlns:ComIbmFileIterator.msgnode="ComIbmFileIterator.msgnode"
+    xmlns:ComIbmFileOutput.msgnode="ComIbmFileOutput.msgnode" xmlns:ComIbmFileRead.msgnode="ComIbmFileRead.msgnode" xmlns:ComIbmGroupComplete.msgnode="ComIbmGroupComplete.msgnode" xmlns:ComIbmGroupGather.msgnode="ComIbmGroupGather.msgnode" xmlns:ComIbmGroupScatter.msgnode="ComIbmGroupScatter.msgnode" xmlns:ComIbmJavaCompute.msgnode="ComIbmJavaCompute.msgnode" xmlns:ComIbmLog.msgnode="ComIbmLog.msgnode" xmlns:ComIbmMQGet.msgnode="ComIbmMQGet.msgnode" xmlns:ComIbmMQHeader.msgnode="ComIbmMQHeader.msgnode"
+    xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:ComIbmScheduler.msgnode="ComIbmScheduler.msgnode" xmlns:ComIbmTimeoutControl.msgnode="ComIbmTimeoutControl.msgnode" xmlns:ComIbmTimeoutNotification.msgnode="ComIbmTimeoutNotification.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="tp.msgflow" nsPrefix="tp.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="tp" bundleName="tp" pluginId="General"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/General/icons/full/obj16/tp.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/General/icons/full/obj30/tp.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="10,10" orderMode="byUserId">
+        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="90,10" destinationMode="list">
+        <translation xmi:type="utility:ConstantString" string="MQ Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="190,10">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQGet.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="370,10">
+        <translation xmi:type="utility:ConstantString" string="MQ Get"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="90,170">
+        <translation xmi:type="utility:ConstantString" string="Timeout Notification"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTimeoutControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="10,170">
+        <translation xmi:type="utility:ConstantString" string="Timeout Control"/>
+      </nodes>
+      <nodes xmi:type="ComIbmScheduler.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="210,170">
+        <translation xmi:type="utility:ConstantString" string="Scheduler"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQHeader.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="290,10" mqmdAAAOptions="Add header" mqmdCodedCharSetId="MQCCSI_Q_MGR" mqmdFormat="MQFMT_NONE" mqmdVersion="MQMD_CURRENT_VERSION" mqmdMsgType="MQMT_DATAGRAM" mqmdExpiry="MQEI_UNLIMITED" mqmdFeedback="MQFB_QUIT" mqmdPriority="MQPRI_PRIORITY_AS_Q_DEF" mqmdPersistence="MQPER_PERSISTENCE_AS_Q_DEF" mqmdMsgId="MQMI_NONE" mqmdCorrelId="MQCI_NONE" mqmdReplyToQ="Inherit" mqdlhAAAOptions="Add header" mqdlhCodedCharSetId="MQCCSI_Q_MGR"
+          mqdlhFormat="Inherit" mqdlhReason="Inherit">
+        <translation xmi:type="utility:ConstantString" string="MQ Header"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileExists.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="630,90" deleteFileAction="never" fileFtp="true">
+        <translation xmi:type="utility:ConstantString" string="File Exists"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileIterator.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="550,90">
+        <translation xmi:type="utility:ConstantString" string="File Iterator"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="470,90">
+        <translation xmi:type="utility:ConstantString" string="File Read"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="290,90">
+        <translation xmi:type="utility:ConstantString" string="File Input1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="370,90">
+        <translation xmi:type="utility:ConstantString" string="File Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLog.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="470,10" logLevel="Info">
+        <translation xmi:type="utility:ConstantString" string="Log"/>
+        <mappingInput inputName="InputRoot" inputLocation="$InputRoot" schemaLocation="" schemaRoot=""/>
+        <mappingInput inputName="InputLocalEnvironment" inputLocation="$InputLocalEnvironment" schemaLocation="" schemaRoot=""/>
+      </nodes>
+      <nodes xmi:type="ComIbmAggregateControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="170,90" timeoutInterval="0" timeoutLocation="$LocalEnvironment/Aggregation/Timeout">
+        <translation xmi:type="utility:ConstantString" string="Aggregate Control"/>
+      </nodes>
+      <nodes xmi:type="ComIbmAggregateReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_16" location="10,90" unsolicitedTimeout="0" transactionMode="true">
+        <translation xmi:type="utility:ConstantString" string="Aggregate Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmAggregateRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="90,90">
+        <translation xmi:type="utility:ConstantString" string="Aggregate Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmGroupScatter.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_18" location="10,230" GroupTimeout="5.0">
+        <translation xmi:type="utility:ConstantString" string="Group Scatter"/>
+      </nodes>
+      <nodes xmi:type="ComIbmGroupGather.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="90,229" UnknownMessageTimeout="5.0">
+        <translation xmi:type="utility:ConstantString" string="Group Gather"/>
+      </nodes>
+      <nodes xmi:type="ComIbmJavaCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_20" location="290,170" javaClass="general.Tp_JavaCompute">
+        <translation xmi:type="utility:ConstantString" string="Java Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmGroupComplete.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_21" location="190,230">
+        <translation xmi:type="utility:ConstantString" string="Group Complete"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_22" location="390,170" computeExpression="esql://routine/#tp_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

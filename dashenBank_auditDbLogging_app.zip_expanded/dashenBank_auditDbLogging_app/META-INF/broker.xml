@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><Broker>
+<CompiledApplication>
+<ConfigurableProperty uri="startMode"/>
+</CompiledApplication>
+<CompiledMessageFlow name="com.dashenbank.payloadlogging.AuditDBLogging_Flow">
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#additionalInstances"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#notificationThresholdMsgsPerSec"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#maximumRateMsgsPerSec"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#processingTimeoutSec"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#processingTimeoutAction"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#wlmPolicy"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#commitCount"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#commitInterval"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#coordinatedTransaction"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#consumerPolicySet"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#providerPolicySet"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#consumerPolicySetBindings"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#providerPolicySetBindings"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#securityProfileName"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#monitoringProfile"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#startMode"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#startInstancesWhenFlowStarts"/>
+<ConfigurableProperty override="C:/DashenBank/Log4j/broker.xml" uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#LOG_CONFIG_PATH"/>
+<ConfigurableProperty override="Log4j Initialization Error." uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#LOG4J_ERROR_MSG"/>
+<ConfigurableProperty override="auditlogging" uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#PayloadLogging_Request.callableInputEndpoint"/>
+<ConfigurableProperty override="DBDSN" uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#PayloadLogging.dataSource"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#PayloadLogging.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#PayloadLogging.validateMaster"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.LOG_CONFIG_PATH"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.IS_ERROR_RESPONSE_REQUIRED"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.LOG4J_INIT_ERROR_MSG"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.MAX_RETRY_COUNT"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.HTTP_TIMEOUT_ERROR_MSG"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.NETWKCD"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.FINCD"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.FINRPTCD"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.REVCD"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.REVRPTCD"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.MSGCLASSREV"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.MSGFUNADV"/>
+<ConfigurableProperty uri="com.dashenbank.payloadlogging.AuditDBLogging_Flow#ExceptionHandler.SOAP_TIMEOUT_ERROR_MSG"/>
+</CompiledMessageFlow>
+</Broker>

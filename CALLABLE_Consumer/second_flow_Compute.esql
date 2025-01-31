@@ -1,0 +1,28 @@
+
+
+CREATE COMPUTE MODULE second_flow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+		SET Environment.Destination.CallableFlow.Invoke.ServerName = 'ASESWITCH_NODE_V12';
+		SET Environment.Destination.CallableFlow.Invoke.targetApplication = 'CALLABLE_NODES';
+		SET Environment.Destination.CallableFlow.Invoke.targetEndpointName = 'adi';
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

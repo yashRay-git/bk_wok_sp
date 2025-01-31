@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFileInput.msgnode="ComIbmFileInput.msgnode" xmlns:ComIbmFileOutput.msgnode="ComIbmFileOutput.msgnode" xmlns:ComIbmMQGet.msgnode="ComIbmMQGet.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="IBM_MQ_GET.msgflow" nsPrefix="IBM_MQ_GET.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="IBM_MQ_GET" bundleName="IBM_MQ_GET" pluginId="IBM_MQ_"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IBM_MQ_/icons/full/obj16/IBM_MQ_GET.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IBM_MQ_/icons/full/obj30/IBM_MQ_GET.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="70,110" inputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\input" processedFileAction="moveToArchive" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="File Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="350,90" computeExpression="esql://routine/#IBM_MQ_GET_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute USING SEPARATING "/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="630,50" queueName="ot" destinationQueueManagerName="mgr">
+        <translation xmi:type="utility:ConstantString" string="MQ Output QT"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="630,150" queueName="ot2" destinationQueueManagerName="mgr">
+        <translation xmi:type="utility:ConstantString" string="MQ Output1QT2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQGet.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="350,310" queueName="ot2" destinationQueueManagerName="mgr" messageDomainProperty="XMLNSC" generateMode="messageAndLocalEnvironment" copyMessage="copyEntireMessage" getWithMessageID="true" browse="true" outputDataLocation="Environment.ReadByMQGetNodeOffQueue.XMLNSC.Message.Field">
+        <translation xmi:type="utility:ConstantString" string="MQ GetFROM OTHER QT2 FETCHING CORRESPONDING MSG "/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="778,250" destination="file" filePath="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\trace_mqinput_get\mqinput_get.txt" pattern="The Trace node was reached at ${CURRENT_TIMESTAMP}&#xD;&#xA;The message from the MQInput node queue is placed in the Root of the logical message tree&#xD;&#xA;The message from the MQGet node queue is placed in the location Environment.ReadByMQGetNodeOffQueue &#xD;&#xA;The pairing is: ${Root.XMLNSC.Message.Field} and ${Environment.ReadByMQGetNodeOffQueue.XMLNSC.Message.Field}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="90,310" queueName="ot" destinationQueueManagerName="mgr" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="MQ Input QT"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="610,350" outputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\trace_mqinput_get" outputFilename="fileoutMQGET.txt" outputMode="append">
+        <translation xmi:type="utility:ConstantString" string="File Output"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard>
+      <stickyNote location="44,199">
+        <body xmi:type="utility:ConstantString" string="HERE WE R SEPARATING MSG BUT THEY HAVE FIELD NAME AS MSGID  SO BASICALLY WE &#xA;R USING GET NODE TO FETCH THE PERTICULER MSG FROM OT2 ANOTER QUEUE AND FORM THE MSG AGAIN &#xA;"/>
+      </stickyNote>
+    </stickyBoard>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmDatabaseRetrieve.msgnode="ComIbmDatabaseRetrieve.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="Backend_mf.msgflow" nsPrefix="Backend_mf.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="Backend_mf" bundleName="Backend_mf" pluginId="Grouping_GroupingNodes"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Grouping_GroupingNodes/icons/full/obj16/Backend_mf.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Grouping_GroupingNodes/icons/full/obj30/Backend_mf.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="145,67" URLSpecifier="/b1" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="150,210" URLSpecifier="/b2" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="730,130">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="390,50" dataSourceName="{JDBC_POLICY}:JDBC1" copyMessage="true" allRows="true" sqlQuery="SELECT STU.NAME, STU.AGE&#xA;FROM STU&#xA;WHERE STU.ID = ?&#xA;ORDER BY STU.NAME ASC, STU.AGE ASC" tableNameComboValues="0,0,0,0~STU" columnNameComboValues="1,2,0,0~AGE,ID,NAME" operatorComboValues="2,0,0,0~ASC" valueTypeComboValues="2,0,0,0~None" columnValueComboValues="1,0,0~STU.AGE">
+        <translation xmi:type="utility:ConstantString" string="Database Retrieve"/>
+        <queryElements tableName="STU" columnName="ID" operator="=" valueType="Element" value="$InputRoot/XMLNSC/Student/st/id"/>
+        <queryElements tableName="STU" columnName="NAME" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="STU" columnName="AGE" operator="ASC" valueType="None" value="None"/>
+        <dataElements columnName="STU.NAME" messageElement="$OutputRoot/XMLNSC/Student/st/name"/>
+        <dataElements columnName="STU.AGE" messageElement="$OutputRoot/XMLNSC/Student/st/age"/>
+      </nodes>
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="390,190" dataSourceName="{JDBC_POLICY}:JDBC1" copyMessage="true" allRows="true" sqlQuery="SELECT STU2.NAME, STU2.COLLAGE&#xA;FROM STU2&#xA;WHERE STU2.ID = ?&#xA;ORDER BY STU2.NAME ASC, STU2.COLLAGE ASC" tableNameComboValues="1,1,1,0,0,0~STU1,STU2" columnNameComboValues="1,2,0,0,0,0~COLLAGE,ID,NAME" operatorComboValues="2,0,0,0,0,0~ASC" valueTypeComboValues="2,0,0,0,0,0~None" columnValueComboValues="2,1,0,0,0~STU2.NAME">
+        <translation xmi:type="utility:ConstantString" string="Database Retrieve1"/>
+        <queryElements tableName="STU2" columnName="ID" operator="=" valueType="Element" value="$InputRoot/XMLNSC/Student/st/id"/>
+        <queryElements tableName="STU2" columnName="NAME" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="STU2" columnName="COLLAGE" operator="ASC" valueType="None" value="None"/>
+        <dataElements columnName="STU2.NAME" messageElement="$OutputRoot/XMLNSC/Student/st/name"/>
+        <dataElements columnName="STU2.COLLAGE" messageElement="$OutputRoot/XMLNSC/Student/st/collage"/>
+        <nsMappingTable nsPrefix="xes" namespace="http://xe/system"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="530,50" computeExpression="esql://routine/#Backend_mf_Compute.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="550,206" computeExpression="esql://routine/#Backend_mf_Compute1.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="Compute1"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

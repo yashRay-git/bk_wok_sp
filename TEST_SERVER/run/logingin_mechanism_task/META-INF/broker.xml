@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Broker deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\Workspace.zip_expanded\Workspace\GeneratedBarFiles\logingin_mechanism_taskproject.generated.bar" deployTimestamp="2024-09-04 00:23:19">
+  <CompiledApplication>
+    <ConfigurableProperty uri="startMode">
+    </ConfigurableProperty>
+  </CompiledApplication>
+  <CompiledMessageFlow name="flow_log" deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\Workspace.zip_expanded\Workspace\GeneratedBarFiles\logingin_mechanism_taskproject.generated.bar" deployTimestamp="2024-09-04 00:23:19">
+    <ConfigurableProperty uri="flow_log#Compute.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute1.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute1.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute1.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.URLSpecifier" override="/task">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.decompressInputMessage">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.faultFormat">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.timeoutForClient">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.useHTTPS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Reply.compressionType">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Reply.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.URLSpecifier" override="http://localhost:7800/subdata">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.acceptCompressedResponses">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.allowedCiphers">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.enableCRLCheck">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.enableKeepAlive">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.hostnameChecking">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.httpProxyLocation">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.httpVersion" override="1.1">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.keyAlias">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.policyUrl">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.protocol" override="TLS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.requestCompressionType">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.timeoutForServer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Request.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#additionalInstances">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#commitCount">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#commitInterval">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#consumerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#consumerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#coordinatedTransaction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#maximumRateMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#monitoringProfile">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#notificationThresholdMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#processingTimeoutAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#processingTimeoutSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#providerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#providerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#startInstancesWhenFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#startMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#wlmPolicy">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="subflow_data" deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\Workspace.zip_expanded\Workspace\GeneratedBarFiles\logingin_mechanism_taskproject.generated.bar" deployTimestamp="2024-09-04 00:23:19">
+    <ConfigurableProperty uri="subflow_data#Compute.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#Compute.dataSource" override="yash">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#Compute.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.URLSpecifier" override="/subdata">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.decompressInputMessage">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.faultFormat">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.timeoutForClient">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.useHTTPS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Input.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Reply.compressionType">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#HTTP Reply.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#additionalInstances">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#commitCount">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#commitInterval">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#consumerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#consumerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#coordinatedTransaction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#maximumRateMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#monitoringProfile">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#notificationThresholdMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#processingTimeoutAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#processingTimeoutSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#providerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#providerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#startInstancesWhenFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#startMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="subflow_data#wlmPolicy">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+</Broker>

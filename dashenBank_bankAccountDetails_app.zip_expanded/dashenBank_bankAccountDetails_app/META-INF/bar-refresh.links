@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="true" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1640976214000" workspaceResource="/DashenBank_BankAccountDetails_App/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd.&#xA;Successfully added file DashenBank_BankAccountDetails_App\IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd to BAR file.&#xA;" severity="0"/>
+      <barEntry name="IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640976214000" workspaceResource="/DashenBank_BankAccountDetails_App/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd.&#xA;Successfully added file DashenBank_BankAccountDetails_App\IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd to BAR file.&#xA;" severity="0"/>
+      <barEntry name="IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640976214000" workspaceResource="/DashenBank_BankAccountDetails_App/IBMdefined/soap.xsd">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\IBMdefined\soap.xsd.&#xA;Successfully added file DashenBank_BankAccountDetails_App\IBMdefined\soap.xsd to BAR file.&#xA;" severity="0"/>
+      <barEntry name="IBMdefined\soap.xsd"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640976214000" workspaceResource="/DashenBank_BankAccountDetails_App/RemoteFiles/xsd_1.xsd">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\RemoteFiles\xsd_1.xsd.&#xA;Successfully added file DashenBank_BankAccountDetails_App\RemoteFiles\xsd_1.xsd to BAR file.&#xA;" severity="0"/>
+      <barEntry name="RemoteFiles\xsd_1.xsd"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1646733988793" workspaceResource="/DashenBank_BankAccountDetails_App/application.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\application.descriptor.&#xA;Successfully added file DashenBank_BankAccountDetails_App\application.descriptor to BAR file.&#xA;Elapsed time: 0.001 second(s).&#xA;&#xA;Successfully added file DashenBank_BankAccountDetails_App\application.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="application.descriptor"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640976214000" workspaceResource="/DashenBank_BankAccountDetails_App/bankaccountdetails.wsdl">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\bankaccountdetails.wsdl.&#xA;Successfully added file DashenBank_BankAccountDetails_App\bankaccountdetails.wsdl to BAR file.&#xA;" severity="0"/>
+      <barEntry name="bankaccountdetails.wsdl"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640976214000" workspaceResource="/DashenBank_BankAccountDetails_App/bankaccountdetails.xsd">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\bankaccountdetails.xsd.&#xA;Successfully added file DashenBank_BankAccountDetails_App\bankaccountdetails.xsd to BAR file.&#xA;" severity="0"/>
+      <barEntry name="bankaccountdetails.xsd"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1646057922437" workspaceResource="/DashenBank_BankAccountDetails_App/com/dashenbank/custbankaccdetails/BankAccountDetails_Esql.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Esql.esql.&#xA;Dependent ESQL file com/dashenbank/genericfunctions/GenericFunctionsEsql.esql is added to the BAR file.&#xA;&#xA;Successfully added file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Esql.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="com\dashenbank\custbankaccdetails\BankAccountDetails_Esql.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1646052775651" workspaceResource="/DashenBank_BankAccountDetails_App/com/dashenbank/custbankaccdetails/BankAccountDetails_Flow.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Flow.msgflow.&#xA;Successfully added file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Flow.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="com\dashenbank\custbankaccdetails\BankAccountDetails_Flow.msgflow"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

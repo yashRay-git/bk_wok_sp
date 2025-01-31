@@ -1,0 +1,78 @@
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Flow.msgflow.
+Successfully added file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Flow.msgflow to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd.
+Successfully added file DashenBank_BankAccountDetails_App\IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd.
+Successfully added file DashenBank_BankAccountDetails_App\IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\IBMdefined\soap.xsd.
+Successfully added file DashenBank_BankAccountDetails_App\IBMdefined\soap.xsd to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\RemoteFiles\xsd_1.xsd.
+Successfully added file DashenBank_BankAccountDetails_App\RemoteFiles\xsd_1.xsd to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\application.descriptor.
+Successfully added file DashenBank_BankAccountDetails_App\application.descriptor to BAR file.
+Elapsed time: 0 second(s).
+
+Successfully added file DashenBank_BankAccountDetails_App\application.descriptor to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\application.descriptor.
+Successfully added file DashenBank_BankAccountDetails_App\application.descriptor to BAR file.
+Elapsed time: 0.001 second(s).
+
+Successfully added file DashenBank_BankAccountDetails_App\application.descriptor to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\bankaccountdetails.wsdl.
+Successfully added file DashenBank_BankAccountDetails_App\bankaccountdetails.wsdl to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\bankaccountdetails.xsd.
+Successfully added file DashenBank_BankAccountDetails_App\bankaccountdetails.xsd to BAR file.
+
+==============================================
+
+!Wed Mar 09 16:59:18 EAT 2022
+
+Processing file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Esql.esql.
+Dependent ESQL file com/dashenbank/genericfunctions/GenericFunctionsEsql.esql is added to the BAR file.
+
+Successfully added file DashenBank_BankAccountDetails_App\com\dashenbank\custbankaccdetails\BankAccountDetails_Esql.esql to BAR file.

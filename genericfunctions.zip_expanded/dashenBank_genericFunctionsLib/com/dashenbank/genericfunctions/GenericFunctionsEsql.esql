@@ -1,0 +1,496 @@
+
+
+BROKER SCHEMA com.dashenbank.genericfunctions
+
+
+CREATE PROCEDURE BuildExceptionDetails(IN excpRef REFERENCE,INOUT outRef REFERENCE,IN serviceName CHARACTER) BEGIN
+	SET outRef.Title = FIELDNAME(excpRef);
+	DECLARE CRLF CHARACTER CAST(X'0D0A' AS CHARACTER CCSID 1208);
+	IF CONTAINS(excpRef.actualExcpText,CRLF) THEN
+		SET excpRef.actualExcpText = SUBSTRING(excpRef.actualExcpText BEFORE CRLF );
+	END IF;
+	CASE
+	WHEN excpRef.excpType = 'DatabaseException' THEN
+		
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_902';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = 'Exception connection to database: '||excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'SqlException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_902';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'UserException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = serviceName||'_908';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'CastException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_907';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'MessageException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		if CONTAINS(excpRef.excpText,'Failed to open queue') THEN
+			SET outRef.ErrorCode = 'ESB_SERVER_905';
+			SET outRef.ActualDesc = 'Failed to open Queue: '||excpRef.actualExcpText ;
+		ELSE
+			SET outRef.ErrorCode = 'ESB_SERVER_905';
+			SET outRef.ActualDesc = excpRef.actualExcpText;
+		END IF;
+	WHEN excpRef.excpType = 'SocketException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_903';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText;
+	WHEN excpRef.excpType = 'SocketTimeoutException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_903';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'MessageException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		if CONTAINS(excpRef.excpText,'Failed to open queue') THEN
+			SET outRef.ErrorCode = 'ESB_SERVER_905';
+			SET outRef.ActualDesc = 'Failed to open Queue: '||excpRef.actualExcpText ;
+		ELSE
+			SET outRef.ErrorCode = 'ESB_SERVER_905';
+			SET outRef.ActualDesc = excpRef.actualExcpText ;
+		END IF;
+	WHEN excpRef.excpType = 'ParserException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_907';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = 'A Parsing error has occurred while parsing the given message structure'||', error: '||excpRef.actualExcpText;
+	WHEN excpRef.excpType = 'CastException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_907';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'RecoverableException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+
+		IF CONTAINS(excpRef.excpText,'Internal Server Error') THEN
+			SET outRef.ErrorCode = 'ESB_SERVER_906';
+			SET outRef.ErrorType = 'Internal Server Error';
+			SET outRef.ActualDesc = 'Received an HTTP Error Status Code (5xx or 400) with an empty response body, when a SOAP payload was expected.,HTTP/1.1 500 Internal Server Error';
+
+		ELSEIF CONTAINS(excpRef.excpText,'CCSID') AND CONTAINS(excpRef.excpText,'NULL') THEN
+			SET outRef.ErrorCode = 'ESB_SERVER_907';
+			SET outRef.ErrorType = 'CCSID Encoding Values are null';
+			SET outRef.ActualDesc = 'Null values for CCSID, Encoding';
+
+		ELSE
+			SET outRef.ErrorType = excpRef.excpType;
+			SET outRef.ErrorCode = 'ESB_SERVER_908';
+			SET outRef.ActualDesc = excpRef.actualExcpText ;
+		END IF;
+	WHEN excpRef.excpType = 'FatalException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_909';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText;
+	WHEN excpRef.excpType = 'ConfigurationException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_910';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText;
+	WHEN excpRef.excpType = 'SecurityException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_911';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText;
+	WHEN excpRef.excpType = 'ConversionException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_912';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText;
+	WHEN excpRef.excpType = 'UserException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_913';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	WHEN excpRef.excpType = 'UnknownException' THEN
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_914';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	ELSE
+		SET outRef.Status = 'FAILURE';
+		SET outRef.ErrorCode = 'ESB_SERVER_915';
+		SET outRef.ErrorType = excpRef.excpType;
+		SET outRef.Description = CAST(excpRef.excpText AS CHARACTER);
+		SET outRef.ActualDesc = excpRef.actualExcpText ;
+	END CASE;
+     LOG EVENT SEVERITY 1 CATALOG 'BIPmsgs' MESSAGE 2951 VALUES(outRef.Status,outRef.ErrorCode,outRef.ErrorType,outRef.ActualDesc);
+END;
+
+
+
+CREATE FUNCTION getPayLoad(IN domainName CHARACTER,IN domainDataRef REFERENCE, IN encodeRef INTEGER,IN ccidRef INTEGER) RETURNS CHARACTER
+BEGIN
+	DECLARE payload CHARACTER '';
+	CASE
+	WHEN domainName = 'XMLNSC' OR domainName = 'SOAP' OR domainName = 'BLOB' OR domainName = 'JSON' THEN
+		SET payload = CAST(ASBITSTREAM(domainDataRef CCSID ccidRef ENCODING encodeRef) AS CHARACTER CCSID ccidRef ENCODING encodeRef);
+	WHEN domainName = 'DFDL' THEN
+		DECLARE bPayload BLOB ASBITSTREAM(domainDataRef SET '{ISO8583_Lib}' TYPE '{}:ISO8583_1987_Unpacked');
+		SET payload = CAST(bPayload AS CHARACTER);
+		-- WHEN domainName = 'stewardBank_CSV' THEN
+		-- SET payload=CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{SB_CSV_Lib}' TYPE '{}:stewardBank_CSV') AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'StewardBank_EcoCSV' THEN
+		-- SET payload=CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{SB_EcoCSV_Lib}' TYPE '{}:StewardBank_EcoCSV') AS CHARACTER CCSID ccidRef);
+	WHEN domainName = 'ISO8583_1987_Unpacked' THEN
+		SET payload=CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{ISO8583_Lib}' TYPE '{}:ISO8583_1987_Unpacked') AS CHARACTER);
+	--WHEN domainName = 'ISO8583TCPHeader' THEN
+		---SET payload=CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{ISO8583_Lib}' TYPE '{}:ISO8583TCPHeader') AS CHARACTER);
+	--WHEN domainName = 'MT103' THEN
+		--SET payload=CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{MT103}' TYPE '{}:MT103') AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'BulkFundTransferReq' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{BulkFundTransferOFSMsgModel_Lib}' TYPE '{}:BulkFundTransferReq' ) AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'BulkFundTransferSuccessRes' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{BulkFundTransferOFSMsgModel_Lib}' TYPE '{}:BulkFundTransferSuccessRes' ) AS CHARACTER CCSID ccidRef) ;
+		-- WHEN domainName = 'DebitCardRequest' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{DebitCardRequestOFSMsgModel_Lib}' TYPE '{}:DebitCardRequest' ) AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'DebitCardRequestSuccessRes' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{DebitCardRequestOFSMsgModel_Lib}' TYPE '{}:DebitCardRequestSuccessRes' ) AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'DebitCardReplacement' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{DebitCardReplacementOFSMsgModel_Lib}' TYPE '{}:DebitCardReplacement' ) AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'DebitCardReplacementSuccessRes' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{DebitCardReplacementOFSMsgModel_Lib}' TYPE '{}:DebitCardReplacementSuccessRes' ) AS CHARACTER CCSID ccidRef);
+		-- WHEN domainName = 'DebitCardBlockAndUnBlockReq' THEN
+		-- SET payload = CAST(ASBITSTREAM(domainDataRef ENCODING encodeRef CCSID ccidRef SET '{DebitCardBlockAndUnblockOFSMsgModel_Lib}' TYPE '{}:DebitCardBlockAndUnBlockReq' ) AS CHARACTER CCSID ccidRef);
+	END CASE;
+	RETURN payload;
+END;
+
+
+--
+--CREATE FUNCTION writeToLogFile( IN COMPONENT_NAME CHARACTER,
+--IN LOGGER_NAME CHARACTER,
+--IN LEVEL CHARACTER,
+--IN TEXT CHARACTER )
+--RETURNS BOOLEAN
+--LANGUAGE JAVA
+--EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.log";
+
+CREATE FUNCTION initLog4j( IN CONFIG_FILE_NAME CHARACTER )
+RETURNS BOOLEAN
+LANGUAGE JAVA
+EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.initLog4j";
+
+
+CREATE FUNCTION PayloadLogging(IN PAYLOAD_ID CHARACTER,IN PAYLOAD_MSG CHARACTER,IN PAYLOAD_TYPE CHARACTER,IN FLOW_NAME CHARACTER,IN SOURCE CHARACTER,IN SERVICE CHARACTER,IN OPERATION CHARACTER,IN Created_By CHARACTER, INOUT OutRef REFERENCE)
+BEGIN
+	SET OutRef.PAYLOAD.PAYLOAD_ID = PAYLOAD_ID;
+	SET OutRef.PAYLOAD.PAYLOAD_MSG = PAYLOAD_MSG;
+	SET OutRef.PAYLOAD.PAYLOAD_TYPE = PAYLOAD_TYPE;
+	SET OutRef.PAYLOAD.FLOW_NAME = FLOW_NAME;
+	SET OutRef.PAYLOAD.SOURCE=SOURCE;
+	SET OutRef.PAYLOAD.SERVICE=SERVICE;
+	SET OutRef.PAYLOAD.OPERATION=OPERATION;
+	SET OutRef.PAYLOAD.Created_By=Created_By;
+	PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+	SET OutRef = NULL;
+END;
+CREATE PROCEDURE Commonmapping (IN inref REFERENCE,IN outref REFERENCE )
+	BEGIN
+		SET outref.DataPrefixCharacter=inref.DataPrefixCharacter;
+		SET outref.IMSCICSTransactionCode=inref.IMSCICSTransactionCode;
+        SET outref.StartOftheMessage=inref.StartOftheMessage;
+        SET outref.ProductIndicator=inref.ProductIndicator;
+        SET outref.ReleaseNumber=inref.ReleaseNumber;
+        SET outref.Status=inref.Status;
+        SET outref.OriginatorCode=inref.OriginatorCode;
+        SET outref.ResponderCode=inref.ResponderCode;
+        SET outref.MTI_Version=inref.MTI_Version;
+        SET outref.MTI_MessageClass=inref.MTI_MessageClass;
+        SET outref.MTI_MessageFunction=inref.MTI_MessageFunction;
+        SET outref.MTI_MessageOrigin=inref.MTI_MessageOrigin;
+         DECLARE I INTEGER 1;
+        DECLARE primarybitmap REFERENCE TO inref.PrimaryBitmap.[1];
+      DECLARE secondarybitmap REFERENCE TO inref.SecondaryBitmap.[1];
+ 
+        WHILE LASTMOVE(primarybitmap) DO
+        	SET outref.PrimaryBitmap.*:*[I]=inref.PrimaryBitmap.*:*[I];
+        	SET I=I+1;
+        	MOVE primarybitmap NEXTSIBLING;
+         END WHILE;
+             DECLARE J INTEGER 1;   
+              WHILE LASTMOVE(secondarybitmap) DO
+    	     SET outref.SecondaryBitmap.*:*[J]=inref.SecondaryBitmap.*:*[J];
+        	  SET J=J+1;
+        	  MOVE secondarybitmap NEXTSIBLING;
+             END WHILE;
+          SET outref.PrimaryAccountNumber_002=inref.PrimaryAccountNumber_002;
+          SET outref.ProcessingCode_003=inref.ProcessingCode_003;
+          SET outref.AmountTransaction_004=inref.AmountTransaction_004;
+          SET outref.AmountSettlement_005=inref.AmountSettlement_005;
+          SET outref.AmountCardHolderBilling_006=inref.AmountCardHolderBilling_006;
+          SET outref.TransmissionDatetime_007=inref.TransmissionDatetime_007;
+          SET outref.AmountCardHolderBillingFee_008=inref.AmountCardHolderBillingFee_008;
+          SET outref.ConversionRateSettlement_009=inref.ConversionRateSettlement_009;
+          SET outref.ConversionRateCardholderBilling_010=inref.ConversionRateCardholderBilling_010;
+          SET outref.SystemsTraceAuditNumber_011=inref.SystemsTraceAuditNumber_011;
+          SET outref.TimeLocalTransaction_012=inref.TimeLocalTransaction_012;
+          SET outref.DateLocalTransaction_013=inref.DateLocalTransaction_013;
+          SET outref.DateExpiration_014=inref.DateExpiration_014;
+          SET outref.DateSettlement_015=inref.DateSettlement_015;
+          SET outref.DateConversion_016=inref.DateConversion_016;
+          SET outref.DateCapture_017=inref.DateCapture_017;
+          SET outref.MerchantType_018=inref.MerchantType_018;
+          SET outref.AcquiringInstitutionCountryCode_019=inref.AcquiringInstitutionCountryCode_019;
+          SET outref.PANExtendedCountryCode_020=inref.PANExtendedCountryCode_020;
+          SET outref.ForwardingInstitutionCountryCode_021=inref.ForwardingInstitutionCountryCode_021;
+          SET outref.PointOfServiceEntryMode_022=inref.PointOfServiceEntryMode_022;
+          SET outref.CardSequDFDLenceNumber_023=inref.CardSequenceNumber_023;
+          SET outref.NetworkInternationalIdentifier_024=inref.NetworkInternationalIdentifier_024;
+          SET outref.PointOfServiceConditionCode_025=inref.PointOfServiceConditionCode_025;
+          SET outref.PointOfServiceCaptureCode_026=inref.PointOfServiceCaptureCode_026;
+          SET outref.AuthorizingIdentificationResponseLength_027=inref.AuthorizingIdentificationResponseLength_027;
+          SET outref.AmountTransactionFee_028=inref.AmountTransactionFee_028;
+          SET outref.AmountSettlementFee_029=inref.AmountSettlementFee_029;
+          SET outref.AmountTransactionProcessingFee_030=inref.AmountTransactionProcessingFee_030;
+          SET outref.AmountSettlementProcessingFee_031=inref.AmountSettlementProcessingFee_031;
+          SET outref.AcquiringInstitutionIdentificationCode_032=inref.AcquiringInstitutionIdentificationCode_032;
+          SET outref.ForwardingInstitutionIdentificationCode_033=inref.ForwardingInstitutionIdentificationCode_033;
+          SET outref.PrimaryAccountNumberExtended_034=inref.PrimaryAccountNumberExtended_034;
+          SET outref.Track2Data_035=inref.Track2Data_035;
+          SET outref.Track3Data_036=inref.Track3Data_036;
+          SET outref.RetrievalReferenceNumber_037=inref.RetrievalReferenceNumber_037;
+          SET outref.AuthorizationIdentificationResponse_038=inref.AuthorizationIdentificationResponse_038;
+          SET outref.ResponseCode_039=inref.ResponseCode_039;
+          SET outref.ServiceRestrictionCode_040=inref.ServiceRestrictionCode_040;
+          SET outref.CardAcceptorTerminalIdentification_041=inref.CardAcceptorTerminalIdentification_041;
+          SET outref.CardAcceptorIdentificationCode_042=inref.CardAcceptorIdentificationCode_042;
+          SET outref.CardAcceptorNameLocation_043=inref.CardAcceptorNameLocation_043;
+          SET outref.AdditionalResponseData_044=inref.AdditionalResponseData_044;
+          SET outref.Track1Data_045=inref.Track1Data_045;
+          SET outref.AdditionalDataISO_046=inref.AdditionalDataISO_046;
+          SET outref.AdditionalDataNational_047=inref.AdditionalDataNational_047;
+          SET outref.AdditionalDataPrivate_048=inref.AdditionalDataPrivate_048;
+          SET outref.CurrencyCodeTransaction_049=inref.CurrencyCodeTransaction_049;
+          SET outref.CurrencyCodeSettlement_050=inref.CurrencyCodeSettlement_050;
+          SET outref.CurrencyCodeCardholderBilling_051=inref.CurrencyCodeCardholderBilling_051;
+          SET outref.PersonalIdentificationNumberData_052=inref.PersonalIdentificationNumberData_052;
+          SET outref.SecurityRelatedControlInformation_053=inref.SecurityRelatedControlInformation_053;
+          SET outref.AdditionalAmounts_054=inref.AdditionalAmounts_054;
+         SET outref.ReservedISO_055=inref.ReservedISO_055;
+         SET outref.ReservedISO_056=inref.ReservedISO_056;
+         SET outref.ReservedNational_057=inref.ReservedNational_057;
+         SET outref.ReservedNational_058=inref.ReservedNational_058;
+         SET outref.ReservedNational_059=inref.ReservedNational_059;
+         SET outref.AdviceReasonCode_060=inref.AdviceReasonCode_060;
+         SET outref.ReservedPrivate_061=inref.ReservedPrivate_061;
+         SET outref.ReservedPrivate_062=inref.ReservedPrivate_062;
+         SET outref.ReservedPrivate_063=inref.ReservedPrivate_063;
+        SET outref.MessageAuthenticationCode_064=inref.MessageAuthenticationCode_064;
+         SET outref.TertiaryBitmap_065=inref.TertiaryBitmap_065;
+         SET outref.SettlementCode_066=inref.SettlementCode_066;
+         SET outref.ExtendedPaymentCode_067=inref.ExtendedPaymentCode_067;
+         SET outref.ReceivingInstitutionCountryCode_068=inref.ReceivingInstitutionCountryCode_068;
+         SET outref.SettlementInstitutionCountryCode_069=inref.SettlementInstitutionCountryCode_069;
+         SET outref.NetworkManagementInformationCode_070=inref.NetworkManagementInformationCode_070;
+         SET outref.MessageNumber_071=inref.MessageNumber_071;
+         SET outref.MessageNumberLast_072=inref.MessageNumberLast_072;
+          SET outref.DateAction_073=inref.DateAction_073;
+          SET outref.CreditsNumber_074=inref.CreditsNumber_074;
+          SET outref.CreditsReversalNumber_075=inref.CreditsReversalNumber_075;
+          SET outref.DebitsNumber_076=inref.DebitsNumber_076;
+           SET outref.DebitsReversalNumber_077=inref.DebitsReversalNumber_077;
+           SET outref.TransferNumber_078=inref.TransferNumber_078;
+                SET outref.TransferReversalNumber_079=inref.TransferReversalNumber_079;
+                 SET outref.InquiriesNumber_080=inref.InquiriesNumber_080;
+                  SET outref.AuthorizationsNumber_081=inref.AuthorizationsNumber_081;
+               SET outref.CreditsProcessingFeeAmount_082=inref.CreditsProcessingFeeAmount_082;
+               SET outref.CreditsTransactionFeeAmount_083=inref.CreditsTransactionFeeAmount_083;
+               SET outref.DebitsProcessingFeeAmount_084=inref.DebitsProcessingFeeAmount_084;
+               SET outref.DebitsTransactionFeeAmount_085=inref.DebitsTransactionFeeAmount_085;
+               SET outref.CreditsAmount_086=inref.CreditsAmount_086;
+               SET outref.CreditsReversalAmount_087=inref.CreditsReversalAmount_087;
+               SET outref.DebitsAmount_088=inref.DebitsAmount_088;
+               SET outref.DebitsReversalAmount_089=inref.DebitsReversalAmount_089;
+               SET outref.OriginalDataElements_090=inref.OriginalDataElements_090;
+               SET outref.FileUpdateCode_091=inref.FileUpdateCode_091;
+               SET outref.FileSecurityCode_092=inref.FileSecurityCode_092;
+               SET outref.ResponseIndicator_093=inref.ResponseIndicator_093;
+               SET outref.ServiceIndicator_094=inref.ServiceIndicator_094;
+               SET outref.ReplacementAmounts_095=inref.ReplacementAmounts_095;
+               SET outref.MessageSecurityCode_096=inref.MessageSecurityCode_096;
+               SET outref.AmountNetSettlement_097=inref.AmountNetSettlement_097;
+               SET outref.Payee_098=inref.Payee_098;
+               SET outref.SettlementInstitutionIdentificationCode_099=inref.SettlementInstitutionIdentificationCode_099;
+               SET outref.ReceivingInstitutionIdentificationCode_100=inref.ReceivingInstitutionIdentificationCode_100;
+               SET outref.FileName_101=inref.FileName_101;
+               SET outref.AccountIdentification1_102=inref.AccountIdentification1_102;
+               SET outref.AccountIdentification2_103=inref.AccountIdentification2_103;
+               SET outref.TransactionDescription_104=inref.TransactionDescription_104;
+               SET outref.ReservedISO_105=inref.ReservedISO_105;
+               SET outref.ReservedISO_106=inref.ReservedISO_106;
+               SET outref.ReservedISO_107=inref.ReservedISO_107;
+               SET outref.ReservedISO_108=inref.ReservedISO_108;
+               SET outref.ReservedISO_109=inref.ReservedISO_109;
+               SET outref.ReservedISO_110=inref.ReservedISO_110;
+               SET outref.ReservedISO_111=inref.ReservedISO_111;
+               SET outref.ReservedNational_112=inref.ReservedNational_112;
+               SET outref.ReservedNational_113=inref.ReservedNational_113;
+               SET outref.ReservedNational_114=inref.ReservedNational_114;
+               SET outref.ReservedNational_115=inref.ReservedNational_115;
+               SET outref.ReservedNational_116=inref.ReservedNational_116;
+               SET outref.ReservedNational_117=inref.ReservedNational_117;
+               SET outref.ReservedNational_118=inref.ReservedNational_118; 
+               SET outref.ReservedNational_119=inref.ReservedNational_119;   
+               SET outref.ReservedPrivate_120=inref.ReservedPrivate_120;   
+               SET outref.ReservedPrivate_121=inref.ReservedPrivate_121;   
+               SET outref.ReservedPrivate_122=inref.ReservedPrivate_122;   
+               SET outref.ReservedPrivate_123=inref.ReservedPrivate_123;   
+               SET outref.ReservedPrivate_124=inref.ReservedPrivate_124;   
+               SET outref.ReservedPrivate_125=inref.ReservedPrivate_125;   
+               SET outref.ReservedPrivate_126=inref.ReservedPrivate_126;   
+               SET outref.ReservedPrivate_127=inref.ReservedPrivate_127;     
+         DECLARE postilionPrimaryBitmap REFERENCE TO inref.PostilionPrimaryBitmap.[1];
+         WHILE LASTMOVE(postilionPrimaryBitmap) DO
+        	SET outref.PostilionPrimaryBitmap.*:*[I]=inref.PostilionPrimaryBitmap.*:*[I];
+        	SET I=I+1;
+        	MOVE postilionPrimaryBitmap NEXTSIBLING;
+         END WHILE;
+         SET outref.SwitchKeyPostilionPrivate_127_2=inref.SwitchKeyPostilionPrivate_127_2;
+         SET outref.RoutingInformationPostilionPrivate_127_3=inref.RoutingInformationPostilionPrivate_127_3;
+         SET outref.POSDataPostilionPrivate_127_4=inref.POSDataPostilionPrivate_127_4;
+         SET outref.ServiceStationDataPostilionPrivate_127_5=inref.ServiceStationDataPostilionPrivate_127_5;
+         SET outref.AuthorizationProfilePostilionPrivate_127_6=inref.AuthorizationProfilePostilionPrivate_127_6;
+         SET outref.CheckDataPostilionPrivate_127_7=inref.CheckDataPostilionPrivate_127_7;
+         SET outref.RetentionDataPostilionPrivate_127_8=inref.RetentionDataPostilionPrivate_127_8;
+         SET outref.AdditionalNodeDataPostilionPrivate_127_9=inref.AdditionalNodeDataPostilionPrivate_127_9;
+         SET outref.CVVPostilionPrivate_127_10=inref.CVVPostilionPrivate_127_10;
+         SET outref.OriginalKeyPostilionPrivate_127_11=inref.OriginalKeyPostilionPrivate_127_11;
+         SET outref.OriginalKeyPostilionPrivate_127_12=inref.OriginalKeyPostilionPrivate_127_12;
+         SET outref.PosGeographicDataPostilionPrivate_127_13=inref.PosGeographicDataPostilionPrivate_127_13;
+         SET outref.SponsorBankPostilionPrivate_127_14=inref.SponsorBankPostilionPrivate_127_14;
+         SET outref.AddressVerificationDataPostilionPrivate_127_15=inref.AddressVerificationDataPostilionPrivate_127_15;
+         SET outref.AddressVerificationResultPostilionPrivate_127_16=inref.AddressVerificationResultPostilionPrivate_127_16;
+         SET outref.CardHolderInformationPostilionPrivate_127_17=inref.CardHolderInformationPostilionPrivate_127_17;
+         SET outref.ValidationDataPostilionPrivate_127_18=inref.ValidationDataPostilionPrivate_127_18;
+         SET outref.BankDetailsPostilionPrivate_127_19=inref.BankDetailsPostilionPrivate_127_19;
+         SET outref.OriginatorAuthorizerDatePostilionPrivate_127_20=inref.OriginatorAuthorizerDatePostilionPrivate_127_20;
+         SET outref.RecordIdentificationPostilionPrivate_127_21=inref.RecordIdentificationPostilionPrivate_127_21;
+         SET outref.StructuredDataPostilionPrivate_127_22=inref.StructuredDataPostilionPrivate_127_22;
+         SET outref.PayeeNameAddressPostilionPrivate_127_23=inref.PayeeNameAddressPostilionPrivate_127_23;
+         SET outref.PayerAccountPostilionPrivate_127_24=inref.PayerAccountPostilionPrivate_127_24;
+         SET outref.ICCDataPostilionPrivate_127_25=inref.ICCDataPostilionPrivate_127_25;
+         DECLARE iCCDataBitmap REFERENCE TO inref.ICCDataBitmap.[1];
+          WHILE LASTMOVE(iCCDataBitmap) DO
+        	SET outref.ICCDataBitmap.*:*[I]=inref.ICCDataBitmap.*:*[I];
+        	SET I=I+1;
+        	MOVE iCCDataBitmap NEXTSIBLING;
+         END WHILE;
+         SET outref.AmountAuthorizedPostilionPrivate_127_25_2=inref.AmountAuthorizedPostilionPrivate_127_25_2;
+         SET outref.AmountOtherPostilionPrivate_127_25_3=inref.AmountOtherPostilionPrivate_127_25_3;
+         SET outref.ApplicationIdentifierPostilionPrivate_127_25_4=inref.ApplicationIdentifierPostilionPrivate_127_25_4;
+         SET outref.ApplicationInterchangeProfilePostilionPrivate_127_25_5=inref.ApplicationInterchangeProfilePostilionPrivate_127_25_5;
+         SET outref.ApplicationTransactionCounterPostilionPrivate_127_25_6=inref.ApplicationTransactionCounterPostilionPrivate_127_25_6;
+         SET outref.ApplicationUsageControlPostilionPrivate_127_25_7=inref.ApplicationUsageControlPostilionPrivate_127_25_7;
+         SET outref.AuthorizationResponseCodePostilionPrivate_127_25_8=inref.AuthorizationResponseCodePostilionPrivate_127_25_8;
+         SET outref.CardAuthReliabilityIndicatiorPostilionPrivate_127_25_9=inref.CardAuthReliabilityIndicatiorPostilionPrivate_127_25_9;
+         SET outref.CardAuthResultsCodePostilionPrivate_127_25_10=inref.CardAuthResultsCodePostilionPrivate_127_25_10;
+          SET outref.ChipConditionCodePostilionPrivate_127_25_11=inref.ChipConditionCodePostilionPrivate_127_25_11;
+           SET outref.CryptogramPostilionPrivate_127_25_12=inref.CryptogramPostilionPrivate_127_25_12;
+           SET outref.CryptogramInformationDataPostilionPrivate_127_25_13=inref.CryptogramInformationDataPostilionPrivate_127_25_13;
+           SET outref.CvmListPostilionPrivate_127_25_14=inref.CvmListPostilionPrivate_127_25_14;
+           SET outref.CvmResultsPostilionPrivate_127_25_15=inref.CvmResultsPostilionPrivate_127_25_15;
+           SET outref.InterfaceDeviceSerialNumberPostilionPrivate_127_25_16=inref.InterfaceDeviceSerialNumberPostilionPrivate_127_25_16;
+           SET outref.IssuerActionCodePostilionPrivate_127_25_17=inref.IssuerActionCodePostilionPrivate_127_25_17;
+           SET outref.IssuerApplicationDataPostilionPrivate_127_25_18=inref.IssuerApplicationDataPostilionPrivate_127_25_18;
+           SET outref.IssuerScriptResultsPostilionPrivate_127_25_19=inref.IssuerScriptResultsPostilionPrivate_127_25_19;
+           SET outref.TerminalApplicationVersionNumberPostilionPrivate_127_25_20=inref.TerminalApplicationVersionNumberPostilionPrivate_127_25_20;
+           SET outref.TerminalCapabilitiesPostilionPrivate_127_25_21=inref.TerminalCapabilitiesPostilionPrivate_127_25_21;
+           SET outref.TerminalCountryCodePostilionPrivate_127_25_22=inref.TerminalCountryCodePostilionPrivate_127_25_22;
+           SET outref.TerminalTypePostilionPrivate_127_25_23=inref.TerminalTypePostilionPrivate_127_25_23;
+           SET outref.TerminalVerificationResultPostilionPrivate_127_25_24=inref.TerminalVerificationResultPostilionPrivate_127_25_24;
+           SET outref.TerminalCategoryCodePostilionPrivate_127_25_25=inref.TerminalCategoryCodePostilionPrivate_127_25_25;
+           SET outref.TransactionCurrencyCodePostilionPrivate_127_25_26=inref.TransactionCurrencyCodePostilionPrivate_127_25_26;
+           SET outref.TransactionDatePostilionPrivate_127_25_27=inref.TransactionDatePostilionPrivate_127_25_27;
+           SET outref.TransactionSequenceCounterPostilionPrivate_127_25_28=inref.TransactionSequenceCounterPostilionPrivate_127_25_28;
+           SET outref.TransactionTypePostilionPrivate_127_25_29=inref.TransactionTypePostilionPrivate_127_25_29;
+           SET outref.UnpredictableNumberResultPostilionPrivate_127_25_30=inref.UnpredictableNumberResultPostilionPrivate_127_25_30;
+           SET outref.IssuerAuthDataPostilionPrivate_127_25_31=inref.IssuerAuthDataPostilionPrivate_127_25_31;
+           SET outref.IssuerScriptTemplate1PostilionPrivate_127_25_32=inref.IssuerScriptTemplate1PostilionPrivate_127_25_32;
+           SET outref.IssuerScriptTemplate2PostilionPrivate_127_25_33=inref.IssuerScriptTemplate2PostilionPrivate_127_25_33;
+           SET outref.OriginalNodePostilionPrivate_127_26=inref.OriginalNodePostilionPrivate_127_26;
+           SET outref.CardVerificationResultPostilionPrivate_127_27=inref.CardVerificationResultPostilionPrivate_127_27;
+           SET outref.AmericanExpressCardIdentifierPostilionPrivate_127_28=inref.AmericanExpressCardIdentifierPostilionPrivate_127_28;
+           SET outref.SecureData3DPostilionPrivate_127_29=inref.SecureData3DPostilionPrivate_127_29;
+           SET outref.SecureData3DResultPostilionPrivate_127_30=inref.SecureData3DResultPostilionPrivate_127_30;
+           SET outref.IssuerNetworkIDPostilionPrivate_127_31=inref.IssuerNetworkIDPostilionPrivate_127_31;
+           SET outref.UCAFDataPostilionPrivate_127_32=inref.UCAFDataPostilionPrivate_127_32;
+           SET outref.ExtendedTransactionTypePostilionPrivate_127_33=inref.ExtendedTransactionTypePostilionPrivate_127_33;
+           SET outref.AccountTypeQualifierPostilionPrivate_127_34=inref.AccountTypeQualifierPostilionPrivate_127_34;
+           SET outref.AcquirerNetworkIDPostilionPrivate_127_35=inref.AcquirerNetworkIDPostilionPrivate_127_35;
+           SET outref.CustomerIDPostilionPrivate_127_36=inref.CustomerIDPostilionPrivate_127_36;
+           SET outref.ExtendedResponseCodePostilionPrivate_127_37=inref.ExtendedResponseCodePostilionPrivate_127_37;
+            SET outref.AdditionalPOSDataCodePostilionPrivate_127_38=inref.AdditionalPOSDataCodePostilionPrivate_127_38;
+             SET outref.OriginalResponseCodePostilionPrivate_127_39=inref.OriginalResponseCodePostilionPrivate_127_39;
+              SET outref.MessageAuthenticationCode_128=inref.MessageAuthenticationCode_128;
+          
+	 END ;
+	 CREATE PROCEDURE DBLogging(IN MSGID REFERENCE,IN isomessage REFERENCE,IN REQUEST_TYPE CHARACTER,IN Applicationname CHARACTER,IN outref REFERENCE )
+	 	BEGIN
+	 
+	 		SET outref.Data.RetrievalReferenceNumber_037=MSGID;
+	 		SET outref.Data.REQUEST_TYPE=REQUEST_TYPE;
+	 		 SET outref.Data.ISO_Message=isomessage;
+	 		 SET outref.Data.ApplicationName=Applicationname;
+		 PROPAGATE TO TERMINAL 'out1';
+		 
+	 	
+	 	END;
+	 	
+
+	CREATE PROCEDURE Error_Framing (IN MSGID CHARACTER,IN MESSAGE CHARACTER,IN MESSAGE_TYPE CHARACTER,IN APPNAME CHARACTER,IN BROKERNAME CHARACTER,IN ERRORDESCRIPTION CHARACTER,IN TIME_LOCAL_TRANSACTION CHARACTER,IN DATE_LOCAL_TRANSACTION CHARACTER,IN RETRIEVAL_REFERENCE_NUMBER CHARACTER,IN BORKER_ERROR_CODE CHARACTER,IN USER_DEFINE_ERROR_CODE CHARACTER,INOUT outRef REFERENCE)
+	BEGIN
+		-- CREATE LASTCHILD of outRef AS outRef DOMAIN 'XMLNSC' NAME 'XMLNSC';
+		CREATE LASTCHILD of outRef AS outRef DOMAIN 'XMLNSC';
+		CREATE LASTCHILD of outRef AS outRef NAME 'Exception_Details';
+
+		SET outRef.MSGID = MSGID;
+		SET outRef.MESSAGE= MESSAGE;
+		SET outRef.MESSAGE_TYPE=MESSAGE_TYPE;
+		SET outRef.APPNAME=APPNAME;
+		SET outRef.BROKERNAME=BROKERNAME;
+		SET outRef.ERRORDESCRIPTION=ERRORDESCRIPTION;
+		SET outRef.TIME_LOCAL_TRANSACTION=TIME_LOCAL_TRANSACTION;
+		SET outRef.DATE_LOCAL_TRANSACTION=DATE_LOCAL_TRANSACTION;
+		SET outRef.RETRIEVAL_REFERENCE_NUMBER=RETRIEVAL_REFERENCE_NUMBER;
+		SET outRef.BORKER_ERROR_CODE=BORKER_ERROR_CODE;
+		SET outRef.USER_DEFINE_ERROR_CODE=USER_DEFINE_ERROR_CODE;
+
+	END;
+   CREATE PROCEDURE error_db_logging (IN MSG_ID CHARACTER,IN LOGGING_TIME TIMESTAMP,IN MESSAGE_DATA CHARACTER,IN APPLICATION_ERROR CHARACTER,IN APPLICATION_LABEL CHARACTER,IN EXCP_TEXT CHARACTER)
+   LANGUAGE DATABASE
+   EXTERNAL NAME "ERROR_AUDIT_PROCEDURE" ;
+
+--   
+--	CREATE PROCEDURE insertdb_logging_error (IN MSG_ID CHARACTER,IN LOGGING_TIME TIMESTAMP,IN MESSAGE_DATA CHARACTER,IN MESSAGE_TYPE CHARACTER,IN APPLICATION_NAME CHARACTER,IN SERVER_NAME CHARACTER,IN ERROR_TEXT CHARACTER,IN ERROR_DESCRIPTION CHARACTER,IN TIME_LOCAL_TRANSACTION CHARACTER,IN DATE_LOCAL_TRANSACTION CHARACTER,IN RETRIEVAL_REFERENCE_NUMBER CHARACTER,IN SERVER_ERROR_CODE CHARACTER,IN USER_DEFINE_ERROR_CODE CHARACTER)
+--	LANGUAGE DATABASE
+--	EXTERNAL NAME "INSERT_ERROR_AUDIT_LOGGING";

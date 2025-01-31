@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowAsyncInvoke.msgnode="ComIbmCallableFlowAsyncInvoke.msgnode" xmlns:ComIbmCallableFlowAsyncResponse.msgnode="ComIbmCallableFlowAsyncResponse.msgnode" xmlns:ComIbmFileOutput.msgnode="ComIbmFileOutput.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="CALLABLE_ASYNCINVOC.msgflow" nsPrefix="CALLABLE_ASYNCINVOC.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CALLABLE_ASYNCINVOC" bundleName="CALLABLE_ASYNCINVOC" pluginId="CALLABLE ASYNC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/CALLABLE ASYNC/icons/full/obj16/CALLABLE_ASYNCINVOC.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/CALLABLE ASYNC/icons/full/obj30/CALLABLE_ASYNCINVOC.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmCallableFlowAsyncInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="390,50" asyncResponseCorrelator="a" targetApplication="CALLABLE_NODES" targetEndpointName="yash" requestTimeout="30">
+        <translation xmi:type="utility:ConstantString" string="Callable Flow Async Invoke"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowAsyncResponse.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="150,210" asyncResponseCorrelator="a">
+        <translation xmi:type="utility:ConstantString" string="Callable Flow Async Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="70,50" URLSpecifier="/CALLBLE_ASYNC" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="607,231">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="703,56" outputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\output" outputFilename="COLLABLEFILE">
+        <translation xmi:type="utility:ConstantString" string="File Output"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

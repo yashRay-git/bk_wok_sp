@@ -1,0 +1,52 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "EnrollBillerBulk_Applicaton",
+    "version" : "1.0.0",
+    "description" : "EnrollBillerBulk_Applicaton"
+  },
+  "paths" : {
+    "/enrollment_bulk" : {
+      "post" : {
+        "operationId" : "postEnrollment_bulk",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a enrollment_bulk",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/enrollbillerbulk_applicaton/v1",
+  "definitions" : {
+    "validation" : {
+      "type" : "object",
+      "properties" : {
+        "operation" : {
+          "type" : "string"
+        },
+        "file" : {
+          "type" : "object",
+          "properties" : {
+            "element1" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "required" : [ ]
+    }
+  }
+}

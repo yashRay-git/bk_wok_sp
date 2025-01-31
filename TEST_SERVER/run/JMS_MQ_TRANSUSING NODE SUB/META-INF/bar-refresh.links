@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="false" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1727223972943" workspaceResource="/JMS_MQ_TRANSUSING NODE SUB/JMS_TO_MQ_FLOW.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file JMS_MQ_TRANSUSING NODE SUB\JMS_TO_MQ_FLOW.msgflow.&#xA;Successfully added file JMS_MQ_TRANSUSING NODE SUB\JMS_TO_MQ_FLOW.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="JMS_TO_MQ_FLOW.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1727128233191" workspaceResource="/JMS_MQ_TRANSUSING NODE SUB/application.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file JMS_MQ_TRANSUSING NODE SUB\application.descriptor.&#xA;Successfully added file JMS_MQ_TRANSUSING NODE SUB\application.descriptor to BAR file.&#xA;Elapsed time: 0 second(s).&#xA;&#xA;Successfully added file JMS_MQ_TRANSUSING NODE SUB\application.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="application.descriptor"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

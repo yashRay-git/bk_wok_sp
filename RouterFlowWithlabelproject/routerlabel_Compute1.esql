@@ -1,0 +1,30 @@
+
+
+
+
+CREATE COMPUTE MODULE routerlabel_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL AccountDetails( );
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE AccountDetails ( )
+	BEGIN
+		DECLARE inref REFERENCE TO InputRoot.JSON.Data.Request;
+		DECLARE qurystring CHARACTER InputRoot.HTTPInputHeader."X-Query-String";
+		Declare query CHARACTER;
+		Declare url1 character;
+		Declare servicecode character inref.Service_code;
+		SET query = 'SELECT URL FROM DB_SERVICES WHERE SERVICECODE=?';
+
+		set Environment.url = PASSTHRU(query,servicecode);
+		Set url1 = Environment.url.URL ||'?' ||qurystring ;
+
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = url1;
+		set OutputRoot = InputRoot;
+
+	END;
+
+END MODULE;

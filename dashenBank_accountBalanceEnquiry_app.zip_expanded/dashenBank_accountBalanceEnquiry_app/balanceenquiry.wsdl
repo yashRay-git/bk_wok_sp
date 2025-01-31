@@ -1,0 +1,2779 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="FCUBSAccService" targetNamespace="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>
+    <appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="FCUBSAccServiceSEIBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </appinfo>
+  </documentation>
+<types>
+<xsd:schema>
+<xsd:import namespace="http://fcubs.ofss.com/service/FCUBSAccService" schemaLocation="RemoteFiles/xsd_1.xsd"/>
+</xsd:schema>
+</types>
+<message name="CloseCustAccIO">
+<part element="ns1:CLOSECUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns1="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCustAccIOResponse">
+<part element="ns2:CLOSECUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns2="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTrackDeleteIO">
+<part element="ns3:QUERYTRACKDELETE_IOFS_REQ" name="RequestMsg" xmlns:ns3="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTrackDeleteIOResponse">
+<part element="ns4:QUERYTRACKDELETE_IOFS_RES" name="ResponseMsg" xmlns:ns4="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAutoDepInsIO">
+<part element="ns5:DELETEAUTODEPINS_IOPK_REQ" name="RequestMsg" xmlns:ns5="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAutoDepInsIOResponse">
+<part element="ns6:DELETEAUTODEPINS_IOPK_RES" name="ResponseMsg" xmlns:ns6="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QuerycustAccountDetailsIO">
+<part element="ns7:QUERYCUSTACCOUNTDETAILS_IOFS_REQ" name="RequestMsg" xmlns:ns7="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QuerycustAccountDetailsIOResponse">
+<part element="ns8:QUERYCUSTACCOUNTDETAILS_IOFS_RES" name="ResponseMsg" xmlns:ns8="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAutoDepInsIO">
+<part element="ns9:QUERYAUTODEPINS_IOFS_REQ" name="RequestMsg" xmlns:ns9="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAutoDepInsIOResponse">
+<part element="ns10:QUERYAUTODEPINS_IOFS_RES" name="ResponseMsg" xmlns:ns10="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenVirAccFS">
+<part element="ns11:REOPENVIRACC_FSFS_REQ" name="RequestMsg" xmlns:ns11="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenVirAccFSResponse">
+<part element="ns12:REOPENVIRACC_FSFS_RES" name="ResponseMsg" xmlns:ns12="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyVirAccIO">
+<part element="ns13:MODIFYVIRACC_IOPK_REQ" name="RequestMsg" xmlns:ns13="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyVirAccIOResponse">
+<part element="ns14:MODIFYVIRACC_IOPK_RES" name="ResponseMsg" xmlns:ns14="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseStopPaymentsFS">
+<part element="ns15:CLOSESTOPPAYMENTS_FSFS_REQ" name="RequestMsg" xmlns:ns15="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseStopPaymentsFSResponse">
+<part element="ns16:CLOSESTOPPAYMENTS_FSFS_RES" name="ResponseMsg" xmlns:ns16="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAcClassTfrFS">
+<part element="ns17:CREATEACCLASSTFR_FSFS_REQ" name="RequestMsg" xmlns:ns17="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAcClassTfrFSResponse">
+<part element="ns18:CREATEACCLASSTFR_FSFS_RES" name="ResponseMsg" xmlns:ns18="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTopupNotifiIO">
+<part element="ns19:QUERYTOPUPNOTIFI_IOFS_REQ" name="RequestMsg" xmlns:ns19="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTopupNotifiIOResponse">
+<part element="ns20:QUERYTOPUPNOTIFI_IOFS_RES" name="ResponseMsg" xmlns:ns20="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackDeleteFS">
+<part element="ns21:CREATETRACKDELETE_FSFS_REQ" name="RequestMsg" xmlns:ns21="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackDeleteFSResponse">
+<part element="ns22:CREATETRACKDELETE_FSFS_RES" name="ResponseMsg" xmlns:ns22="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAccSummIO">
+<part element="ns23:QUERYACCSUMM_IOFS_REQ" name="RequestMsg" xmlns:ns23="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAccSummIOResponse">
+<part element="ns24:QUERYACCSUMM_IOFS_RES" name="ResponseMsg" xmlns:ns24="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAcClassTfrFS">
+<part element="ns25:AUTHORIZEACCLASSTFR_FSFS_REQ" name="RequestMsg" xmlns:ns25="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAcClassTfrFSResponse">
+<part element="ns26:AUTHORIZEACCLASSTFR_FSFS_RES" name="ResponseMsg" xmlns:ns26="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCheckBookIO">
+<part element="ns27:DELETECHECKBOOK_IOPK_REQ" name="RequestMsg" xmlns:ns27="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCheckBookIOResponse">
+<part element="ns28:DELETECHECKBOOK_IOPK_RES" name="ResponseMsg" xmlns:ns28="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryGenAdviceIO">
+<part element="ns29:QUERYGENADVICE_IOFS_REQ" name="RequestMsg" xmlns:ns29="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryGenAdviceIOResponse">
+<part element="ns30:QUERYGENADVICE_IOFS_RES" name="ResponseMsg" xmlns:ns30="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseAutoDepInsFS">
+<part element="ns31:CLOSEAUTODEPINS_FSFS_REQ" name="RequestMsg" xmlns:ns31="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseAutoDepInsFSResponse">
+<part element="ns32:CLOSEAUTODEPINS_FSFS_RES" name="ResponseMsg" xmlns:ns32="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAcClassTfrIO">
+<part element="ns33:MODIFYACCLASSTFR_IOPK_REQ" name="RequestMsg" xmlns:ns33="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAcClassTfrIOResponse">
+<part element="ns34:MODIFYACCLASSTFR_IOPK_RES" name="ResponseMsg" xmlns:ns34="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCustAccIO">
+<part element="ns35:CREATECUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns35="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCustAccIOResponse">
+<part element="ns36:CREATECUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns36="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTDCustAccSimIO">
+<part element="ns37:QUERYTDCUSTACCSIM_IOFS_REQ" name="RequestMsg" xmlns:ns37="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTDCustAccSimIOResponse">
+<part element="ns38:QUERYTDCUSTACCSIM_IOFS_RES" name="ResponseMsg" xmlns:ns38="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackReleaseIO">
+<part element="ns39:CREATETRACKRELEASE_IOPK_REQ" name="RequestMsg" xmlns:ns39="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackReleaseIOResponse">
+<part element="ns40:CREATETRACKRELEASE_IOPK_RES" name="ResponseMsg" xmlns:ns40="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackReleaseIO">
+<part element="ns41:MODIFYTRACKRELEASE_IOPK_REQ" name="RequestMsg" xmlns:ns41="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackReleaseIOResponse">
+<part element="ns42:MODIFYTRACKRELEASE_IOPK_RES" name="ResponseMsg" xmlns:ns42="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteStopPaymentsFS">
+<part element="ns43:DELETESTOPPAYMENTS_FSFS_REQ" name="RequestMsg" xmlns:ns43="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteStopPaymentsFSResponse">
+<part element="ns44:DELETESTOPPAYMENTS_FSFS_RES" name="ResponseMsg" xmlns:ns44="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDCustAccFS">
+<part element="ns45:MODIFYTDCUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns45="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDCustAccFSResponse">
+<part element="ns46:MODIFYTDCUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns46="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeStopPaymentsIO">
+<part element="ns47:AUTHORIZESTOPPAYMENTS_IOPK_REQ" name="RequestMsg" xmlns:ns47="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeStopPaymentsIOResponse">
+<part element="ns48:AUTHORIZESTOPPAYMENTS_IOPK_RES" name="ResponseMsg" xmlns:ns48="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDCustAccFS">
+<part element="ns49:AUTHORIZETDCUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns49="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDCustAccFSResponse">
+<part element="ns50:AUTHORIZETDCUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns50="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateStopPaymentsFS">
+<part element="ns51:CREATESTOPPAYMENTS_FSFS_REQ" name="RequestMsg" xmlns:ns51="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateStopPaymentsFSResponse">
+<part element="ns52:CREATESTOPPAYMENTS_FSFS_RES" name="ResponseMsg" xmlns:ns52="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyStopPaymentsFS">
+<part element="ns53:MODIFYSTOPPAYMENTS_FSFS_REQ" name="RequestMsg" xmlns:ns53="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyStopPaymentsFSResponse">
+<part element="ns54:MODIFYSTOPPAYMENTS_FSFS_RES" name="ResponseMsg" xmlns:ns54="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCbStmtIO">
+<part element="ns55:CREATECBSTMT_IOPK_REQ" name="RequestMsg" xmlns:ns55="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCbStmtIOResponse">
+<part element="ns56:CREATECBSTMT_IOPK_RES" name="ResponseMsg" xmlns:ns56="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateVirAccIO">
+<part element="ns57:CREATEVIRACC_IOPK_REQ" name="RequestMsg" xmlns:ns57="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateVirAccIOResponse">
+<part element="ns58:CREATEVIRACC_IOPK_RES" name="ResponseMsg" xmlns:ns58="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackDeleteIO">
+<part element="ns59:DELETETRACKDELETE_IOPK_REQ" name="RequestMsg" xmlns:ns59="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackDeleteIOResponse">
+<part element="ns60:DELETETRACKDELETE_IOPK_RES" name="ResponseMsg" xmlns:ns60="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDTopUpIO">
+<part element="ns61:CREATETDTOPUP_IOPK_REQ" name="RequestMsg" xmlns:ns61="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDTopUpIOResponse">
+<part element="ns62:CREATETDTOPUP_IOPK_RES" name="ResponseMsg" xmlns:ns62="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCustAccIO">
+<part element="ns63:REOPENCUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns63="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCustAccIOResponse">
+<part element="ns64:REOPENCUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns64="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAcClassTfrIO">
+<part element="ns65:QUERYACCLASSTFR_IOFS_REQ" name="RequestMsg" xmlns:ns65="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAcClassTfrIOResponse">
+<part element="ns66:QUERYACCLASSTFR_IOFS_RES" name="ResponseMsg" xmlns:ns66="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAutoDepInsIO">
+<part element="ns67:CREATEAUTODEPINS_IOPK_REQ" name="RequestMsg" xmlns:ns67="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAutoDepInsIOResponse">
+<part element="ns68:CREATEAUTODEPINS_IOPK_RES" name="ResponseMsg" xmlns:ns68="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCustAccFS">
+<part element="ns69:DELETECUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns69="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCustAccFSResponse">
+<part element="ns70:DELETECUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns70="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCheckBookFS">
+<part element="ns71:REOPENCHECKBOOK_FSFS_REQ" name="RequestMsg" xmlns:ns71="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCheckBookFSResponse">
+<part element="ns72:REOPENCHECKBOOK_FSFS_RES" name="ResponseMsg" xmlns:ns72="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeVirAccIO">
+<part element="ns73:AUTHORIZEVIRACC_IOPK_REQ" name="RequestMsg" xmlns:ns73="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeVirAccIOResponse">
+<part element="ns74:AUTHORIZEVIRACC_IOPK_RES" name="ResponseMsg" xmlns:ns74="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAutoDepInsFS">
+<part element="ns75:AUTHORIZEAUTODEPINS_FSFS_REQ" name="RequestMsg" xmlns:ns75="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAutoDepInsFSResponse">
+<part element="ns76:AUTHORIZEAUTODEPINS_FSFS_RES" name="ResponseMsg" xmlns:ns76="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDSimIO">
+<part element="ns77:CREATETDSIM_IOPK_REQ" name="RequestMsg" xmlns:ns77="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDSimIOResponse">
+<part element="ns78:CREATETDSIM_IOPK_RES" name="ResponseMsg" xmlns:ns78="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAcClassTfrFS">
+<part element="ns79:DELETEACCLASSTFR_FSFS_REQ" name="RequestMsg" xmlns:ns79="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAcClassTfrFSResponse">
+<part element="ns80:DELETEACCLASSTFR_FSFS_RES" name="ResponseMsg" xmlns:ns80="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackDeleteFS">
+<part element="ns81:MODIFYTRACKDELETE_FSFS_REQ" name="RequestMsg" xmlns:ns81="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackDeleteFSResponse">
+<part element="ns82:MODIFYTRACKDELETE_FSFS_RES" name="ResponseMsg" xmlns:ns82="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackReleaseIO">
+<part element="ns83:AUTHORIZETRACKRELEASE_IOPK_REQ" name="RequestMsg" xmlns:ns83="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackReleaseIOResponse">
+<part element="ns84:AUTHORIZETRACKRELEASE_IOPK_RES" name="ResponseMsg" xmlns:ns84="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackReleaseFS">
+<part element="ns85:CREATETRACKRELEASE_FSFS_REQ" name="RequestMsg" xmlns:ns85="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackReleaseFSResponse">
+<part element="ns86:CREATETRACKRELEASE_FSFS_RES" name="ResponseMsg" xmlns:ns86="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckBookFS">
+<part element="ns87:AUTHORIZECHECKBOOK_FSFS_REQ" name="RequestMsg" xmlns:ns87="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckBookFSResponse">
+<part element="ns88:AUTHORIZECHECKBOOK_FSFS_RES" name="ResponseMsg" xmlns:ns88="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeStopPaymentsFS">
+<part element="ns89:AUTHORIZESTOPPAYMENTS_FSFS_REQ" name="RequestMsg" xmlns:ns89="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeStopPaymentsFSResponse">
+<part element="ns90:AUTHORIZESTOPPAYMENTS_FSFS_RES" name="ResponseMsg" xmlns:ns90="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCbStmtIO">
+<part element="ns91:CLOSECBSTMT_IOPK_REQ" name="RequestMsg" xmlns:ns91="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCbStmtIOResponse">
+<part element="ns92:CLOSECBSTMT_IOPK_RES" name="ResponseMsg" xmlns:ns92="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCustAccIO">
+<part element="ns93:DELETECUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns93="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCustAccIOResponse">
+<part element="ns94:DELETECUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns94="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateChqArchivalIO">
+<part element="ns95:CREATECHQARCHIVAL_IOPK_REQ" name="RequestMsg" xmlns:ns95="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateChqArchivalIOResponse">
+<part element="ns96:CREATECHQARCHIVAL_IOPK_RES" name="ResponseMsg" xmlns:ns96="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDTopUpFS">
+<part element="ns97:AUTHORIZETDTOPUP_FSFS_REQ" name="RequestMsg" xmlns:ns97="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDTopUpFSResponse">
+<part element="ns98:AUTHORIZETDTOPUP_FSFS_RES" name="ResponseMsg" xmlns:ns98="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCheckDetailsIO">
+<part element="ns99:QUERYCHECKDETAILS_IOFS_REQ" name="RequestMsg" xmlns:ns99="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCheckDetailsIOResponse">
+<part element="ns100:QUERYCHECKDETAILS_IOFS_RES" name="ResponseMsg" xmlns:ns100="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCustAccIO">
+<part element="ns101:MODIFYCUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns101="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCustAccIOResponse">
+<part element="ns102:MODIFYCUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns102="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCbStmtFS">
+<part element="ns103:AUTHORIZECBSTMT_FSFS_REQ" name="RequestMsg" xmlns:ns103="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCbStmtFSResponse">
+<part element="ns104:AUTHORIZECBSTMT_FSFS_RES" name="ResponseMsg" xmlns:ns104="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCbStmtIO">
+<part element="ns105:MODIFYCBSTMT_IOPK_REQ" name="RequestMsg" xmlns:ns105="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCbStmtIOResponse">
+<part element="ns106:MODIFYCBSTMT_IOPK_RES" name="ResponseMsg" xmlns:ns106="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackDeleteIO">
+<part element="ns107:MODIFYTRACKDELETE_IOPK_REQ" name="RequestMsg" xmlns:ns107="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackDeleteIOResponse">
+<part element="ns108:MODIFYTRACKDELETE_IOPK_RES" name="ResponseMsg" xmlns:ns108="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckDetailsFS">
+<part element="ns109:AUTHORIZECHECKDETAILS_FSFS_REQ" name="RequestMsg" xmlns:ns109="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckDetailsFSResponse">
+<part element="ns110:AUTHORIZECHECKDETAILS_FSFS_RES" name="ResponseMsg" xmlns:ns110="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDTopUpFS">
+<part element="ns111:CREATETDTOPUP_FSFS_REQ" name="RequestMsg" xmlns:ns111="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDTopUpFSResponse">
+<part element="ns112:CREATETDTOPUP_FSFS_RES" name="ResponseMsg" xmlns:ns112="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDCustAccIO">
+<part element="ns113:DELETETDCUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns113="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDCustAccIOResponse">
+<part element="ns114:DELETETDCUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns114="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDCustAccFS">
+<part element="ns115:CREATETDCUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns115="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDCustAccFSResponse">
+<part element="ns116:CREATETDCUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns116="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAutoDepInsFS">
+<part element="ns117:DELETEAUTODEPINS_FSFS_REQ" name="RequestMsg" xmlns:ns117="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAutoDepInsFSResponse">
+<part element="ns118:DELETEAUTODEPINS_FSFS_RES" name="ResponseMsg" xmlns:ns118="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckDetailsFS">
+<part element="ns119:MODIFYCHECKDETAILS_FSFS_REQ" name="RequestMsg" xmlns:ns119="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckDetailsFSResponse">
+<part element="ns120:MODIFYCHECKDETAILS_FSFS_RES" name="ResponseMsg" xmlns:ns120="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAcClassTfrIO">
+<part element="ns121:DELETEACCLASSTFR_IOPK_REQ" name="RequestMsg" xmlns:ns121="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteAcClassTfrIOResponse">
+<part element="ns122:DELETEACCLASSTFR_IOPK_RES" name="ResponseMsg" xmlns:ns122="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyVirAccFS">
+<part element="ns123:MODIFYVIRACC_FSFS_REQ" name="RequestMsg" xmlns:ns123="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyVirAccFSResponse">
+<part element="ns124:MODIFYVIRACC_FSFS_RES" name="ResponseMsg" xmlns:ns124="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseVirAccFS">
+<part element="ns125:CLOSEVIRACC_FSFS_REQ" name="RequestMsg" xmlns:ns125="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseVirAccFSResponse">
+<part element="ns126:CLOSEVIRACC_FSFS_RES" name="ResponseMsg" xmlns:ns126="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCheckBookIO">
+<part element="ns127:QUERYCHECKBOOK_IOFS_REQ" name="RequestMsg" xmlns:ns127="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCheckBookIOResponse">
+<part element="ns128:QUERYCHECKBOOK_IOFS_RES" name="ResponseMsg" xmlns:ns128="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTDTopUpIO">
+<part element="ns129:QUERYTDTOPUP_IOFS_REQ" name="RequestMsg" xmlns:ns129="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTDTopUpIOResponse">
+<part element="ns130:QUERYTDTOPUP_IOFS_RES" name="ResponseMsg" xmlns:ns130="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAcClassTfrFS">
+<part element="ns131:MODIFYACCLASSTFR_FSFS_REQ" name="RequestMsg" xmlns:ns131="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAcClassTfrFSResponse">
+<part element="ns132:MODIFYACCLASSTFR_FSFS_RES" name="ResponseMsg" xmlns:ns132="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackDeleteIO">
+<part element="ns133:CREATETRACKDELETE_IOPK_REQ" name="RequestMsg" xmlns:ns133="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTrackDeleteIOResponse">
+<part element="ns134:CREATETRACKDELETE_IOPK_RES" name="ResponseMsg" xmlns:ns134="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCustAccBalanceIO">
+<part element="ns135:QUERYCUSTACCBALANCE_IOFS_REQ" name="RequestMsg" xmlns:ns135="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCustAccBalanceIOResponse">
+<part element="ns136:QUERYCUSTACCBALANCE_IOFS_RES" name="ResponseMsg" xmlns:ns136="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteVirAccIO">
+<part element="ns137:DELETEVIRACC_IOPK_REQ" name="RequestMsg" xmlns:ns137="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteVirAccIOResponse">
+<part element="ns138:DELETEVIRACC_IOPK_RES" name="ResponseMsg" xmlns:ns138="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackDeleteIO">
+<part element="ns139:AUTHORIZETRACKDELETE_IOPK_REQ" name="RequestMsg" xmlns:ns139="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackDeleteIOResponse">
+<part element="ns140:AUTHORIZETRACKDELETE_IOPK_RES" name="ResponseMsg" xmlns:ns140="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDTopUpFS">
+<part element="ns141:DELETETDTOPUP_FSFS_REQ" name="RequestMsg" xmlns:ns141="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDTopUpFSResponse">
+<part element="ns142:DELETETDTOPUP_FSFS_RES" name="ResponseMsg" xmlns:ns142="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryStopPaymentsIO">
+<part element="ns143:QUERYSTOPPAYMENTS_IOFS_REQ" name="RequestMsg" xmlns:ns143="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryStopPaymentsIOResponse">
+<part element="ns144:QUERYSTOPPAYMENTS_IOFS_RES" name="ResponseMsg" xmlns:ns144="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyChqArchivalIO">
+<part element="ns145:MODIFYCHQARCHIVAL_IOPK_REQ" name="RequestMsg" xmlns:ns145="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyChqArchivalIOResponse">
+<part element="ns146:MODIFYCHQARCHIVAL_IOPK_RES" name="ResponseMsg" xmlns:ns146="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCbStmtIO">
+<part element="ns147:REOPENCBSTMT_IOPK_REQ" name="RequestMsg" xmlns:ns147="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCbStmtIOResponse">
+<part element="ns148:REOPENCBSTMT_IOPK_RES" name="ResponseMsg" xmlns:ns148="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackDeleteFS">
+<part element="ns149:DELETETRACKDELETE_FSFS_REQ" name="RequestMsg" xmlns:ns149="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackDeleteFSResponse">
+<part element="ns150:DELETETRACKDELETE_FSFS_RES" name="ResponseMsg" xmlns:ns150="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseVirAccIO">
+<part element="ns151:CLOSEVIRACC_IOPK_REQ" name="RequestMsg" xmlns:ns151="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseVirAccIOResponse">
+<part element="ns152:CLOSEVIRACC_IOPK_RES" name="ResponseMsg" xmlns:ns152="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCbStmtIO">
+<part element="ns153:QUERYCBSTMT_IOFS_REQ" name="RequestMsg" xmlns:ns153="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCbStmtIOResponse">
+<part element="ns154:QUERYCBSTMT_IOFS_RES" name="ResponseMsg" xmlns:ns154="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCheckBookFS">
+<part element="ns155:CLOSECHECKBOOK_FSFS_REQ" name="RequestMsg" xmlns:ns155="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCheckBookFSResponse">
+<part element="ns156:CLOSECHECKBOOK_FSFS_RES" name="ResponseMsg" xmlns:ns156="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCustAccIO">
+<part element="ns157:AUTHORIZECUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns157="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCustAccIOResponse">
+<part element="ns158:AUTHORIZECUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns158="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCustAccFS">
+<part element="ns159:REOPENCUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns159="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCustAccFSResponse">
+<part element="ns160:REOPENCUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns160="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckBookIO">
+<part element="ns161:MODIFYCHECKBOOK_IOPK_REQ" name="RequestMsg" xmlns:ns161="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckBookIOResponse">
+<part element="ns162:MODIFYCHECKBOOK_IOPK_RES" name="ResponseMsg" xmlns:ns162="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckDetailsIO">
+<part element="ns163:MODIFYCHECKDETAILS_IOPK_REQ" name="RequestMsg" xmlns:ns163="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckDetailsIOResponse">
+<part element="ns164:MODIFYCHECKDETAILS_IOPK_RES" name="ResponseMsg" xmlns:ns164="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTDCustAccIO">
+<part element="ns165:QUERYTDCUSTACC_IOFS_REQ" name="RequestMsg" xmlns:ns165="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTDCustAccIOResponse">
+<part element="ns166:QUERYTDCUSTACC_IOFS_RES" name="ResponseMsg" xmlns:ns166="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateStopPaymentsIO">
+<part element="ns167:CREATESTOPPAYMENTS_IOPK_REQ" name="RequestMsg" xmlns:ns167="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateStopPaymentsIOResponse">
+<part element="ns168:CREATESTOPPAYMENTS_IOPK_RES" name="ResponseMsg" xmlns:ns168="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCustAccFS">
+<part element="ns169:MODIFYCUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns169="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCustAccFSResponse">
+<part element="ns170:MODIFYCUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns170="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCustAccIO">
+<part element="ns171:QUERYCUSTACC_IOFS_REQ" name="RequestMsg" xmlns:ns171="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCustAccIOResponse">
+<part element="ns172:QUERYCUSTACC_IOFS_RES" name="ResponseMsg" xmlns:ns172="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTopUpSimIO">
+<part element="ns173:QUERYTOPUPSIM_IOFS_REQ" name="RequestMsg" xmlns:ns173="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTopUpSimIOResponse">
+<part element="ns174:QUERYTOPUPSIM_IOFS_RES" name="ResponseMsg" xmlns:ns174="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCbStmtFS">
+<part element="ns175:DELETECBSTMT_FSFS_REQ" name="RequestMsg" xmlns:ns175="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCbStmtFSResponse">
+<part element="ns176:DELETECBSTMT_FSFS_RES" name="ResponseMsg" xmlns:ns176="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDCustAccFS">
+<part element="ns177:DELETETDCUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns177="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDCustAccFSResponse">
+<part element="ns178:DELETETDCUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns178="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAutoDepInsFS">
+<part element="ns179:MODIFYAUTODEPINS_FSFS_REQ" name="RequestMsg" xmlns:ns179="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAutoDepInsFSResponse">
+<part element="ns180:MODIFYAUTODEPINS_FSFS_RES" name="ResponseMsg" xmlns:ns180="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackReleaseFS">
+<part element="ns181:DELETETRACKRELEASE_FSFS_REQ" name="RequestMsg" xmlns:ns181="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackReleaseFSResponse">
+<part element="ns182:DELETETRACKRELEASE_FSFS_RES" name="ResponseMsg" xmlns:ns182="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDTopUpIO">
+<part element="ns183:AUTHORIZETDTOPUP_IOPK_REQ" name="RequestMsg" xmlns:ns183="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDTopUpIOResponse">
+<part element="ns184:AUTHORIZETDTOPUP_IOPK_RES" name="ResponseMsg" xmlns:ns184="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCloseNotifiIO">
+<part element="ns185:QUERYCLOSENOTIFI_IOFS_REQ" name="RequestMsg" xmlns:ns185="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryCloseNotifiIOResponse">
+<part element="ns186:QUERYCLOSENOTIFI_IOFS_RES" name="ResponseMsg" xmlns:ns186="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDTopUpFS">
+<part element="ns187:MODIFYTDTOPUP_FSFS_REQ" name="RequestMsg" xmlns:ns187="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDTopUpFSResponse">
+<part element="ns188:MODIFYTDTOPUP_FSFS_RES" name="ResponseMsg" xmlns:ns188="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAccBalIO">
+<part element="ns189:QUERYACCBAL_IOFS_REQ" name="RequestMsg" xmlns:ns189="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryAccBalIOResponse">
+<part element="ns190:QUERYACCBAL_IOFS_RES" name="ResponseMsg" xmlns:ns190="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyStopPaymentsIO">
+<part element="ns191:MODIFYSTOPPAYMENTS_IOPK_REQ" name="RequestMsg" xmlns:ns191="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyStopPaymentsIOResponse">
+<part element="ns192:MODIFYSTOPPAYMENTS_IOPK_RES" name="ResponseMsg" xmlns:ns192="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeVirAccFS">
+<part element="ns193:AUTHORIZEVIRACC_FSFS_REQ" name="RequestMsg" xmlns:ns193="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeVirAccFSResponse">
+<part element="ns194:AUTHORIZEVIRACC_FSFS_RES" name="ResponseMsg" xmlns:ns194="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCbStmtFS">
+<part element="ns195:CREATECBSTMT_FSFS_REQ" name="RequestMsg" xmlns:ns195="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCbStmtFSResponse">
+<part element="ns196:CREATECBSTMT_FSFS_RES" name="ResponseMsg" xmlns:ns196="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeChqArchivalIO">
+<part element="ns197:AUTHORIZECHQARCHIVAL_IOPK_REQ" name="RequestMsg" xmlns:ns197="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeChqArchivalIOResponse">
+<part element="ns198:AUTHORIZECHQARCHIVAL_IOPK_RES" name="ResponseMsg" xmlns:ns198="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteChqArchivalFS">
+<part element="ns199:DELETECHQARCHIVAL_FSFS_REQ" name="RequestMsg" xmlns:ns199="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteChqArchivalFSResponse">
+<part element="ns200:DELETECHQARCHIVAL_FSFS_RES" name="ResponseMsg" xmlns:ns200="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTrackReleaseIO">
+<part element="ns201:QUERYTRACKRELEASE_IOFS_REQ" name="RequestMsg" xmlns:ns201="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryTrackReleaseIOResponse">
+<part element="ns202:QUERYTRACKRELEASE_IOFS_RES" name="ResponseMsg" xmlns:ns202="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDTopUpIO">
+<part element="ns203:DELETETDTOPUP_IOPK_REQ" name="RequestMsg" xmlns:ns203="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTDTopUpIOResponse">
+<part element="ns204:DELETETDTOPUP_IOPK_RES" name="ResponseMsg" xmlns:ns204="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCheckBookFS">
+<part element="ns205:CREATECHECKBOOK_FSFS_REQ" name="RequestMsg" xmlns:ns205="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCheckBookFSResponse">
+<part element="ns206:CREATECHECKBOOK_FSFS_RES" name="ResponseMsg" xmlns:ns206="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDCustAccIO">
+<part element="ns207:MODIFYTDCUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns207="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDCustAccIOResponse">
+<part element="ns208:MODIFYTDCUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns208="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCheckBookFS">
+<part element="ns209:DELETECHECKBOOK_FSFS_REQ" name="RequestMsg" xmlns:ns209="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCheckBookFSResponse">
+<part element="ns210:DELETECHECKBOOK_FSFS_RES" name="ResponseMsg" xmlns:ns210="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseStopPaymentsIO">
+<part element="ns211:CLOSESTOPPAYMENTS_IOPK_REQ" name="RequestMsg" xmlns:ns211="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseStopPaymentsIOResponse">
+<part element="ns212:CLOSESTOPPAYMENTS_IOPK_RES" name="ResponseMsg" xmlns:ns212="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCbStmtIO">
+<part element="ns213:AUTHORIZECBSTMT_IOPK_REQ" name="RequestMsg" xmlns:ns213="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCbStmtIOResponse">
+<part element="ns214:AUTHORIZECBSTMT_IOPK_RES" name="ResponseMsg" xmlns:ns214="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackReleaseFS">
+<part element="ns215:AUTHORIZETRACKRELEASE_FSFS_REQ" name="RequestMsg" xmlns:ns215="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackReleaseFSResponse">
+<part element="ns216:AUTHORIZETRACKRELEASE_FSFS_RES" name="ResponseMsg" xmlns:ns216="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteStopPaymentsIO">
+<part element="ns217:DELETESTOPPAYMENTS_IOPK_REQ" name="RequestMsg" xmlns:ns217="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteStopPaymentsIOResponse">
+<part element="ns218:DELETESTOPPAYMENTS_IOPK_RES" name="ResponseMsg" xmlns:ns218="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackReleaseFS">
+<part element="ns219:MODIFYTRACKRELEASE_FSFS_REQ" name="RequestMsg" xmlns:ns219="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTrackReleaseFSResponse">
+<part element="ns220:MODIFYTRACKRELEASE_FSFS_RES" name="ResponseMsg" xmlns:ns220="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCbStmtFS">
+<part element="ns221:REOPENCBSTMT_FSFS_REQ" name="RequestMsg" xmlns:ns221="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCbStmtFSResponse">
+<part element="ns222:REOPENCBSTMT_FSFS_RES" name="ResponseMsg" xmlns:ns222="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAcClassTfrIO">
+<part element="ns223:AUTHORIZEACCLASSTFR_IOPK_REQ" name="RequestMsg" xmlns:ns223="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAcClassTfrIOResponse">
+<part element="ns224:AUTHORIZEACCLASSTFR_IOPK_RES" name="ResponseMsg" xmlns:ns224="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteChqArchivalIO">
+<part element="ns225:DELETECHQARCHIVAL_IOPK_REQ" name="RequestMsg" xmlns:ns225="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteChqArchivalIOResponse">
+<part element="ns226:DELETECHQARCHIVAL_IOPK_RES" name="ResponseMsg" xmlns:ns226="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateVirAccFS">
+<part element="ns227:CREATEVIRACC_FSFS_REQ" name="RequestMsg" xmlns:ns227="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateVirAccFSResponse">
+<part element="ns228:CREATEVIRACC_FSFS_RES" name="ResponseMsg" xmlns:ns228="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyChqArchivalFS">
+<part element="ns229:MODIFYCHQARCHIVAL_FSFS_REQ" name="RequestMsg" xmlns:ns229="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyChqArchivalFSResponse">
+<part element="ns230:MODIFYCHQARCHIVAL_FSFS_RES" name="ResponseMsg" xmlns:ns230="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAutoDepInsFS">
+<part element="ns231:CREATEAUTODEPINS_FSFS_REQ" name="RequestMsg" xmlns:ns231="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAutoDepInsFSResponse">
+<part element="ns232:CREATEAUTODEPINS_FSFS_RES" name="ResponseMsg" xmlns:ns232="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCheckBookIO">
+<part element="ns233:CLOSECHECKBOOK_IOPK_REQ" name="RequestMsg" xmlns:ns233="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCheckBookIOResponse">
+<part element="ns234:CLOSECHECKBOOK_IOPK_RES" name="ResponseMsg" xmlns:ns234="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryVirAccIO">
+<part element="ns235:QUERYVIRACC_IOFS_REQ" name="RequestMsg" xmlns:ns235="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryVirAccIOResponse">
+<part element="ns236:QUERYVIRACC_IOFS_RES" name="ResponseMsg" xmlns:ns236="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackDeleteFS">
+<part element="ns237:AUTHORIZETRACKDELETE_FSFS_REQ" name="RequestMsg" xmlns:ns237="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTrackDeleteFSResponse">
+<part element="ns238:AUTHORIZETRACKDELETE_FSFS_RES" name="ResponseMsg" xmlns:ns238="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDSimFS">
+<part element="ns239:CREATETDSIM_FSFS_REQ" name="RequestMsg" xmlns:ns239="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDSimFSResponse">
+<part element="ns240:CREATETDSIM_FSFS_RES" name="ResponseMsg" xmlns:ns240="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCustAccFS">
+<part element="ns241:CLOSECUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns241="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCustAccFSResponse">
+<part element="ns242:CLOSECUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns242="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteVirAccFS">
+<part element="ns243:DELETEVIRACC_FSFS_REQ" name="RequestMsg" xmlns:ns243="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteVirAccFSResponse">
+<part element="ns244:DELETEVIRACC_FSFS_RES" name="ResponseMsg" xmlns:ns244="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckBookFS">
+<part element="ns245:MODIFYCHECKBOOK_FSFS_REQ" name="RequestMsg" xmlns:ns245="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCheckBookFSResponse">
+<part element="ns246:MODIFYCHECKBOOK_FSFS_RES" name="ResponseMsg" xmlns:ns246="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCbStmtFS">
+<part element="ns247:CLOSECBSTMT_FSFS_REQ" name="RequestMsg" xmlns:ns247="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseCbStmtFSResponse">
+<part element="ns248:CLOSECBSTMT_FSFS_RES" name="ResponseMsg" xmlns:ns248="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryChqArchivalIO">
+<part element="ns249:QUERYCHQARCHIVAL_IOFS_REQ" name="RequestMsg" xmlns:ns249="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryChqArchivalIOResponse">
+<part element="ns250:QUERYCHQARCHIVAL_IOFS_RES" name="ResponseMsg" xmlns:ns250="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryNoactivityNotifiIO">
+<part element="ns251:QUERYNOACTIVITYNOTIFI_IOFS_REQ" name="RequestMsg" xmlns:ns251="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="QueryNoactivityNotifiIOResponse">
+<part element="ns252:QUERYNOACTIVITYNOTIFI_IOFS_RES" name="ResponseMsg" xmlns:ns252="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateChqArchivalFS">
+<part element="ns253:CREATECHQARCHIVAL_FSFS_REQ" name="RequestMsg" xmlns:ns253="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateChqArchivalFSResponse">
+<part element="ns254:CREATECHQARCHIVAL_FSFS_RES" name="ResponseMsg" xmlns:ns254="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackReleaseIO">
+<part element="ns255:DELETETRACKRELEASE_IOPK_REQ" name="RequestMsg" xmlns:ns255="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteTrackReleaseIOResponse">
+<part element="ns256:DELETETRACKRELEASE_IOPK_RES" name="ResponseMsg" xmlns:ns256="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDTopUpIO">
+<part element="ns257:MODIFYTDTOPUP_IOPK_REQ" name="RequestMsg" xmlns:ns257="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyTDTopUpIOResponse">
+<part element="ns258:MODIFYTDTOPUP_IOPK_RES" name="ResponseMsg" xmlns:ns258="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCbStmtIO">
+<part element="ns259:DELETECBSTMT_IOPK_REQ" name="RequestMsg" xmlns:ns259="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="DeleteCbStmtIOResponse">
+<part element="ns260:DELETECBSTMT_IOPK_RES" name="ResponseMsg" xmlns:ns260="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCheckBookIO">
+<part element="ns261:REOPENCHECKBOOK_IOPK_REQ" name="RequestMsg" xmlns:ns261="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenCheckBookIOResponse">
+<part element="ns262:REOPENCHECKBOOK_IOPK_RES" name="ResponseMsg" xmlns:ns262="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenVirAccIO">
+<part element="ns263:REOPENVIRACC_IOPK_REQ" name="RequestMsg" xmlns:ns263="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ReopenVirAccIOResponse">
+<part element="ns264:REOPENVIRACC_IOPK_RES" name="ResponseMsg" xmlns:ns264="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseAutoDepInsIO">
+<part element="ns265:CLOSEAUTODEPINS_IOPK_REQ" name="RequestMsg" xmlns:ns265="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CloseAutoDepInsIOResponse">
+<part element="ns266:CLOSEAUTODEPINS_IOPK_RES" name="ResponseMsg" xmlns:ns266="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAutoDepInsIO">
+<part element="ns267:AUTHORIZEAUTODEPINS_IOPK_REQ" name="RequestMsg" xmlns:ns267="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeAutoDepInsIOResponse">
+<part element="ns268:AUTHORIZEAUTODEPINS_IOPK_RES" name="ResponseMsg" xmlns:ns268="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckDetailsIO">
+<part element="ns269:AUTHORIZECHECKDETAILS_IOPK_REQ" name="RequestMsg" xmlns:ns269="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckDetailsIOResponse">
+<part element="ns270:AUTHORIZECHECKDETAILS_IOPK_RES" name="ResponseMsg" xmlns:ns270="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCustAccFS">
+<part element="ns271:CREATECUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns271="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCustAccFSResponse">
+<part element="ns272:CREATECUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns272="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAcClassTfrIO">
+<part element="ns273:CREATEACCLASSTFR_IOPK_REQ" name="RequestMsg" xmlns:ns273="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateAcClassTfrIOResponse">
+<part element="ns274:CREATEACCLASSTFR_IOPK_RES" name="ResponseMsg" xmlns:ns274="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAutoDepInsIO">
+<part element="ns275:MODIFYAUTODEPINS_IOPK_REQ" name="RequestMsg" xmlns:ns275="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyAutoDepInsIOResponse">
+<part element="ns276:MODIFYAUTODEPINS_IOPK_RES" name="ResponseMsg" xmlns:ns276="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeChqArchivalFS">
+<part element="ns277:AUTHORIZECHQARCHIVAL_FSFS_REQ" name="RequestMsg" xmlns:ns277="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeChqArchivalFSResponse">
+<part element="ns278:AUTHORIZECHQARCHIVAL_FSFS_RES" name="ResponseMsg" xmlns:ns278="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDCustAccIO">
+<part element="ns279:AUTHORIZETDCUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns279="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeTDCustAccIOResponse">
+<part element="ns280:AUTHORIZETDCUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns280="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCbStmtFS">
+<part element="ns281:MODIFYCBSTMT_FSFS_REQ" name="RequestMsg" xmlns:ns281="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="ModifyCbStmtFSResponse">
+<part element="ns282:MODIFYCBSTMT_FSFS_RES" name="ResponseMsg" xmlns:ns282="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCustAccFS">
+<part element="ns283:AUTHORIZECUSTACC_FSFS_REQ" name="RequestMsg" xmlns:ns283="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCustAccFSResponse">
+<part element="ns284:AUTHORIZECUSTACC_FSFS_RES" name="ResponseMsg" xmlns:ns284="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDCustAccIO">
+<part element="ns285:CREATETDCUSTACC_IOPK_REQ" name="RequestMsg" xmlns:ns285="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateTDCustAccIOResponse">
+<part element="ns286:CREATETDCUSTACC_IOPK_RES" name="ResponseMsg" xmlns:ns286="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckBookIO">
+<part element="ns287:AUTHORIZECHECKBOOK_IOPK_REQ" name="RequestMsg" xmlns:ns287="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="AuthorizeCheckBookIOResponse">
+<part element="ns288:AUTHORIZECHECKBOOK_IOPK_RES" name="ResponseMsg" xmlns:ns288="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCheckBookIO">
+<part element="ns289:CREATECHECKBOOK_IOPK_REQ" name="RequestMsg" xmlns:ns289="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<message name="CreateCheckBookIOResponse">
+<part element="ns290:CREATECHECKBOOK_IOPK_RES" name="ResponseMsg" xmlns:ns290="http://fcubs.ofss.com/service/FCUBSAccService"/>
+</message>
+<portType name="FCUBSAccServiceSEI">
+<operation name="CloseCustAccIO">
+<input message="tns:CloseCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCustAccIORequest"/>
+<output message="tns:CloseCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCustAccIOResponse"/>
+</operation>
+<operation name="QueryTrackDeleteIO">
+<input message="tns:QueryTrackDeleteIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTrackDeleteIORequest"/>
+<output message="tns:QueryTrackDeleteIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTrackDeleteIOResponse"/>
+</operation>
+<operation name="DeleteAutoDepInsIO">
+<input message="tns:DeleteAutoDepInsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAutoDepInsIORequest"/>
+<output message="tns:DeleteAutoDepInsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAutoDepInsIOResponse"/>
+</operation>
+<operation name="QuerycustAccountDetailsIO">
+<input message="tns:QuerycustAccountDetailsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QuerycustAccountDetailsIORequest"/>
+<output message="tns:QuerycustAccountDetailsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QuerycustAccountDetailsIOResponse"/>
+</operation>
+<operation name="QueryAutoDepInsIO">
+<input message="tns:QueryAutoDepInsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAutoDepInsIORequest"/>
+<output message="tns:QueryAutoDepInsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAutoDepInsIOResponse"/>
+</operation>
+<operation name="ReopenVirAccFS">
+<input message="tns:ReopenVirAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenVirAccFSRequest"/>
+<output message="tns:ReopenVirAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenVirAccFSResponse"/>
+</operation>
+<operation name="ModifyVirAccIO">
+<input message="tns:ModifyVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyVirAccIORequest"/>
+<output message="tns:ModifyVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyVirAccIOResponse"/>
+</operation>
+<operation name="CloseStopPaymentsFS">
+<input message="tns:CloseStopPaymentsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseStopPaymentsFSRequest"/>
+<output message="tns:CloseStopPaymentsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseStopPaymentsFSResponse"/>
+</operation>
+<operation name="CreateAcClassTfrFS">
+<input message="tns:CreateAcClassTfrFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAcClassTfrFSRequest"/>
+<output message="tns:CreateAcClassTfrFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAcClassTfrFSResponse"/>
+</operation>
+<operation name="QueryTopupNotifiIO">
+<input message="tns:QueryTopupNotifiIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTopupNotifiIORequest"/>
+<output message="tns:QueryTopupNotifiIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTopupNotifiIOResponse"/>
+</operation>
+<operation name="CreateTrackDeleteFS">
+<input message="tns:CreateTrackDeleteFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackDeleteFSRequest"/>
+<output message="tns:CreateTrackDeleteFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackDeleteFSResponse"/>
+</operation>
+<operation name="QueryAccSummIO">
+<input message="tns:QueryAccSummIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAccSummIORequest"/>
+<output message="tns:QueryAccSummIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAccSummIOResponse"/>
+</operation>
+<operation name="AuthorizeAcClassTfrFS">
+<input message="tns:AuthorizeAcClassTfrFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAcClassTfrFSRequest"/>
+<output message="tns:AuthorizeAcClassTfrFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAcClassTfrFSResponse"/>
+</operation>
+<operation name="DeleteCheckBookIO">
+<input message="tns:DeleteCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCheckBookIORequest"/>
+<output message="tns:DeleteCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCheckBookIOResponse"/>
+</operation>
+<operation name="QueryGenAdviceIO">
+<input message="tns:QueryGenAdviceIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryGenAdviceIORequest"/>
+<output message="tns:QueryGenAdviceIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryGenAdviceIOResponse"/>
+</operation>
+<operation name="CloseAutoDepInsFS">
+<input message="tns:CloseAutoDepInsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseAutoDepInsFSRequest"/>
+<output message="tns:CloseAutoDepInsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseAutoDepInsFSResponse"/>
+</operation>
+<operation name="ModifyAcClassTfrIO">
+<input message="tns:ModifyAcClassTfrIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAcClassTfrIORequest"/>
+<output message="tns:ModifyAcClassTfrIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAcClassTfrIOResponse"/>
+</operation>
+<operation name="CreateCustAccIO">
+<input message="tns:CreateCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCustAccIORequest"/>
+<output message="tns:CreateCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCustAccIOResponse"/>
+</operation>
+<operation name="QueryTDCustAccSimIO">
+<input message="tns:QueryTDCustAccSimIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTDCustAccSimIORequest"/>
+<output message="tns:QueryTDCustAccSimIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTDCustAccSimIOResponse"/>
+</operation>
+<operation name="CreateTrackReleaseIO">
+<input message="tns:CreateTrackReleaseIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackReleaseIORequest"/>
+<output message="tns:CreateTrackReleaseIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackReleaseIOResponse"/>
+</operation>
+<operation name="ModifyTrackReleaseIO">
+<input message="tns:ModifyTrackReleaseIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackReleaseIORequest"/>
+<output message="tns:ModifyTrackReleaseIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackReleaseIOResponse"/>
+</operation>
+<operation name="DeleteStopPaymentsFS">
+<input message="tns:DeleteStopPaymentsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteStopPaymentsFSRequest"/>
+<output message="tns:DeleteStopPaymentsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteStopPaymentsFSResponse"/>
+</operation>
+<operation name="ModifyTDCustAccFS">
+<input message="tns:ModifyTDCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDCustAccFSRequest"/>
+<output message="tns:ModifyTDCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDCustAccFSResponse"/>
+</operation>
+<operation name="AuthorizeStopPaymentsIO">
+<input message="tns:AuthorizeStopPaymentsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeStopPaymentsIORequest"/>
+<output message="tns:AuthorizeStopPaymentsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeStopPaymentsIOResponse"/>
+</operation>
+<operation name="AuthorizeTDCustAccFS">
+<input message="tns:AuthorizeTDCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDCustAccFSRequest"/>
+<output message="tns:AuthorizeTDCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDCustAccFSResponse"/>
+</operation>
+<operation name="CreateStopPaymentsFS">
+<input message="tns:CreateStopPaymentsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateStopPaymentsFSRequest"/>
+<output message="tns:CreateStopPaymentsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateStopPaymentsFSResponse"/>
+</operation>
+<operation name="ModifyStopPaymentsFS">
+<input message="tns:ModifyStopPaymentsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyStopPaymentsFSRequest"/>
+<output message="tns:ModifyStopPaymentsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyStopPaymentsFSResponse"/>
+</operation>
+<operation name="CreateCbStmtIO">
+<input message="tns:CreateCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCbStmtIORequest"/>
+<output message="tns:CreateCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCbStmtIOResponse"/>
+</operation>
+<operation name="CreateVirAccIO">
+<input message="tns:CreateVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateVirAccIORequest"/>
+<output message="tns:CreateVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateVirAccIOResponse"/>
+</operation>
+<operation name="DeleteTrackDeleteIO">
+<input message="tns:DeleteTrackDeleteIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackDeleteIORequest"/>
+<output message="tns:DeleteTrackDeleteIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackDeleteIOResponse"/>
+</operation>
+<operation name="CreateTDTopUpIO">
+<input message="tns:CreateTDTopUpIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDTopUpIORequest"/>
+<output message="tns:CreateTDTopUpIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDTopUpIOResponse"/>
+</operation>
+<operation name="ReopenCustAccIO">
+<input message="tns:ReopenCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCustAccIORequest"/>
+<output message="tns:ReopenCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCustAccIOResponse"/>
+</operation>
+<operation name="QueryAcClassTfrIO">
+<input message="tns:QueryAcClassTfrIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAcClassTfrIORequest"/>
+<output message="tns:QueryAcClassTfrIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAcClassTfrIOResponse"/>
+</operation>
+<operation name="CreateAutoDepInsIO">
+<input message="tns:CreateAutoDepInsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAutoDepInsIORequest"/>
+<output message="tns:CreateAutoDepInsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAutoDepInsIOResponse"/>
+</operation>
+<operation name="DeleteCustAccFS">
+<input message="tns:DeleteCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCustAccFSRequest"/>
+<output message="tns:DeleteCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCustAccFSResponse"/>
+</operation>
+<operation name="ReopenCheckBookFS">
+<input message="tns:ReopenCheckBookFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCheckBookFSRequest"/>
+<output message="tns:ReopenCheckBookFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCheckBookFSResponse"/>
+</operation>
+<operation name="AuthorizeVirAccIO">
+<input message="tns:AuthorizeVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeVirAccIORequest"/>
+<output message="tns:AuthorizeVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeVirAccIOResponse"/>
+</operation>
+<operation name="AuthorizeAutoDepInsFS">
+<input message="tns:AuthorizeAutoDepInsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAutoDepInsFSRequest"/>
+<output message="tns:AuthorizeAutoDepInsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAutoDepInsFSResponse"/>
+</operation>
+<operation name="CreateTDSimIO">
+<input message="tns:CreateTDSimIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDSimIORequest"/>
+<output message="tns:CreateTDSimIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDSimIOResponse"/>
+</operation>
+<operation name="DeleteAcClassTfrFS">
+<input message="tns:DeleteAcClassTfrFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAcClassTfrFSRequest"/>
+<output message="tns:DeleteAcClassTfrFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAcClassTfrFSResponse"/>
+</operation>
+<operation name="ModifyTrackDeleteFS">
+<input message="tns:ModifyTrackDeleteFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackDeleteFSRequest"/>
+<output message="tns:ModifyTrackDeleteFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackDeleteFSResponse"/>
+</operation>
+<operation name="AuthorizeTrackReleaseIO">
+<input message="tns:AuthorizeTrackReleaseIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackReleaseIORequest"/>
+<output message="tns:AuthorizeTrackReleaseIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackReleaseIOResponse"/>
+</operation>
+<operation name="CreateTrackReleaseFS">
+<input message="tns:CreateTrackReleaseFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackReleaseFSRequest"/>
+<output message="tns:CreateTrackReleaseFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackReleaseFSResponse"/>
+</operation>
+<operation name="AuthorizeCheckBookFS">
+<input message="tns:AuthorizeCheckBookFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckBookFSRequest"/>
+<output message="tns:AuthorizeCheckBookFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckBookFSResponse"/>
+</operation>
+<operation name="AuthorizeStopPaymentsFS">
+<input message="tns:AuthorizeStopPaymentsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeStopPaymentsFSRequest"/>
+<output message="tns:AuthorizeStopPaymentsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeStopPaymentsFSResponse"/>
+</operation>
+<operation name="CloseCbStmtIO">
+<input message="tns:CloseCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCbStmtIORequest"/>
+<output message="tns:CloseCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCbStmtIOResponse"/>
+</operation>
+<operation name="DeleteCustAccIO">
+<input message="tns:DeleteCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCustAccIORequest"/>
+<output message="tns:DeleteCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCustAccIOResponse"/>
+</operation>
+<operation name="CreateChqArchivalIO">
+<input message="tns:CreateChqArchivalIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateChqArchivalIORequest"/>
+<output message="tns:CreateChqArchivalIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateChqArchivalIOResponse"/>
+</operation>
+<operation name="AuthorizeTDTopUpFS">
+<input message="tns:AuthorizeTDTopUpFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDTopUpFSRequest"/>
+<output message="tns:AuthorizeTDTopUpFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDTopUpFSResponse"/>
+</operation>
+<operation name="QueryCheckDetailsIO">
+<input message="tns:QueryCheckDetailsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCheckDetailsIORequest"/>
+<output message="tns:QueryCheckDetailsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCheckDetailsIOResponse"/>
+</operation>
+<operation name="ModifyCustAccIO">
+<input message="tns:ModifyCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCustAccIORequest"/>
+<output message="tns:ModifyCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCustAccIOResponse"/>
+</operation>
+<operation name="AuthorizeCbStmtFS">
+<input message="tns:AuthorizeCbStmtFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCbStmtFSRequest"/>
+<output message="tns:AuthorizeCbStmtFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCbStmtFSResponse"/>
+</operation>
+<operation name="ModifyCbStmtIO">
+<input message="tns:ModifyCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCbStmtIORequest"/>
+<output message="tns:ModifyCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCbStmtIOResponse"/>
+</operation>
+<operation name="ModifyTrackDeleteIO">
+<input message="tns:ModifyTrackDeleteIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackDeleteIORequest"/>
+<output message="tns:ModifyTrackDeleteIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackDeleteIOResponse"/>
+</operation>
+<operation name="AuthorizeCheckDetailsFS">
+<input message="tns:AuthorizeCheckDetailsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckDetailsFSRequest"/>
+<output message="tns:AuthorizeCheckDetailsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckDetailsFSResponse"/>
+</operation>
+<operation name="CreateTDTopUpFS">
+<input message="tns:CreateTDTopUpFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDTopUpFSRequest"/>
+<output message="tns:CreateTDTopUpFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDTopUpFSResponse"/>
+</operation>
+<operation name="DeleteTDCustAccIO">
+<input message="tns:DeleteTDCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDCustAccIORequest"/>
+<output message="tns:DeleteTDCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDCustAccIOResponse"/>
+</operation>
+<operation name="CreateTDCustAccFS">
+<input message="tns:CreateTDCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDCustAccFSRequest"/>
+<output message="tns:CreateTDCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDCustAccFSResponse"/>
+</operation>
+<operation name="DeleteAutoDepInsFS">
+<input message="tns:DeleteAutoDepInsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAutoDepInsFSRequest"/>
+<output message="tns:DeleteAutoDepInsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAutoDepInsFSResponse"/>
+</operation>
+<operation name="ModifyCheckDetailsFS">
+<input message="tns:ModifyCheckDetailsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckDetailsFSRequest"/>
+<output message="tns:ModifyCheckDetailsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckDetailsFSResponse"/>
+</operation>
+<operation name="DeleteAcClassTfrIO">
+<input message="tns:DeleteAcClassTfrIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAcClassTfrIORequest"/>
+<output message="tns:DeleteAcClassTfrIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteAcClassTfrIOResponse"/>
+</operation>
+<operation name="ModifyVirAccFS">
+<input message="tns:ModifyVirAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyVirAccFSRequest"/>
+<output message="tns:ModifyVirAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyVirAccFSResponse"/>
+</operation>
+<operation name="CloseVirAccFS">
+<input message="tns:CloseVirAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseVirAccFSRequest"/>
+<output message="tns:CloseVirAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseVirAccFSResponse"/>
+</operation>
+<operation name="QueryCheckBookIO">
+<input message="tns:QueryCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCheckBookIORequest"/>
+<output message="tns:QueryCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCheckBookIOResponse"/>
+</operation>
+<operation name="QueryTDTopUpIO">
+<input message="tns:QueryTDTopUpIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTDTopUpIORequest"/>
+<output message="tns:QueryTDTopUpIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTDTopUpIOResponse"/>
+</operation>
+<operation name="ModifyAcClassTfrFS">
+<input message="tns:ModifyAcClassTfrFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAcClassTfrFSRequest"/>
+<output message="tns:ModifyAcClassTfrFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAcClassTfrFSResponse"/>
+</operation>
+<operation name="CreateTrackDeleteIO">
+<input message="tns:CreateTrackDeleteIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackDeleteIORequest"/>
+<output message="tns:CreateTrackDeleteIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTrackDeleteIOResponse"/>
+</operation>
+<operation name="QueryCustAccBalanceIO">
+<input message="tns:QueryCustAccBalanceIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCustAccBalanceIORequest"/>
+<output message="tns:QueryCustAccBalanceIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCustAccBalanceIOResponse"/>
+</operation>
+<operation name="DeleteVirAccIO">
+<input message="tns:DeleteVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteVirAccIORequest"/>
+<output message="tns:DeleteVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteVirAccIOResponse"/>
+</operation>
+<operation name="AuthorizeTrackDeleteIO">
+<input message="tns:AuthorizeTrackDeleteIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackDeleteIORequest"/>
+<output message="tns:AuthorizeTrackDeleteIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackDeleteIOResponse"/>
+</operation>
+<operation name="DeleteTDTopUpFS">
+<input message="tns:DeleteTDTopUpFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDTopUpFSRequest"/>
+<output message="tns:DeleteTDTopUpFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDTopUpFSResponse"/>
+</operation>
+<operation name="QueryStopPaymentsIO">
+<input message="tns:QueryStopPaymentsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryStopPaymentsIORequest"/>
+<output message="tns:QueryStopPaymentsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryStopPaymentsIOResponse"/>
+</operation>
+<operation name="ModifyChqArchivalIO">
+<input message="tns:ModifyChqArchivalIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyChqArchivalIORequest"/>
+<output message="tns:ModifyChqArchivalIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyChqArchivalIOResponse"/>
+</operation>
+<operation name="ReopenCbStmtIO">
+<input message="tns:ReopenCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCbStmtIORequest"/>
+<output message="tns:ReopenCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCbStmtIOResponse"/>
+</operation>
+<operation name="DeleteTrackDeleteFS">
+<input message="tns:DeleteTrackDeleteFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackDeleteFSRequest"/>
+<output message="tns:DeleteTrackDeleteFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackDeleteFSResponse"/>
+</operation>
+<operation name="CloseVirAccIO">
+<input message="tns:CloseVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseVirAccIORequest"/>
+<output message="tns:CloseVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseVirAccIOResponse"/>
+</operation>
+<operation name="QueryCbStmtIO">
+<input message="tns:QueryCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCbStmtIORequest"/>
+<output message="tns:QueryCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCbStmtIOResponse"/>
+</operation>
+<operation name="CloseCheckBookFS">
+<input message="tns:CloseCheckBookFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCheckBookFSRequest"/>
+<output message="tns:CloseCheckBookFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCheckBookFSResponse"/>
+</operation>
+<operation name="AuthorizeCustAccIO">
+<input message="tns:AuthorizeCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCustAccIORequest"/>
+<output message="tns:AuthorizeCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCustAccIOResponse"/>
+</operation>
+<operation name="ReopenCustAccFS">
+<input message="tns:ReopenCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCustAccFSRequest"/>
+<output message="tns:ReopenCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCustAccFSResponse"/>
+</operation>
+<operation name="ModifyCheckBookIO">
+<input message="tns:ModifyCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckBookIORequest"/>
+<output message="tns:ModifyCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckBookIOResponse"/>
+</operation>
+<operation name="ModifyCheckDetailsIO">
+<input message="tns:ModifyCheckDetailsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckDetailsIORequest"/>
+<output message="tns:ModifyCheckDetailsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckDetailsIOResponse"/>
+</operation>
+<operation name="QueryTDCustAccIO">
+<input message="tns:QueryTDCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTDCustAccIORequest"/>
+<output message="tns:QueryTDCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTDCustAccIOResponse"/>
+</operation>
+<operation name="CreateStopPaymentsIO">
+<input message="tns:CreateStopPaymentsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateStopPaymentsIORequest"/>
+<output message="tns:CreateStopPaymentsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateStopPaymentsIOResponse"/>
+</operation>
+<operation name="ModifyCustAccFS">
+<input message="tns:ModifyCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCustAccFSRequest"/>
+<output message="tns:ModifyCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCustAccFSResponse"/>
+</operation>
+<operation name="QueryCustAccIO">
+<input message="tns:QueryCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCustAccIORequest"/>
+<output message="tns:QueryCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCustAccIOResponse"/>
+</operation>
+<operation name="QueryTopUpSimIO">
+<input message="tns:QueryTopUpSimIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTopUpSimIORequest"/>
+<output message="tns:QueryTopUpSimIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTopUpSimIOResponse"/>
+</operation>
+<operation name="DeleteCbStmtFS">
+<input message="tns:DeleteCbStmtFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCbStmtFSRequest"/>
+<output message="tns:DeleteCbStmtFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCbStmtFSResponse"/>
+</operation>
+<operation name="DeleteTDCustAccFS">
+<input message="tns:DeleteTDCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDCustAccFSRequest"/>
+<output message="tns:DeleteTDCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDCustAccFSResponse"/>
+</operation>
+<operation name="ModifyAutoDepInsFS">
+<input message="tns:ModifyAutoDepInsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAutoDepInsFSRequest"/>
+<output message="tns:ModifyAutoDepInsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAutoDepInsFSResponse"/>
+</operation>
+<operation name="DeleteTrackReleaseFS">
+<input message="tns:DeleteTrackReleaseFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackReleaseFSRequest"/>
+<output message="tns:DeleteTrackReleaseFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackReleaseFSResponse"/>
+</operation>
+<operation name="AuthorizeTDTopUpIO">
+<input message="tns:AuthorizeTDTopUpIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDTopUpIORequest"/>
+<output message="tns:AuthorizeTDTopUpIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDTopUpIOResponse"/>
+</operation>
+<operation name="QueryCloseNotifiIO">
+<input message="tns:QueryCloseNotifiIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCloseNotifiIORequest"/>
+<output message="tns:QueryCloseNotifiIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryCloseNotifiIOResponse"/>
+</operation>
+<operation name="ModifyTDTopUpFS">
+<input message="tns:ModifyTDTopUpFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDTopUpFSRequest"/>
+<output message="tns:ModifyTDTopUpFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDTopUpFSResponse"/>
+</operation>
+<operation name="QueryAccBalIO">
+<input message="tns:QueryAccBalIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAccBalIORequest"/>
+<output message="tns:QueryAccBalIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryAccBalIOResponse"/>
+</operation>
+<operation name="ModifyStopPaymentsIO">
+<input message="tns:ModifyStopPaymentsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyStopPaymentsIORequest"/>
+<output message="tns:ModifyStopPaymentsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyStopPaymentsIOResponse"/>
+</operation>
+<operation name="AuthorizeVirAccFS">
+<input message="tns:AuthorizeVirAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeVirAccFSRequest"/>
+<output message="tns:AuthorizeVirAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeVirAccFSResponse"/>
+</operation>
+<operation name="CreateCbStmtFS">
+<input message="tns:CreateCbStmtFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCbStmtFSRequest"/>
+<output message="tns:CreateCbStmtFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCbStmtFSResponse"/>
+</operation>
+<operation name="AuthorizeChqArchivalIO">
+<input message="tns:AuthorizeChqArchivalIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeChqArchivalIORequest"/>
+<output message="tns:AuthorizeChqArchivalIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeChqArchivalIOResponse"/>
+</operation>
+<operation name="DeleteChqArchivalFS">
+<input message="tns:DeleteChqArchivalFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteChqArchivalFSRequest"/>
+<output message="tns:DeleteChqArchivalFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteChqArchivalFSResponse"/>
+</operation>
+<operation name="QueryTrackReleaseIO">
+<input message="tns:QueryTrackReleaseIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTrackReleaseIORequest"/>
+<output message="tns:QueryTrackReleaseIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryTrackReleaseIOResponse"/>
+</operation>
+<operation name="DeleteTDTopUpIO">
+<input message="tns:DeleteTDTopUpIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDTopUpIORequest"/>
+<output message="tns:DeleteTDTopUpIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTDTopUpIOResponse"/>
+</operation>
+<operation name="CreateCheckBookFS">
+<input message="tns:CreateCheckBookFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCheckBookFSRequest"/>
+<output message="tns:CreateCheckBookFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCheckBookFSResponse"/>
+</operation>
+<operation name="ModifyTDCustAccIO">
+<input message="tns:ModifyTDCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDCustAccIORequest"/>
+<output message="tns:ModifyTDCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDCustAccIOResponse"/>
+</operation>
+<operation name="DeleteCheckBookFS">
+<input message="tns:DeleteCheckBookFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCheckBookFSRequest"/>
+<output message="tns:DeleteCheckBookFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCheckBookFSResponse"/>
+</operation>
+<operation name="CloseStopPaymentsIO">
+<input message="tns:CloseStopPaymentsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseStopPaymentsIORequest"/>
+<output message="tns:CloseStopPaymentsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseStopPaymentsIOResponse"/>
+</operation>
+<operation name="AuthorizeCbStmtIO">
+<input message="tns:AuthorizeCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCbStmtIORequest"/>
+<output message="tns:AuthorizeCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCbStmtIOResponse"/>
+</operation>
+<operation name="AuthorizeTrackReleaseFS">
+<input message="tns:AuthorizeTrackReleaseFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackReleaseFSRequest"/>
+<output message="tns:AuthorizeTrackReleaseFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackReleaseFSResponse"/>
+</operation>
+<operation name="DeleteStopPaymentsIO">
+<input message="tns:DeleteStopPaymentsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteStopPaymentsIORequest"/>
+<output message="tns:DeleteStopPaymentsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteStopPaymentsIOResponse"/>
+</operation>
+<operation name="ModifyTrackReleaseFS">
+<input message="tns:ModifyTrackReleaseFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackReleaseFSRequest"/>
+<output message="tns:ModifyTrackReleaseFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTrackReleaseFSResponse"/>
+</operation>
+<operation name="ReopenCbStmtFS">
+<input message="tns:ReopenCbStmtFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCbStmtFSRequest"/>
+<output message="tns:ReopenCbStmtFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCbStmtFSResponse"/>
+</operation>
+<operation name="AuthorizeAcClassTfrIO">
+<input message="tns:AuthorizeAcClassTfrIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAcClassTfrIORequest"/>
+<output message="tns:AuthorizeAcClassTfrIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAcClassTfrIOResponse"/>
+</operation>
+<operation name="DeleteChqArchivalIO">
+<input message="tns:DeleteChqArchivalIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteChqArchivalIORequest"/>
+<output message="tns:DeleteChqArchivalIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteChqArchivalIOResponse"/>
+</operation>
+<operation name="CreateVirAccFS">
+<input message="tns:CreateVirAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateVirAccFSRequest"/>
+<output message="tns:CreateVirAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateVirAccFSResponse"/>
+</operation>
+<operation name="ModifyChqArchivalFS">
+<input message="tns:ModifyChqArchivalFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyChqArchivalFSRequest"/>
+<output message="tns:ModifyChqArchivalFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyChqArchivalFSResponse"/>
+</operation>
+<operation name="CreateAutoDepInsFS">
+<input message="tns:CreateAutoDepInsFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAutoDepInsFSRequest"/>
+<output message="tns:CreateAutoDepInsFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAutoDepInsFSResponse"/>
+</operation>
+<operation name="CloseCheckBookIO">
+<input message="tns:CloseCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCheckBookIORequest"/>
+<output message="tns:CloseCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCheckBookIOResponse"/>
+</operation>
+<operation name="QueryVirAccIO">
+<input message="tns:QueryVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryVirAccIORequest"/>
+<output message="tns:QueryVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryVirAccIOResponse"/>
+</operation>
+<operation name="AuthorizeTrackDeleteFS">
+<input message="tns:AuthorizeTrackDeleteFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackDeleteFSRequest"/>
+<output message="tns:AuthorizeTrackDeleteFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTrackDeleteFSResponse"/>
+</operation>
+<operation name="CreateTDSimFS">
+<input message="tns:CreateTDSimFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDSimFSRequest"/>
+<output message="tns:CreateTDSimFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDSimFSResponse"/>
+</operation>
+<operation name="CloseCustAccFS">
+<input message="tns:CloseCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCustAccFSRequest"/>
+<output message="tns:CloseCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCustAccFSResponse"/>
+</operation>
+<operation name="DeleteVirAccFS">
+<input message="tns:DeleteVirAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteVirAccFSRequest"/>
+<output message="tns:DeleteVirAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteVirAccFSResponse"/>
+</operation>
+<operation name="ModifyCheckBookFS">
+<input message="tns:ModifyCheckBookFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckBookFSRequest"/>
+<output message="tns:ModifyCheckBookFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCheckBookFSResponse"/>
+</operation>
+<operation name="CloseCbStmtFS">
+<input message="tns:CloseCbStmtFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCbStmtFSRequest"/>
+<output message="tns:CloseCbStmtFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseCbStmtFSResponse"/>
+</operation>
+<operation name="QueryChqArchivalIO">
+<input message="tns:QueryChqArchivalIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryChqArchivalIORequest"/>
+<output message="tns:QueryChqArchivalIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryChqArchivalIOResponse"/>
+</operation>
+<operation name="QueryNoactivityNotifiIO">
+<input message="tns:QueryNoactivityNotifiIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryNoactivityNotifiIORequest"/>
+<output message="tns:QueryNoactivityNotifiIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/QueryNoactivityNotifiIOResponse"/>
+</operation>
+<operation name="CreateChqArchivalFS">
+<input message="tns:CreateChqArchivalFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateChqArchivalFSRequest"/>
+<output message="tns:CreateChqArchivalFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateChqArchivalFSResponse"/>
+</operation>
+<operation name="DeleteTrackReleaseIO">
+<input message="tns:DeleteTrackReleaseIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackReleaseIORequest"/>
+<output message="tns:DeleteTrackReleaseIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteTrackReleaseIOResponse"/>
+</operation>
+<operation name="ModifyTDTopUpIO">
+<input message="tns:ModifyTDTopUpIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDTopUpIORequest"/>
+<output message="tns:ModifyTDTopUpIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyTDTopUpIOResponse"/>
+</operation>
+<operation name="DeleteCbStmtIO">
+<input message="tns:DeleteCbStmtIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCbStmtIORequest"/>
+<output message="tns:DeleteCbStmtIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/DeleteCbStmtIOResponse"/>
+</operation>
+<operation name="ReopenCheckBookIO">
+<input message="tns:ReopenCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCheckBookIORequest"/>
+<output message="tns:ReopenCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenCheckBookIOResponse"/>
+</operation>
+<operation name="ReopenVirAccIO">
+<input message="tns:ReopenVirAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenVirAccIORequest"/>
+<output message="tns:ReopenVirAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ReopenVirAccIOResponse"/>
+</operation>
+<operation name="CloseAutoDepInsIO">
+<input message="tns:CloseAutoDepInsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseAutoDepInsIORequest"/>
+<output message="tns:CloseAutoDepInsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CloseAutoDepInsIOResponse"/>
+</operation>
+<operation name="AuthorizeAutoDepInsIO">
+<input message="tns:AuthorizeAutoDepInsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAutoDepInsIORequest"/>
+<output message="tns:AuthorizeAutoDepInsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeAutoDepInsIOResponse"/>
+</operation>
+<operation name="AuthorizeCheckDetailsIO">
+<input message="tns:AuthorizeCheckDetailsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckDetailsIORequest"/>
+<output message="tns:AuthorizeCheckDetailsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckDetailsIOResponse"/>
+</operation>
+<operation name="CreateCustAccFS">
+<input message="tns:CreateCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCustAccFSRequest"/>
+<output message="tns:CreateCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCustAccFSResponse"/>
+</operation>
+<operation name="CreateAcClassTfrIO">
+<input message="tns:CreateAcClassTfrIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAcClassTfrIORequest"/>
+<output message="tns:CreateAcClassTfrIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateAcClassTfrIOResponse"/>
+</operation>
+<operation name="ModifyAutoDepInsIO">
+<input message="tns:ModifyAutoDepInsIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAutoDepInsIORequest"/>
+<output message="tns:ModifyAutoDepInsIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyAutoDepInsIOResponse"/>
+</operation>
+<operation name="AuthorizeChqArchivalFS">
+<input message="tns:AuthorizeChqArchivalFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeChqArchivalFSRequest"/>
+<output message="tns:AuthorizeChqArchivalFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeChqArchivalFSResponse"/>
+</operation>
+<operation name="AuthorizeTDCustAccIO">
+<input message="tns:AuthorizeTDCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDCustAccIORequest"/>
+<output message="tns:AuthorizeTDCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeTDCustAccIOResponse"/>
+</operation>
+<operation name="ModifyCbStmtFS">
+<input message="tns:ModifyCbStmtFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCbStmtFSRequest"/>
+<output message="tns:ModifyCbStmtFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/ModifyCbStmtFSResponse"/>
+</operation>
+<operation name="AuthorizeCustAccFS">
+<input message="tns:AuthorizeCustAccFS" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCustAccFSRequest"/>
+<output message="tns:AuthorizeCustAccFSResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCustAccFSResponse"/>
+</operation>
+<operation name="CreateTDCustAccIO">
+<input message="tns:CreateTDCustAccIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDCustAccIORequest"/>
+<output message="tns:CreateTDCustAccIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateTDCustAccIOResponse"/>
+</operation>
+<operation name="AuthorizeCheckBookIO">
+<input message="tns:AuthorizeCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckBookIORequest"/>
+<output message="tns:AuthorizeCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/AuthorizeCheckBookIOResponse"/>
+</operation>
+<operation name="CreateCheckBookIO">
+<input message="tns:CreateCheckBookIO" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCheckBookIORequest"/>
+<output message="tns:CreateCheckBookIOResponse" wsam:Action="http://FCUBSAccService.types.ws.gw.fcubs.ofss.com/FCUBSAccServiceSEI/CreateCheckBookIOResponse"/>
+</operation>
+</portType>
+<binding name="FCUBSAccServiceSEIBinding" type="tns:FCUBSAccServiceSEI">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="CloseCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTrackDeleteIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteAutoDepInsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QuerycustAccountDetailsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryAutoDepInsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenVirAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseStopPaymentsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateAcClassTfrFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTopupNotifiIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTrackDeleteFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryAccSummIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeAcClassTfrFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryGenAdviceIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseAutoDepInsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyAcClassTfrIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTDCustAccSimIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTrackReleaseIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTrackReleaseIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteStopPaymentsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTDCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeStopPaymentsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTDCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateStopPaymentsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyStopPaymentsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTrackDeleteIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTDTopUpIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryAcClassTfrIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateAutoDepInsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenCheckBookFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeAutoDepInsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTDSimIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteAcClassTfrFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTrackDeleteFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTrackReleaseIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTrackReleaseFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCheckBookFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeStopPaymentsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateChqArchivalIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTDTopUpFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryCheckDetailsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCbStmtFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTrackDeleteIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCheckDetailsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTDTopUpFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTDCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTDCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteAutoDepInsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCheckDetailsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteAcClassTfrIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyVirAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseVirAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTDTopUpIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyAcClassTfrFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTrackDeleteIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryCustAccBalanceIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTrackDeleteIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTDTopUpFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryStopPaymentsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyChqArchivalIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTrackDeleteFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseCheckBookFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCheckDetailsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTDCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateStopPaymentsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTopUpSimIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteCbStmtFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTDCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyAutoDepInsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTrackReleaseFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTDTopUpIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryCloseNotifiIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTDTopUpFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryAccBalIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyStopPaymentsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeVirAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateCbStmtFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeChqArchivalIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteChqArchivalFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryTrackReleaseIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTDTopUpIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateCheckBookFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTDCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteCheckBookFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseStopPaymentsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTrackReleaseFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteStopPaymentsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTrackReleaseFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenCbStmtFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeAcClassTfrIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteChqArchivalIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateVirAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyChqArchivalFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateAutoDepInsFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTrackDeleteFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTDSimFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteVirAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCheckBookFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseCbStmtFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryChqArchivalIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="QueryNoactivityNotifiIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateChqArchivalFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteTrackReleaseIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyTDTopUpIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DeleteCbStmtIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ReopenVirAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CloseAutoDepInsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeAutoDepInsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCheckDetailsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateAcClassTfrIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyAutoDepInsIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeChqArchivalFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeTDCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ModifyCbStmtFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCustAccFS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateTDCustAccIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AuthorizeCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="CreateCheckBookIO">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+</binding>
+<service name="FCUBSAccService">
+<port binding="tns:FCUBSAccServiceSEIBinding" name="FCUBSAccServiceSEI">
+<soap:address location="http://172.30.1.29:7005/FCUBSAccService/FCUBSAccService"/>
+</port>
+</service>
+</definitions>

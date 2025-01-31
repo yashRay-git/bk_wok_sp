@@ -1,0 +1,32 @@
+
+CREATE COMPUTE MODULE ROW_DATATYPE_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() 
+BEGIN
+    
+  DECLARE itemW ROW;
+        DECLARE ref_item REFERENCE TO itemW;
+        
+        -- Call the procedure to initialize the ROW
+        CALL InitialiseValues(ref_item);
+        
+        -- Assign the initialized ROW to OutputRoot.JSON.Data
+        SET OutputRoot.JSON.Data = itemW;
+  
+    END;
+
+    CREATE PROCEDURE InitialiseValues(INOUT ref_item REFERENCE)
+    BEGIN
+        -- Initialize fields of the ROW via the reference
+        SET ref_item.RowNum = '0';
+        SET ref_item.PersonId = 'UNKNOWN';
+        SET ref_item.Name = 'John Doe';
+        SET ref_item.Age = 0;
+    END;
+END MODULE;

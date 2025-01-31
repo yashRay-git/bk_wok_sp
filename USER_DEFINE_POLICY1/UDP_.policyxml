@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="UserDefined" policyName="UDP_" policyTemplate="UserDefined">
+    <DSN>DS</DSN>
+    <NAME>YASH</NAME>
+  </policy>
+</policies>

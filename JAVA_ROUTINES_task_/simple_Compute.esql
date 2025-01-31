@@ -1,0 +1,39 @@
+
+
+
+
+
+CREATE COMPUTE MODULE simple_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		--SET OutputRoot = InputRoot;
+		-- DECLARE ot CHARACTER;
+		-- DECLARE a CHARACTER 'yashsss';
+		-- SET ot = addti(a);
+		-- set OutputRoot.JSON.Data = ot;
+		-- END;
+		--END MODULE;
+		--
+		--
+		--create PROCEDURE addti(in a CHARACTER) RETURNS CHARACTER
+		-- LANGUAGE JAVA
+		-- EXTERNAL NAME "simple.add.addtion";
+		--
+
+		DECLARE ot CHARACTER ;
+		DECLARE vs CHARACTER 'yash';
+		SET ot = add(vs);
+		set OutputRoot.JSON.Data = ot;
+	END;
+END MODULE;
+
+create PROCEDURE add( in vs CHARACTER ) RETURNS CHARACTER
+LANGUAGE JAVA
+EXTERNAL NAME "simple.add.addtion";
+-- CLASSLOADER "{SharedLib}";

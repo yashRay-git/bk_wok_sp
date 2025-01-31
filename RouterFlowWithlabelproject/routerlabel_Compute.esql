@@ -1,0 +1,41 @@
+
+
+CREATE COMPUTE MODULE routerlabel_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 --CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE inref REFERENCE TO InputRoot.JSON.Data;
+		
+		Set OutputRoot = InputRoot;
+--		if inref.Request.Service_code = 'AccountFetch01' then
+--		Set OutputLocalEnvironment.Destination.RouterList.DestinationData[1].LabelName='AccountFetch01';
+--		end if;
+		
+		CASE inref.Service_code
+			
+		WHEN  'AccountFetch01' THEN
+			Set OutputLocalEnvironment.Destination.RouterList.DestinationData[1].LabelName='AccountFetch01'; 
+			--propagate to LABEL AccountFetch01;
+		WHEN  'Fetch01' THEN
+			Set OutputLocalEnvironment.Destination.RouterList.DestinationData[1].LabelName='Fetch01';
+		WHEN  'Update01' THEN
+			Set OutputLocalEnvironment.Destination.RouterList.DestinationData[1].LabelName='Update01';
+		END CASE;
+
+	END;
+
+	
+END MODULE;

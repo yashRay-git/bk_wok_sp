@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Order",
+    "type": "object",
+    "properties": {
+    	"Initials": {
+    		"title": "Initials",
+    		"type": "string"
+    	},
+    	"Surname": {
+    	  	"title": "Surname",
+    	   	"type": "string"
+    	},
+    	"Item": {
+    	   	"type": "object",
+    	   	"properties": {
+    	   		"Code": {
+    	   			"type": "integer"			 
+    	   		},
+                "Description": {
+                   	"type": "string"
+                },
+                "Category": {
+                   	"type": "string"
+                },
+                "Price": {
+                   	"type": "number"
+                },
+                "Quantity": {
+                  	"type": "integer"
+                }
+    	   	}
+        }          
+   	 },
+    "required": ["Initials", "Surname", "Item"]
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmDatabaseRetrieve.msgnode="ComIbmDatabaseRetrieve.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ExceptionSUBFLOWS_BDHOST_RESP.subflow="ExceptionSUBFLOWS/BDHOST_RESP.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="DB_fLOW.msgflow" nsPrefix="DB_fLOW.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="DB_fLOW" bundleName="DB_fLOW" pluginId="07_01_2025_DABASERETRIVE"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/07_01_2025_DABASERETRIVE/icons/full/obj16/DB_fLOW.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/07_01_2025_DABASERETRIVE/icons/full/obj30/DB_fLOW.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="77,180" URLSpecifier="/datbaseRetrive" messageDomainProperty="JSON">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="730,170">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="290,170" dataSourceName="{JDBC_POLICY}:JDBC1" copyMessage="true" allRows="true" sqlQuery="SELECT STU.NAME, STU.AGE&#xA;FROM STU&#xA;WHERE STU.ID = ?&#xA;ORDER BY STU.NAME ASC, STU.AGE ASC" tableNameComboValues="0,0,0~STU" columnNameComboValues="1,2,0~AGE,ID,NAME" operatorComboValues="2,0,0~ASC" valueTypeComboValues="2,0,0~None" columnValueComboValues="1,0~STU.AGE">
+        <translation xmi:type="utility:ConstantString" string="Database Retrieve"/>
+        <queryElements tableName="STU" columnName="ID" operator="=" valueType="Element" value="$InputRoot/JSON/Data/Student/st/id"/>
+        <queryElements tableName="STU" columnName="NAME" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="STU" columnName="AGE" operator="ASC" valueType="None" value="None"/>
+        <dataElements columnName="STU.NAME" messageElement="$OutputRoot/JSON/Data/Student/Details/name"/>
+        <dataElements columnName="STU.AGE" messageElement="$OutputRoot/JSON/Data/Student/Details/age"/>
+      </nodes>
+      <nodes xmi:type="ExceptionSUBFLOWS_BDHOST_RESP.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="530,170">
+        <translation xmi:type="utility:ConstantString" string="BDHOST_RESP"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="false" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1725395770552" workspaceResource="/logingin_mechanism_task/application.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file logingin_mechanism_task\application.descriptor.&#xA;Successfully added file logingin_mechanism_task\application.descriptor to BAR file.&#xA;Elapsed time: 0 second(s).&#xA;&#xA;Successfully added file logingin_mechanism_task\application.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="application.descriptor"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725400810319" workspaceResource="/logingin_mechanism_task/flow_log.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file logingin_mechanism_task\flow_log.msgflow.&#xA;Successfully added file logingin_mechanism_task\flow_log.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="flow_log.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725401146816" workspaceResource="/logingin_mechanism_task/flow_log_Compute.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file logingin_mechanism_task\flow_log_Compute.esql.&#xA;Successfully added file logingin_mechanism_task\flow_log_Compute.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="flow_log_Compute.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725399234363" workspaceResource="/logingin_mechanism_task/flow_log_Compute1.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file logingin_mechanism_task\flow_log_Compute1.esql.&#xA;Successfully added file logingin_mechanism_task\flow_log_Compute1.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="flow_log_Compute1.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725401683774" workspaceResource="/logingin_mechanism_task/subflow_data.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file logingin_mechanism_task\subflow_data.msgflow.&#xA;Successfully added file logingin_mechanism_task\subflow_data.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="subflow_data.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725401652621" workspaceResource="/logingin_mechanism_task/subflow_data_Compute.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file logingin_mechanism_task\subflow_data_Compute.esql.&#xA;Successfully added file logingin_mechanism_task\subflow_data_Compute.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="subflow_data_Compute.esql"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

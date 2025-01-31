@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessagePool xmlns="http://wwww.ibm.com/iib/test/1.0.0">
+    <InputMessage timestamp="1616431263692" nodeId="FCMComposite_1_6" name="ValidationPass" id="1616431263692-238">
+        <plainText>%7B%0D%0A++%22Initials%22%3A%22Fred%22%2C%0D%0A++%22Surname%22%3A%22Bloggs%22%2C%0D%0A++%22Item%22%3A+%7B%0D%0A++++%22Code%22%3A+123%2C%0D%0A++++%22Description%22%3A+%22Crystal+Ball%22%2C%0D%0A++++%22Category%22%3A+%22Futuristic+Equipment%22%2C%0D%0A++++%22Price%22%3A+99.99%2C%0D%0A++++%22Quantity%22%3A+1%0D%0A++%7D%0D%0A%7D</plainText>
+    </InputMessage>
+    <InputMessage timestamp="1616455935162" nodeId="FCMComposite_1_6" name="ValidationFail" id="1616455935162-604">
+        <plainText>%7B%0D%0A++%22Initials%22%3A%22Fred%22%2C%0D%0A++%22Surname%22%3A%22Bloggs%22%2C%0D%0A++%22Item%22%3A+%7B%0D%0A++++%22Code%22%3A+123%2C%0D%0A++++%22Description%22%3A+%22Crystal+Ball%22%2C%0D%0A++++%22Category%22%3A+%22Futuristic+Equipment%22%2C%0D%0A++++%22Price%22%3A+%2299.99%22%2C%0D%0A++++%22Quantity%22%3A+1%0D%0A++%7D%0D%0A%7D</plainText>
+    </InputMessage>
+</MessagePool>

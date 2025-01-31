@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Broker deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\GeneratedBarFiles\JMS_MQ_TRANSUSING NODE SUBproject.generated.bar" deployTimestamp="2024-09-25 00:26:36">
+  <CompiledApplication>
+    <ConfigurableProperty uri="startMode">
+    </ConfigurableProperty>
+  </CompiledApplication>
+  <CompiledMessageFlow name="JMS_TO_MQ_FLOW" deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\GeneratedBarFiles\JMS_MQ_TRANSUSING NODE SUBproject.generated.bar" deployTimestamp="2024-09-25 00:26:36">
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.backoutDestination">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.connectionFactoryName" override="Connection2">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.durableSubscriptionID" override="str">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.initialContextFactory" override="org.apache.activemq.jndi.ActiveMQInitialContextFactory">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.locationJndiBindings" override="file:/C:/Users/Sreenivas Bandaru/Documents/jms/">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.sourceQueueName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.topic" override="JMS_TOPIC">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#JMS Input.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.AddRequestToGroup">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.GroupRequestFolderName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.GroupRequestTimeout">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.SSLCertificateLabel">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.SSLCipherSpec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.SSLPeerName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.channelName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.connection">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.destinationQueueManagerName" override="MQMAN">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.listenerPortNumber">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.policyUrl">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.queueManagerHostname">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.queueManagerName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.queueName" override="override">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.replyToQ">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.replyToQMgr">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.securityIdentity">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.useSSL">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#MQ Output.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#additionalInstances">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#commitCount">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#commitInterval">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#consumerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#consumerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#coordinatedTransaction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#maximumRateMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#monitoringProfile">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#notificationThresholdMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#processingTimeoutAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#processingTimeoutSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#providerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#providerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#startInstancesWhenFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#startMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="JMS_TO_MQ_FLOW#wlmPolicy">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+</Broker>

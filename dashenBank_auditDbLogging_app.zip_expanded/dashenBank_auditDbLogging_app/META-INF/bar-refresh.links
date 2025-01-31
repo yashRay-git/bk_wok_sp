@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="true" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1644578966801" workspaceResource="/DashenBank_AuditDBLogging_App/application.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_AuditDBLogging_App\application.descriptor.&#xA;Successfully added file DashenBank_AuditDBLogging_App\application.descriptor to BAR file.&#xA;Elapsed time: 0.001 second(s).&#xA;&#xA;Successfully added file DashenBank_AuditDBLogging_App\application.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="application.descriptor"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640890658000" workspaceResource="/DashenBank_AuditDBLogging_App/com/dashenbank/payloadlogging/AuditDBLogging_Flow.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_AuditDBLogging_App\com\dashenbank\payloadlogging\AuditDBLogging_Flow.msgflow.&#xA;Successfully added file DashenBank_AuditDBLogging_App\com\dashenbank\payloadlogging\AuditDBLogging_Flow.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="com\dashenbank\payloadlogging\AuditDBLogging_Flow.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1640890658000" workspaceResource="/DashenBank_AuditDBLogging_App/com/dashenbank/payloadlogging/PayloadLogging_Esql.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file DashenBank_AuditDBLogging_App\com\dashenbank\payloadlogging\PayloadLogging_Esql.esql.&#xA;Successfully added file DashenBank_AuditDBLogging_App\com\dashenbank\payloadlogging\PayloadLogging_Esql.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="com\dashenbank\payloadlogging\PayloadLogging_Esql.esql"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

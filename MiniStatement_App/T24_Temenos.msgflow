@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmDatabaseRetrieve.msgnode="ComIbmDatabaseRetrieve.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="T24_Temenos.msgflow" nsPrefix="T24_Temenos.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="T24_Temenos" bundleName="T24_Temenos" pluginId="MiniStatement_App"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/MiniStatement_App/icons/full/obj16/T24_Temenos.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/MiniStatement_App/icons/full/obj30/T24_Temenos.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="350,110" dataSourceName="{JDBC_POLICY}:JDBC1" copyMessage="true" allRows="true" sqlQuery="SELECT ACCOUNTDETAILS.TRANSACTIONID, ACCOUNTDETAILS.TRANSACTIONDATE, ACCOUNTDETAILS.TRANSACTIONTYPE, ACCOUNTDETAILS.TRANSACTIONAMOUNT, ACCOUNTDETAILS.BALANCE&#xA;FROM MINISTATEMENT, ACCOUNTDETAILS&#xA;WHERE MINISTATEMENT.ACCOUNTNUMBER = ?&#xA;ORDER BY ACCOUNTDETAILS.TRANSACTIONID ASC, ACCOUNTDETAILS.TRANSACTIONDATE ASC, ACCOUNTDETAILS.TRANSACTIONTYPE ASC, ACCOUNTDETAILS.TRANSACTIONAMOUNT ASC, ACCOUNTDETAILS.BALANCE ASC"
+          tableNameComboValues="1,0,0,0,0,0,0,0~ACCOUNTDETAILS,MINISTATEMENT" columnNameComboValues="1,5,4,6,3,2,0,0~ACCOUNTID,ACCOUNTNUMBER,BALANCE,TRANSACTIONAMOUNT,TRANSACTIONDATE,TRANSACTIONID,TRANSACTIONTYPE" operatorComboValues="2,0,0,0,0,0,0,0~=" valueTypeComboValues="2,0,0,0,0,0,0,0~Element" columnValueComboValues="4,0,3,5,2,1,0,0~ACCOUNTDETAILS.BALANCE">
+        <translation xmi:type="utility:ConstantString" string="Database Retrieve"/>
+        <queryElements tableName="MINISTATEMENT" columnName="ACCOUNTNUMBER" operator="=" valueType="Element" value="$InputRoot/XMLNSC/root/MiniStatementRequest/EMMTMINISTMTType/criteriaValue"/>
+        <queryElements tableName="ACCOUNTDETAILS" columnName="TRANSACTIONID" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="ACCOUNTDETAILS" columnName="TRANSACTIONDATE" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="ACCOUNTDETAILS" columnName="TRANSACTIONTYPE" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="ACCOUNTDETAILS" columnName="TRANSACTIONAMOUNT" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="ACCOUNTDETAILS" columnName="BALANCE" operator="ASC" valueType="None" value="None"/>
+        <dataElements columnName="ACCOUNTDETAILS.TRANSACTIONID" messageElement="$OutputRoot/XMLNSC/LastFiveStateMent/TransactionID"/>
+        <dataElements columnName="ACCOUNTDETAILS.ACCOUNTID" messageElement="$OutputRoot/XMLNSC/LastFiveStateMent/AccountID"/>
+        <dataElements columnName="ACCOUNTDETAILS.TRANSACTIONDATE" messageElement="$OutputRoot/XMLNSC/LastFiveStateMent/TransactionDate"/>
+        <dataElements columnName="ACCOUNTDETAILS.TRANSACTIONTYPE" messageElement="$OutputRoot/XMLNSC/LastFiveStateMent/TransactionType"/>
+        <dataElements columnName="ACCOUNTDETAILS.TRANSACTIONAMOUNT" messageElement="$OutputRoot/XMLNSC/LastFiveStateMent/TransactionAmount"/>
+        <dataElements columnName="ACCOUNTDETAILS.BALANCE" messageElement="$OutputRoot/XMLNSC/LastFiveStateMent/Balance"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="30,110" URLSpecifier="/T24" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="753,109">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

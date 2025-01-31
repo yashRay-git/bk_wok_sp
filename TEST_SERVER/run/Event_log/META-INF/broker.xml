@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Broker deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\Workspace.zip_expanded\Workspace\GeneratedBarFiles\Event_logproject.generated.bar" deployTimestamp="2024-09-03 23:56:46">
+  <CompiledApplication>
+    <ConfigurableProperty uri="startMode">
+    </ConfigurableProperty>
+  </CompiledApplication>
+  <CompiledMessageFlow name="flow_log" deployBarfile="C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\Workspace.zip_expanded\Workspace\GeneratedBarFiles\Event_logproject.generated.bar" deployTimestamp="2024-09-03 23:56:46">
+    <ConfigurableProperty uri="flow_log#Compute.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#Compute.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.URLSpecifier" override="/event">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.decompressInputMessage">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.faultFormat">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.timeoutForClient">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.useHTTPS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Input.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Reply.compressionType">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#HTTP Reply.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#additionalInstances">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#commitCount">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#commitInterval">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#consumerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#consumerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#coordinatedTransaction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#maximumRateMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#monitoringProfile">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#notificationThresholdMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#processingTimeoutAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#processingTimeoutSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#providerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#providerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#startInstancesWhenFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#startMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="flow_log#wlmPolicy">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+</Broker>

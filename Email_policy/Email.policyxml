@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="SMTP" policyName="Email" policyTemplate="SMTP">
+    <smtpServer>Mail.eidiko-india.com:587</smtpServer>
+    <securityIdentity>smtp_se_id</securityIdentity>
+    <starttlsEnable>false</starttlsEnable>
+    <starttlsRequired>false</starttlsRequired>
+  </policy>
+</policies>

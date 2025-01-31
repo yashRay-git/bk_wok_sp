@@ -1,0 +1,22 @@
+
+
+CREATE DATABASE MODULE DATABASEnode_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- call insertt();
+	 -- Retrieve values from the input message
+	 DECLARE query CHARACTER;
+        
+        -- Retrieve values from the input message
+        DECLARE eid CHARACTER Root.XMLNSC.Employee_Details.ID;
+        DECLARE ename CHARACTER Root.XMLNSC.Employee_Details.NAME;
+        DECLARE eage CHARACTER Root.XMLNSC.Employee_Details.AGE;
+        
+        -- Perform the SQL INSERT operation
+        SET query = 'INSERT INTO demo (ID, NAME, AGE) VALUES (?, ?, ?)';
+        PASSTHRU(query, eid, ename, eage);
+   	 
+		RETURN TRUE;
+	END;
+ 
+END MODULE;

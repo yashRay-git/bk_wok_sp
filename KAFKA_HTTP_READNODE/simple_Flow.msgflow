@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:com_ibm_connector_kafka_ComIbmOutput.msgnode="com/ibm/connector/kafka/ComIbmOutput.msgnode" xmlns:com_ibm_connector_kafka_ComIbmRequest.msgnode="com/ibm/connector/kafka/ComIbmRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="simple_Flow.msgflow" nsPrefix="simple_Flow.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="simple_Flow" bundleName="simple_Flow" pluginId="KAFKA_HTTP_REPLYE"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/KAFKA_HTTP_REPLYE/icons/full/obj16/simple_Flow.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/KAFKA_HTTP_REPLYE/icons/full/obj30/simple_Flow.gif"/>
+    <composition>
+      <nodes xmi:type="com_ibm_connector_kafka_ComIbmOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="310,50" connectorName="Kafka" topicName="Topic2" bootstrapServers="localhost:9092" clientId="org.apache.kafka" useClientIdSuffix="true" acks="0" timeout="60" securityProtocol="PLAINTEXT" sslProtocol="TLSv1.2" validateMaster="inherit" validateFailureAction="exception">
+        <translation xmi:type="utility:ConstantString" string="KafkaProducer"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="30,50" URLSpecifier="/kafkasimple" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="610,190">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <nodes xmi:type="com_ibm_connector_kafka_ComIbmRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="330,190" connectorName="Kafka" topicName="Topic2" bootstrapServers="localhost:9092" partitionNumber="0" offset="0" notFoundAction="no match" useClientIdSuffix="true" connectionTimeout="5" outputDataLocation="$OutputRoot" resultDataLocation="$ResultRoot" copyLocalEnvironment="true" securityProtocol="PLAINTEXT" sslProtocol="TLSv1.2" messageDomainProperty="XMLNSC" validateTiming="deferred"
+          parserXmlnscBuildTreeUsingXMLSchema="false" parserXmlnscUseForXmlnsDomain="false" parserXmlnscMixedContentRetainMode="none" parserXmlnscCommentsRetainMode="none" parserXmlnscProcessingInstructionsRetainMode="none" validateMaster="none" validateFailureAction="exception">
+        <translation xmi:type="utility:ConstantString" string="Kafka Read"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

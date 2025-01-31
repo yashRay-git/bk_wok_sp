@@ -1,0 +1,37 @@
+CREATE COMPUTE MODULE flow_log_Compute
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- CALL CopyMessageHeaders();
+        CALL CopyEntireMessage();
+        RETURN TRUE;
+    END;
+
+    CREATE PROCEDURE CopyMessageHeaders() BEGIN
+        DECLARE I INTEGER 1;
+        DECLARE J INTEGER;
+        SET J = CARDINALITY(InputRoot.*[]);
+        WHILE I < J DO
+            SET OutputRoot.*[I] = InputRoot.*[I];
+            SET I = I + 1;
+        END WHILE;
+    END;
+
+    CREATE PROCEDURE CopyEntireMessage() BEGIN
+        -- Convert the date from XML to BLOB and then to character string
+        DECLARE xmlDate CHARACTER InputRoot.XMLNS; -- Replace 'DateElement' with your actual XML date field
+        DECLARE dateBlob BLOB;
+
+        -- Convert date to BLOB
+        SET dateBlob = CAST(xmlDate AS BLOB CCSID InputRoot.Properties.CodedCharSetId);
+
+        -- Convert BLOB to character string
+        DECLARE dateString CHARACTER;
+        SET dateString = CAST(dateBlob AS CHAR CCSID InputRoot.Properties.CodedCharSetId);
+
+        -- Use the converted date string in the message
+        SET OutputRoot.JSON.Data.ConvertedDate = dateString;
+
+        -- Copy the rest of the message from XML to JSON
+        SET OutputRoot.JSON.Data.OriginalData = InputRoot.XMLNSC;
+    END;
+END MODULE;

@@ -1,0 +1,112 @@
+
+        DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE wsse NAMESPACE 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
+		DECLARE wsu NAMESPACE 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-utility-1.0.xsd';
+		DECLARE com NAMESPACE 'com.ghipss.gip';		
+
+CREATE COMPUTE MODULE postGiptransfer_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		-- SET OutputRoot = InputRoot;
+--		
+        DECLARE applicationname CHARACTER ApplicationLabel;
+		DECLARE messageflowname CHARACTER MessageFlowLabel;
+		DECLARE C_timestamp TIMESTAMP CURRENT_TIMESTAMP;
+		DECLARE reference_id CHARACTER InputRoot.HTTPInputHeader.Refid;
+
+		set Environment.applicationname = applicationname;
+		set Environment.msgflow = messageflowname;
+		set Environment.log_time = C_timestamp;
+		-- set Environment.logtype = 'Channel_Request';
+		set Environment.requestid = reference_id;
+
+		DECLARE InputJson REFERENCE TO InputRoot.JSON.Data;
+		SET OutputRoot.JSON.Data = InputJson;
+		SET Environment.payload = CAST(ASBITSTREAM(InputJson) as CHARACTER CCSID 1208 ENCODING 546);	
+        DECLARE TYPE CHARACTER  'Channel_Request';
+		call envData( TYPE , Environment.payload  );
+		
+		-- CREATE LASTCHILD OF OutputRoot DOMAIN('SOAP');
+		CREATE LASTCHILD OF OutputRoot.XMLNSC.soapenv:Envelope;
+		DECLARE soapEnvRef REFERENCE TO OutputRoot.XMLNSC.soapenv:Envelope;
+
+		SET soapEnvRef.(XMLNSC.NamespaceDecl)xmlns:soapenv = soapenv;
+		SET soapEnvRef.(XMLNSC.NamespaceDecl)xmlns:com = com;
+
+		CREATE FIELD soapEnvRef.soapenv:Header;
+		DECLARE soapEnvHeader REFERENCE TO soapEnvRef.soapenv:Header;
+
+		CREATE LASTCHILD OF soapEnvHeader.wsse:Security;
+		SET soapEnvHeader.wsse:Security.(XMLNSC.NamespaceDecl)xmlns:wsse = wsse;
+		SET soapEnvHeader.wsse:Security.(XMLNSC.Attribute)soapenv:mustUnderstand = '1';
+
+		CREATE LASTCHILD OF soapEnvHeader.wsse:Security.wsse:UsernameToken;
+		SET soapEnvHeader.wsse:Security.wsse:UsernameToken.(XMLNSC.NamespaceDecl)xmlns:wsu = wsu;
+		SET soapEnvHeader.wsse:Security.wsse:UsernameToken.(XMLNSC.Attribute)wsu:Id = 'UsernameToken-1';
+
+		DECLARE UsernameTokenRef REFERENCE TO soapEnvHeader.wsse:Security.wsse:UsernameToken;
+
+		SET UsernameTokenRef.wsse:Username = 'esbtestuser';
+		SET UsernameTokenRef.wsse:Password.(XMLNSC.Attribute) Type = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText';
+		SET UsernameTokenRef.wsse:Password = 'fidelity,123';
+		SET UsernameTokenRef.wsse:Nonce.(XMLNSC.Attribute)EncodingType = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary';
+		SET UsernameTokenRef.wsse:Nonce = 'PCamrOP55EQorWOZ8zOBHA';
+		SET UsernameTokenRef.wsu:Created = '2020-10-28T02:45:11.593Z';
+
+		CREATE LASTCHILD OF soapEnvRef.soapenv:Body.com:GIPTransactionOp.ReqGIPTransaction;
+		DECLARE ReqTransactionRef REFERENCE TO soapEnvRef.soapenv:Body.com:GIPTransactionOp.ReqGIPTransaction;
+		SET ReqTransactionRef.Amount='000000000000';
+		SET ReqTransactionRef.datetime = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'YYMMDDHHMMSS');
+		SET ReqTransactionRef.TrackingNum = '125278';
+		SET ReqTransactionRef.FunctionCode = '200';
+		SET ReqTransactionRef.OrigineBank = '300323';
+		SET ReqTransactionRef.DestBank = '300315';
+		SET ReqTransactionRef.SessionID = InputJson.channelRef;
+		SET ReqTransactionRef.ChannelCode = '100';
+		SET ReqTransactionRef.AccountToDebit = InputJson.accountToDebit;
+		SET ReqTransactionRef.NameToDebit = InputJson.nameToDebit;
+		SET ReqTransactionRef.AccountToCredit = InputJson.accountToCredit;
+		SET ReqTransactionRef.NameToCredit = InputJson.nameToCredit;
+		SET ReqTransactionRef.Narration = 'TEST';
+		SET ReqTransactionRef.Login = '300323';
+		SET ReqTransactionRef.Password = 'c941a4ec7bd7937a581e42f29d09cdda2b2ece8459db0b07444c20b9c1e6ac9a538275698af192af5634ca3fdae3dd50160dcc14d6f10c754041d7b74f9a84d2';
+		
+		SET Environment.backend_request = soapEnvRef;
+		SET Environment.payload = CAST(ASBITSTREAM(OutputRoot) as CHARACTER CCSID 1208 ENCODING 546);
+		set Environment.logtype = 'backend_Request';
+		
+		call envData(TYPE, Environment.payload);
+		
+		SET OutputRoot.XMLNSC.Data = Environment.backend_request;
+
+	END;
+
+	CREATE PROCEDURE envData( IN TYPE CHARACTER, IN paylod  CHARACTER)
+	BEGIN
+		set OutputRoot = null;
+		DECLARE envRef REFERENCE TO Environment;
+		Set OutputRoot.XMLNSC.Request.payload = TYPE; 
+		SET OutputRoot.XMLNSC.Request.logtype = paylod; 
+		Set OutputRoot.XMLNSC.Request.applicationname = envRef.applicationname;
+		Set OutputRoot.XMLNSC.Request.requestid = envRef.requestid;
+		Set OutputRoot.XMLNSC.Request.msgflow = envRef.msgflow;
+		propagate TO TERMINAL 'out1';
+		set OutputRoot = null;
+	END;
+END MODULE;

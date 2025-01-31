@@ -1,0 +1,46 @@
+BROKER SCHEMA ExceptionSUBFLOWS
+
+
+CREATE COMPUTE MODULE DBCHANNAL_RESPON_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+	 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		-- SET OutputRoot = InputRoot;
+		-- SET OutputRoot = InputRoot;
+		DECLARE inref REFERENCE TO InputRoot.JSON.Data;
+		DECLARE mychar2 CHARACTER;
+		
+    SET OutputRoot.JSON.Data = inref;
+    
+    DECLARE outref REFERENCE TO OutputRoot.JSON.Data;
+	
+-- Convert the character string ----------------------------------------------------------------------------------------------
+
+    SET mychar2 = CAST(ASBITSTREAM(outref) AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+
+    CALL calldb4(ApplicationLabel, MessageFlowLabel, CURRENT_TIMESTAMP, mychar2, 'Channal_Response', 'Lastchannel_Resonse', 'REF678912');
+    
+    set  OutputRoot = InputRoot;
+  
+	END;
+END MODULE;
+
+CREATE PROCEDURE calldb4 ( IN appname CHARACTER, IN mfname CHARACTER, IN logtime TIMESTAMP, IN payload CHARACTER, IN logtype CHARACTER,  IN logpoint CHARACTER, IN referenceno CHARACTER)
+LANGUAGE DATABASE
+EXTERNAL NAME DBLOGGINGPRO;
+		

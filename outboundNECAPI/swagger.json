@@ -1,0 +1,37 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "outboundNECAPI",
+    "version" : "1.0.0",
+    "description" : "outboundNECAPI"
+  },
+  "paths" : {
+    "/giptransfer" : {
+      "post" : {
+        "operationId" : "postGiptransfer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a giptransfer",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        }, {
+          "name" : "param1",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/outboundnecapi/v1"
+}

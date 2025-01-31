@@ -1,0 +1,53 @@
+
+
+
+
+CREATE COMPUTE MODULE IBM_MQ_GET_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		-- SET OutputRoot = InputRoot;
+		DECLARE InRef REFERENCE TO InputRoot.XMLNSC.Message;
+
+		MOVE InRef FIRSTCHILD; -- InRef now points to CorrelationPair000000001
+		
+		 WHILE LASTMOVE(InRef) DO
+		-- Create first output message
+
+		SET OutputRoot.Properties = InputRoot.Properties;
+		CREATE LASTCHILD OF OutputRoot DOMAIN('MQMD');
+		SET OutputRoot.MQMD.MsgId = CAST(FIELDNAME(InRef) AS BLOB CCSID 1208);
+
+		SET OutputRoot.XMLNSC.Message.Field = InRef.Person[1];
+		PROPAGATE TO TERMINAL 'out1';
+		
+		
+		
+		-- Create second output message
+
+		SET OutputRoot.Properties = InputRoot.Properties;
+		CREATE LASTCHILD OF OutputRoot DOMAIN('MQMD');
+		SET OutputRoot.MQMD.MsgId = CAST(FIELDNAME(InRef) AS BLOB CCSID 1208);
+
+		SET OutputRoot.XMLNSC.Message.Field = InRef.Person[2];
+		PROPAGATE TO TERMINAL 'out';
+		
+		MOVE InRef NEXTSIBLING;
+	END WHILE;
+END;
+END MODULE;

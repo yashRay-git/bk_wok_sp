@@ -1,0 +1,56 @@
+
+BROKER SCHEMA com.dashenbank.payloadlogging
+PATH com.dashenbank.genericfunctions;
+--PATH com.dashenbank.genericfunctions;
+CREATE COMPUTE MODULE PayloadLogging_Esql
+	DECLARE rc BOOLEAN;
+	DECLARE log_config_path EXTERNAL CHARACTER ;
+	DECLARE log4j_error_msg EXTERNAL CHARACTER ;
+	
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--CALL initLog4j(LOG_CONFIG_PATH) INTO rc;
+		--IF (rc = TRUE) THEN
+		-- CALL CopyMessageHeaders();
+		    CALL CopyEntireMessage();
+		   -- ELSE
+			--SET Environment.Log.msg = log4j_error_msg;
+		--END IF;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN	
+
+        DECLARE payload_Data CHARACTER InputRoot.XMLNSC.PAYLOAD.PAYLOAD_MSG;
+		DECLARE payload_Id CHARACTER InputRoot.XMLNSC.PAYLOAD.PAYLOAD_ID;
+		DECLARE payload_Flow CHARACTER InputRoot.XMLNSC.PAYLOAD.FLOW_NAME;
+		DECLARE payload_Type CHARACTER InputRoot.XMLNSC.PAYLOAD.PAYLOAD_TYPE;
+		DECLARE source  CHARACTER InputRoot.XMLNSC.PAYLOAD.SOURCE;
+		DECLARE service CHARACTER InputRoot.XMLNSC.PAYLOAD.SERVICE;
+		DECLARE operation CHARACTER InputRoot.XMLNSC.PAYLOAD.OPERATION;
+		 DECLARE created_By CHARACTER InputRoot.XMLNSC.PAYLOAD.Created_By;
+	    DECLARE created_On TIMESTAMP CURRENT_TIMESTAMP;
+	    
+	    CALL AUDIT_PROCEDURE(payload_Id,payload_Type,payload_Data,payload_Flow,created_On,created_By,source,service,operation);
+	    
+	   -- CALL writeToLogFile(MessageFlowLabel,'PayloadloggingLogger','INFO','..........Audit DBLogging Flow is Started...........') INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,'PayloadloggingLogger','INFO','Payload data is: '||payload_Data) INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,'PayloadloggingLogger','INFO','..........Audit DBLogging Flow is Ended...........') INTO rc;
+	
+	END;
+	END MODULE;
+	
+	CREATE PROCEDURE AUDIT_PROCEDURE(IN MSG_ID CHARACTER,IN PAYLOAD_TYPE CHARACTER,IN PAYLOAD CHARACTER,IN PAYLOAD_FLOW CHARACTER,IN CREATED_ON TIMESTAMP,IN CREATED_BY CHARACTER,IN SOURCE CHARACTER,IN SERVICE CHARACTER,IN OPERATION CHARACTER) 
+	LANGUAGE DATABASE
+	EXTERNAL NAME "AUDIT_PROCEDURE";
+	

@@ -1,0 +1,21 @@
+{
+"MiniStatementRequest":{
+"ESBHeader":{
+"serviceCode": "100000",
+"channel":"USSD",
+"Service_name":"MiniStatement",
+"Message_Id":"6255726662"
+},
+"WebRequestCommon": {
+"company": "ET0010222",
+"password": "123456",
+"userName": "REGASAALC"
+},
+"EMMTMINISTMTType": [{
+"columnName": "ACCOUNT",
+"criteriaValue":"1000000067567",
+"operand": "EQ"
+}
+]
+}
+}

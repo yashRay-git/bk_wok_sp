@@ -1,0 +1,37 @@
+CREATE COMPUTE MODULE subflow_data_Compute
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- CALL CopyMessageHeaders();
+        CALL CopyEntireMessage();
+        RETURN TRUE;
+    END;
+
+    CREATE PROCEDURE CopyMessageHeaders() BEGIN
+        DECLARE I INTEGER 1;
+        DECLARE J INTEGER;
+        SET J = CARDINALITY(InputRoot.*[]);
+        WHILE I < J DO
+            SET OutputRoot.*[I] = InputRoot.*[I];
+            SET I = I + 1;
+        END WHILE;
+    END;
+
+    CREATE PROCEDURE CopyEntireMessage() BEGIN
+        -- Convert JSON data to BLOB and then to a character string
+        DECLARE jsonData CHARACTER InputRoot.JSON.Data; -- Assuming your JSON data is in InputRoot.JSON.Data
+        DECLARE jsonBlob BLOB;
+        DECLARE jsonString CHARACTER;
+
+        -- Convert JSON data to BLOB
+        SET jsonBlob = CAST(jsonData AS BLOB CCSID InputRoot.Properties.CodedCharSetId);
+
+        -- Convert BLOB to character string
+        SET jsonString = CAST(jsonBlob AS CHAR CCSID InputRoot.Properties.CodedCharSetId);
+
+        -- Use the converted character string in the output message
+        SET OutputRoot.JSON.Data.ConvertedString = jsonString;
+
+        -- Copy the rest of the message from JSON to the output
+        SET OutputRoot.JSON.Data.OriginalData = InputRoot.JSON.Data;
+    END;
+END MODULE;

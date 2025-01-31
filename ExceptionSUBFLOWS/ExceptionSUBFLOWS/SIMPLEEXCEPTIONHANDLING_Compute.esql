@@ -1,0 +1,128 @@
+BROKER SCHEMA ExceptionSUBFLOWS
+
+
+CREATE COMPUTE MODULE SIMPLEEXCEPTIONHANDLING_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN true;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		-- SET OutputRoot = InputRoot;
+
+		DECLARE statusCode REFERENCE TO InputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code";
+		DECLARE payload CHARACTER CAST((InputRoot.BLOB.BLOB) as CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+
+		CREATE LASTCHILD OF Environment DOMAIN 'JSON';
+		CREATE LASTCHILD OF Environment.JSON NAME 'Data';
+		-- SET Environment.JSON.Data = CAST( (InputRoot.BLOB.BLOB)AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+		DECLARE errOutRef REFERENCE TO Environment.JSON.Data;
+		
+		  
+		
+		
+		
+		
+		 
+		
+		
+		 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		IF statusCode = 500 THEN
+			-- SET errOutRef.requestId = RequestId;
+			SET errOutRef.Timestamp = CURRENT_TIMESTAMP;
+			SET errOutRef.msgFor = payload;
+			SET errOutRef.statusCode = statusCode;
+			SET errOutRef.ERRORDISCRIPTION ='Internal Server Error';
+			SET OutputRoot.JSON.Data = errOutRef;
+			PROPAGATE TO TERMINAL 'out1';
+			SET OutputRoot = null;
+			SET OutputRoot.JSON.Data.StatusCode = errOutRef.statusCode;
+			SET OutputRoot.JSON.Data.ErrorDescription = errOutRef.ERRORDISCRIPTION;
+
+		ELSEIF statusCode = 404 THEN
+			-- SET errOutRef.requestId = RequestId;
+			SET errOutRef.timestamp = CURRENT_TIMESTAMP;
+			SET errOutRef.msgData = payload;
+			SET errOutRef.statusCode = statusCode;
+			SET errOutRef.ErrorDescription = 'Resource Not Found';
+			SET OutputRoot.JSON.Data = errOutRef;
+			PROPAGATE TO TERMINAL 'out1';
+			SET OutputRoot = null;
+			SET OutputRoot.JSON.Data.StatusCode = errOutRef.statusCode;
+			SET OutputRoot.JSON.Data.ErrorDescription = errOutRef.ErrorDescription;
+		ELSEIF statusCode = 400 THEN
+			-- SET errOutRef.requestId = RequestId;
+			SET errOutRef.Timestamp = CURRENT_TIMESTAMP;
+			SET errOutRef.msgFor = payload;
+			SET errOutRef.statusCode = statusCode;
+			SET errOutRef.ERRORDISCRIPTION ='Bad Request';
+			SET OutputRoot.JSON.Data = errOutRef;
+			PROPAGATE TO TERMINAL 'out1';
+			SET OutputRoot = null;
+			SET OutputRoot.JSON.Data.StatusCode = errOutRef.statusCode;
+			SET OutputRoot.JSON.Data.ErrorDescription = errOutRef.ERRORDISCRIPTION;
+
+		ELSE
+			-- SET errOutRef.requestId = RequestId;
+			SET errOutRef.timestamp = CURRENT_TIMESTAMP;
+			SET errOutRef.msgData = payload;
+			SET errOutRef.statusCode = statusCode;
+			SET errOutRef.ErrorDescription = 'Unknown Excception';
+			SET OutputRoot.JSON.Data = errOutRef;
+			PROPAGATE TO TERMINAL 'out1';
+			SET OutputRoot = null;
+			SET OutputRoot.JSON.Data.StatusCode = errOutRef.statusCode;
+			SET OutputRoot.JSON.Data.ErrorDescription = errOutRef.ErrorDescription;
+		END IF;
+		--
+		-- DECLARE ref REFERENCE TO InputExceptionList.*[1];
+		-- DECLARE line, number, text, INSERTEXT CHARACTER;
+		-- DECLARE lastInsertText CHARACTER;
+		--
+		-- WHILE LASTMOVE(ref) DO
+		-- MOVE ref LASTCHILD;
+		--
+		-- IF ref.Number IS NOT NULL THEN
+		-- SET line = ref.Line;
+		-- SET number = ref.Number;
+		-- SET text = ref.Text;
+		-- -- Iterate through Insert elements to find the last one
+		--
+		-- DECLARE insertRef REFERENCE TO ref.Insert[1];
+		-- WHILE LASTMOVE(insertRef) DO
+		-- SET lastInsertText = insertRef.Text; -- Keep updating with the current Insert text
+		-- MOVE insertRef NEXTSIBLING;
+		-- END WHILE;
+		--
+		-- SET INSERTEXT = lastInsertText; -- Final value of the last Insert text
+		-- END IF;
+		-- END WHILE;
+		--
+
+
+
+	END;
+END MODULE;

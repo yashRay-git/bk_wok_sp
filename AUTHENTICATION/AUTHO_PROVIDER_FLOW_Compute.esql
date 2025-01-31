@@ -1,0 +1,50 @@
+
+
+CREATE COMPUTE MODULE AUTHO_PROVIDER_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+	
+    
+    SET OutputRoot.JSON.Data = InputRoot.XMLNSC;
+    DECLARE VAR REFERENCE TO InputRoot.XMLNSC.EMP.ID;
+    DECLARE SID INTEGER;
+    SET SID = InputRoot.XMLNSC.EMP.ID;
+    
+    IF SID = 10 THEN 
+        -- Modify the output JSON message
+        SET OutputRoot.JSON.Data.EMP.NAME = 'YASH';
+        SET OutputRoot.JSON.Data.EMP.ADDRES = 'ADH AJKSD JLASD AJSD';
+        SET OutputRoot.JSON.Data.EMP.NO = 044646484;
+    END IF;
+    
+    -- Declare a reference to the ID field in the input message
+--    DECLARE var REFERENCE TO InputRoot.XMLNSC.EMP.ID;
+--    
+--    -- Ensure you compare the value of 'var' using the DEREFERENCE function
+--    IF CAST(var AS INTEGER) = 10 THEN
+--        -- Modify the output JSON message if condition is true
+--        SET OutputRoot.JSON.Data.EMP.NAME = 'YASH';
+ --        SET OutputRoot.JSON.Data.EMP.ADDRES = 'SHEGAON NAKKA KEAL COLONY AMRAVTI';
+--        SET OutputRoot.JSON.Data.EMP.NO = 95768461;
+--    ELSE
+--        -- Optionally, you can include an action for the ELSE block
+--        -- SET OutputRoot.JSON.Data.EMP.NAME = 'Default Name';
+--    END IF;
+		END;
+END MODULE;

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInput.msgnode="ComIbmCallableFlowInput.msgnode" xmlns:ComIbmCallableFlowInvoke.msgnode="ComIbmCallableFlowInvoke.msgnode" xmlns:ComIbmCallableFlowReply.msgnode="ComIbmCallableFlowReply.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:com_dashenbank_genericsubflow_ExceptionHandlerSubFlow.subflow="com/dashenbank/genericsubflow/ExceptionHandlerSubFlow.subflow"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow.msgflow" nsPrefix="com_dashenbank_accountbalanceenquiry_AccountBalanceEnquiry_Flow.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.log4j_config_path" name="log4j_config_path" defaultValueLiteral="/var/logs/broker.xml">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.backend_url" name="backend_url" defaultValueLiteral="http://172.26.14.18:9003/FCUBSAccService/FCUBSAccService">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.log4j_error_msg" name="log4j_error_msg" defaultValueLiteral="Log4j Initialization Error">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.logger_name" name="logger_name" defaultValueLiteral="AccountBalanceEnquiryLogger">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.log_type" name="log_type" defaultValueLiteral="DEBUG">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.consoleLog_enable" name="consoleLog_enable" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="AccountBalanceEnquiry_Flow" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/dashenBank_accountBalanceEnquiry_app/icons/full/obj16/AccountBalanceEnquiry_Flow.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/dashenBank_accountBalanceEnquiry_app/icons/full/obj30/AccountBalanceEnquiry_Flow.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmCallableFlowInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="590,-22" targetApplication="dashenBank_auditDbLogging_app" targetEndpointName="auditlogging">
+        <translation xmi:type="utility:ConstantString" string="PayloadLogging"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="270,90" wsdlOperationMode="gateway" useHTTPTransport="true" webServiceURL="http://localhost:7800/AccountBalanceEnquiry" sslProtocol="TLS" parserXmlnscBuildTreeUsingXMLSchema="false" validateMaster="none">
+        <translation xmi:type="utility:ConstantString" string="BackendSystem_Call"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="30,190" wsdlOperationMode="gateway" wsdlFileName="AccountBalEnq.wsdl" selectedPortType="AccountBalEnq" selectedBinding="AccountBalEnqSOAP" selectedPort="AccountBalEnqSOAP" useHTTPTransport="true" urlSelector="/ESB_AccountBalanceEnquiry" allowQueryWSDL="true" parserXmlnscBuildTreeUsingXMLSchema="false" validateMaster="none">
+        <translation xmi:type="utility:ConstantString" string="Service_Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="190,230" dataSource="DBDSN" computeExpression="esql://routine/com.dashenbank.accountbalanceenquiry#RequestToBackend.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="RequestToBackend"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="490,90" computeExpression="esql://routine/com.dashenbank.accountbalanceenquiry#ResponseToChannel.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="ResponseToChannel"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="524,183" computeExpression="esql://routine/com.dashenbank.accountbalanceenquiry#AccountBalanceEnquiry_BuildExceptionResponse.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="BuildBusinessError "/>
+      </nodes>
+      <nodes xmi:type="com_dashenbank_genericsubflow_ExceptionHandlerSubFlow.subflow:FCMComposite_1" xmi:id="FCMComposite_1_1" location="390,370">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandler"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="850,50">
+        <translation xmi:type="utility:ConstantString" string="CallableReply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="-7,50" callableInputEndpoint="accountBalanceEnquiry">
+        <translation xmi:type="utility:ConstantString" string="CallableInput"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_17" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.timeout" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_17" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input">
+        <bendPoints>127,9,-212,-182</bendPoints>
+      </connections>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input">
+        <bendPoints>121,35,-218,-156</bendPoints>
+      </connections>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.log4j_config_path">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.log4j_config_path" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.backend_url">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.backend_url" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+          <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.log4j_error_msg">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.log4j_error_msg" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+            <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.logger_name">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.logger_name" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+              <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.log_type">
+                <propertyName xmi:type="utility:TranslatableString" key="Property.log_type" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+                <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.consoleLog_enable">
+                  <propertyName xmi:type="utility:TranslatableString" key="Property.consoleLog_enable" bundleName="com/dashenbank/accountbalanceenquiry/AccountBalanceEnquiry_Flow" pluginId="dashenBank_accountBalanceEnquiry_app"/>
+                </propertyDescriptor>
+              </propertyDescriptor>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,66 @@
+BROKER SCHEMA ExceptionSUBFLOWS
+
+
+CREATE COMPUTE MODULE EXCEPTION_HANDLING_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		 -- SET OutputRoot = InputRoot;
+		 		
+declare ref REFERENCE to InputExceptionList.*[1];
+
+		declare line,number,text , insertvar CHARACTER;
+		
+		while LASTMOVE(ref) do
+			
+			move ref LASTCHILD;
+			
+			if ref.Number is not NULL then
+				
+				set line=ref.Line;
+				set number=ref.Number;
+				set text=ref.Text;
+				 
+			DECLARE insertref REFERENCE TO ref.Insert[1];
+			
+			while LASTMOVE (insertref) do 
+				
+				set insertvar = insertref.Text;
+				
+				move insertref NEXTSIBLING; 
+				
+			end while;	
+			
+			end if;
+		end while;
+		
+		call exceptiondb(ApplicationLabel, MessageFlowLabel, CURRENT_TIMESTAMP, text, number,line,insertvar);
+		
+		set OutputRoot.XMLNSC.Ex.Line=line;
+		set OutputRoot.XMLNSC.Ex.Number=number;
+		set OutputRoot.XMLNSC.Ex.text=text;
+	    set OutputRoot.XMLNSC.Ex.insertlast = insertvar;
+
+		 
+	END;
+END MODULE;
+
+CREATE PROCEDURE exceptiondb(  IN appname CHARACTER, IN mfname CHARACTER, IN logtime TIMESTAMP, IN TEXT CHARACTER ,IN NUMBERR CHARACTER , IN LINE CHARACTER, IN lastextt CHARACTER )
+LANGUAGE DATABASE 
+EXTERNAL NAME ERROR_HANDLING ;
+

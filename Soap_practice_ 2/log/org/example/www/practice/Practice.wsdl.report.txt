@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\Workspace.zip_expanded\Soap_practice_ 2\Practice.wsdl
+
+The WSDL import will proceed with bindings PracticeSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/Workspace.zip_expanded/Soap_practice_ 2/Practice.wsdl.
+Parsing wsdl binding {http://www.example.org/Practice/}PracticeSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema Practice.xsd.
+Creating file Practice.xsd in the workspace.
+Creating file Practice_InlineSchema1.xsd in the workspace.
+Copying source WSDL Practice.wsdl to Practice.wsdl.
+
+Elapsed time processing this message definition file: 0.401 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

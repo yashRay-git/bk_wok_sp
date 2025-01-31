@@ -1,0 +1,343 @@
+
+
+BROKER SCHEMA com.dashenbank.accountbalanceenquiry
+
+PATH com.dashenbank.genericfunctions;
+DECLARE ns NAMESPACE 'http://fcubs.ofss.com/service/FCUBSAccService';
+DECLARE log4j_config_path, log4j_error_msg, backend_url, logger_name, log_type  EXTERNAL CHARACTER;
+DECLARE consoleLog_enable EXTERNAL BOOLEAN;
+--------------Global variables----------
+DECLARE rc BOOLEAN TRUE;
+-------------------------------------
+CREATE COMPUTE MODULE RequestToBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--CALL initLog4j(log4j_config_path) INTO rc;
+		IF (rc = TRUE) THEN
+			CALL RequestToBackend();
+		ELSE
+			SET OutputRoot.XMLNSC.Log.Message = log4j_error_msg;
+		END IF;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE RequestToBackend() BEGIN
+		SET Environment.domainDataRef = InputRoot.SOAP;
+		DECLARE ccidRef, encodeRef INTEGER;
+		DECLARE envRef REFERENCE TO Environment.Variables;
+		CREATE LASTCHILD OF Environment AS envRef NAME 'Variables';
+
+		SET ccidRef = InputRoot.Properties.CodedCharSetId;
+		SET encodeRef = InputRoot.Properties.Encoding;
+		SET envRef.encoding = encodeRef;
+		SET envRef.codedCharSetId = ccidRef;
+		DECLARE domainDataRef REFERENCE TO InputRoot.SOAP;
+		DECLARE domainName CHARACTER FIELDNAME(InputBody);
+
+		SET envRef.requestIdentifier = CAST(InputLocalEnvironment.Destination.SOAP.Reply.replyIdentifier AS CHARACTER);
+		SET envRef.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.replyIdentifier;
+		SET Environment.reqPayload = getPayLoad(domainName,domainDataRef,encodeRef,ccidRef);
+		SET envRef.id = InputRoot.SOAP.Body.*:QUERYACCBAL_IOFS_REQ.*:FCUBS_HEADER.*:MSGID;
+		SET envRef.source=InputRoot.SOAP.Body.*:QUERYACCBAL_IOFS_REQ.*:FCUBS_HEADER.*:SOURCE;
+		SET envRef.service=InputRoot.SOAP.Body.*:QUERYACCBAL_IOFS_REQ.*:FCUBS_HEADER.*:SERVICE;
+		SET envRef.operation=InputRoot.SOAP.Body.*:QUERYACCBAL_IOFS_REQ.*:FCUBS_HEADER.*:OPERATION;
+		SET envRef.created_by=InputRoot.HTTPInputHeader.Host ||' '||'ACE USER';
+		----------------------Request Logging-------------------------
+		 CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+		DECLARE OutRef REFERENCE TO OutputRoot.XMLNSC;
+		 CALL PayloadLogging(envRef.id,Environment.reqPayload,'Channel_Request',ApplicationLabel,envRef.source,envRef.service,envRef.operation,envRef.created_by,OutRef);
+		 IF consoleLog_enable=TRUE THEN
+		 	LOG EVENT SEVERITY 1 CATALOG 'BIPmsgs' MESSAGE 2951 VALUES('AccountBalanceEnqChannel_Request : '||Environment.reqPayload);
+		 END IF;
+		
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'**********************************************************************') INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' ------ CHANNEL_REQ ------') INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'CHANNEL_REQ data is: '||Environment.reqPayload) INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' -----------------------------------------------------------------------') INTO rc;
+		------------------- Generating request to Backend ---------------------
+		DECLARE inputHeaderRef REFERENCE TO InputRoot.SOAP.Body.*:QUERYACCBAL_IOFS_REQ.*:FCUBS_HEADER;
+		DECLARE inputBodyRef REFERENCE To InputRoot.SOAP.Body.*:QUERYACCBAL_IOFS_REQ.*:FCUBS_BODY.*:"ACC-Balance".*:ACC_BAL;
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'SOAP';
+
+		SET OutputRoot.SOAP.Context = InputRoot.SOAP.Context;
+
+		CREATE LASTCHILD OF OutputRoot.SOAP NAME 'Body';
+		CREATE LASTCHILD OF OutputRoot.SOAP.Body NAMESPACE ns NAME 'QUERYACCBAL_IOFS_REQ';
+		CREATE LASTCHILD OF OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_REQ NAMESPACE ns NAME 'FCUBS_HEADER';
+		CREATE LASTCHILD OF OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_REQ NAMESPACE ns NAME 'FCUBS_BODY';
+		CREATE LASTCHILD OF OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_REQ.ns:FCUBS_BODY NAMESPACE ns NAME 'ACC-Balance';
+		CREATE LASTCHILD OF OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_REQ.ns:FCUBS_BODY.ns:"ACC-Balance" NAMESPACE ns NAME 'ACC_BAL';
+
+		DECLARE outputHeaderRef REFERENCE TO OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_REQ.ns:FCUBS_HEADER;
+		DECLARE outputBodyRef REFERENCE TO OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_REQ.ns:FCUBS_BODY.ns:"ACC-Balance".ns:ACC_BAL;
+
+		SET outputHeaderRef.ns:SOURCE = inputHeaderRef.*:SOURCE;
+		SET outputHeaderRef.ns:UBSCOMP = inputHeaderRef.*:UBSCOMP;
+		SET outputHeaderRef.ns:MSGID = inputHeaderRef.*:MSGID;
+		SET outputHeaderRef.ns:CORRELID = inputHeaderRef.*:CORRELID;
+		SET outputHeaderRef.ns:USERID = inputHeaderRef.*:USERID;
+		SET outputHeaderRef.ns:ENTITY = inputHeaderRef.*:ENTITY;
+		SET outputHeaderRef.ns:BRANCH = inputHeaderRef.*:BRANCH;
+		SET outputHeaderRef.ns:MODULEID = inputHeaderRef.*:MODULEID;
+		SET outputHeaderRef.ns:SERVICE = inputHeaderRef.*:SERVICE;
+		SET outputHeaderRef.ns:OPERATION = inputHeaderRef.*:OPERATION;
+		SET outputHeaderRef.ns:SOURCE_OPERATION = inputHeaderRef.*:SOURCE_OPERATION;
+		SET outputHeaderRef.ns:SOURCE_USERID = inputHeaderRef.*:SOURCE_USERID;
+		SET outputHeaderRef.ns:DESTINATION = inputHeaderRef.*:DESTINATION;
+		SET outputHeaderRef.ns:MULTITRIPID = inputHeaderRef.*:MULTITRIPID;
+		SET outputHeaderRef.ns:FUNCTIONID = inputHeaderRef.*:FUNCTIONID;
+		SET outputHeaderRef.ns:ACTION = inputHeaderRef.*:ACTION;
+		SET outputHeaderRef.ns:MSGSTAT = inputHeaderRef.*:MSGSTAT;
+		SET outputHeaderRef.ns:SNAPSHOTID = inputHeaderRef.*:SNAPSHOTID;
+		SET outputHeaderRef.ns:PASSWORD = inputHeaderRef.*:PASSWORD;
+
+		DECLARE inrefheader REFERENCE TO inputHeaderRef.*:ADDL.*:PARAM[>];
+		DECLARE I INTEGER 1;
+		WHILE LASTMOVE(inrefheader) DO
+			SET outputHeaderRef.ADDL.ns:PARAM[I].ns:NAME = inputHeaderRef.*:ADDL.*:PARAM.*:NAME;
+			SET outputHeaderRef.ADDL.ns:PARAM[I].ns:VALUE = inputHeaderRef.*:ADDL.*:PARAM.*:VALUE;
+			SET I = I + 1;
+			MOVE inrefheader NEXTSIBLING REPEAT TYPE NAME;
+		END WHILE;
+
+		SET outputBodyRef.ns:BRANCH_CODE = inputBodyRef.*:BRANCH_CODE;
+		SET outputBodyRef.ns:CUST_AC_NO = inputBodyRef.*:CUST_AC_NO;
+
+		SET Environment.outputData = OutputRoot.SOAP;
+		---------------------- Response Logging -------------------------
+		MOVE domainDataRef TO OutputRoot.SOAP;
+		SET Environment.resPayload = getPayLoad(domainName,domainDataRef,encodeRef,ccidRef);
+		SET OutputRoot.SOAP = NULL;
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+	    MOVE OutRef TO OutputRoot.XMLNSC;
+	 	 CALL PayloadLogging(envRef.id,Environment.reqPayload,'Host_Request',ApplicationLabel,envRef.source,envRef.service,envRef.operation,envRef.created_by,OutRef);
+	 	 IF consoleLog_enable=TRUE THEN
+	 	 	LOG EVENT SEVERITY 1 CATALOG 'BIPmsgs' MESSAGE 2951 VALUES('AccountBalanceEnqHost_Request : '||Environment.reqPayload);
+	 	 END IF;
+       
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.HTTPInputHeader = InputRoot.HTTPInputHeader;
+		SET OutputRoot.SOAP = Environment.outputData;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' ------ BACKEND_REQ ------') INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'BACKEND_REQ data is: '||Environment.resPayload) INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' -----------------------------------------------------------------------') INTO rc;
+
+		SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL = backend_url;
+	END;
+END MODULE;
+---------------------------------------------------------------------------------------------------
+
+CREATE COMPUTE MODULE ResponseToChannel
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL ResponseToChannel();
+		RETURN FALSE;
+	END;
+	CREATE PROCEDURE ResponseToChannel() BEGIN
+		SET Environment.domainDataRef = InputRoot.SOAP;
+		DECLARE ccidRef, encodeRef INTEGER;
+		DECLARE envRef REFERENCE TO Environment.Variables;
+
+		SET ccidRef = InputRoot.Properties.CodedCharSetId;
+		SET encodeRef = InputRoot.Properties.Encoding;
+		DECLARE domainDataRef REFERENCE TO InputRoot.SOAP;
+		DECLARE domainName CHARACTER FIELDNAME(InputBody);
+		SET Environment.reqPayload = getPayLoad(domainName,domainDataRef,encodeRef,ccidRef);
+		----------------------Request Logging-------------------------
+		 CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+	    DECLARE OutRef REFERENCE TO OutputRoot.XMLNSC;
+	    	 CALL PayloadLogging(envRef.id,Environment.reqPayload,'Host_Response',ApplicationLabel,envRef.source,envRef.service,envRef.operation,envRef.created_by,OutRef);
+	    	 IF consoleLog_enable=TRUE THEN
+	    	 	LOG EVENT SEVERITY 1 CATALOG 'BIPmsgs' MESSAGE 2951 VALUES('AccountBalanceEnqHost_Response : '||Environment.reqPayload);
+	    	 END IF;
+	    	  
+		-- CALL PayloadLogging(envRef.id,Environment.reqPayload,'BACKEND_RESP',ApplicationLabel,OutRef);
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' ------- BACKEND_RESP -------') INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'BACKEND_RESP data  is: '||Environment.reqPayload) INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' ----------------------------------------------------------------------') INTO rc;
+		-------------- Generating response to channel ---------------
+
+--		IF InputRoot.SOAP.*:Body.*:QUERYACCBAL_IOFS_RES.*:FCUBS_HEADER.*:MSGSTAT IS NULL OR FIELDVALUE(InputRoot.SOAP.*:Body.*:QUERYACCBAL_IOFS_RES.*:FCUBS_HEADER.*:MSGSTAT) IS NULL THEN
+--			SET OutputRoot = InputRoot;
+--
+--			SET OutputLocalEnvironment.Destination.SOAP.Reply.replyIdentifier = envRef.replyIdentifier;
+--			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+--		ELSE
+--			SET OutputRoot.Properties = InputRoot.Properties;
+--			SET OutputRoot.HTTPResponseHeader = InputRoot.HTTPResponseHeader;
+--			CREATE LASTCHILD OF OutputRoot DOMAIN 'SOAP';
+--
+--			SET OutputRoot.SOAP.Context = InputRoot.SOAP.Context;
+--
+--			DECLARE inputHeaderRef REFERENCE TO InputRoot.SOAP.*:Body.*:QUERYACCBAL_IOFS_RES.*:FCUBS_HEADER;
+--			DECLARE inputBodyRef REFERENCE TO InputRoot.SOAP.*:Body.*:QUERYACCBAL_IOFS_RES.*:FCUBS_BODY;
+--
+--			CREATE LASTCHILD OF OutputRoot.SOAP NAME 'Body';
+--			CREATE LASTCHILD OF OutputRoot.SOAP.Body NAMESPACE ns NAME 'QUERYACCBAL_IOFS_RES';
+--			CREATE LASTCHILD OF OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_RES NAME 'FCUBS_HEADER';
+--			CREATE LASTCHILD OF OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_RES NAME 'FCUBS_BODY';
+--
+--			DECLARE outputheaderRef REFERENCE TO OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_RES.FCUBS_HEADER;
+--			DECLARE outputbodyRef REFERENCE TO OutputRoot.SOAP.Body.ns:QUERYACCBAL_IOFS_RES.FCUBS_BODY;
+--
+--			SET outputheaderRef.SOURCE = NULLIF(inputHeaderRef.*:SOURCE,'');
+--			SET outputheaderRef.UBSCOMP = NULLIF(inputHeaderRef.*:UBSCOMP,'');
+--			SET outputheaderRef.MSGID = NULLIF(inputHeaderRef.*:MSGID,'');
+--			SET outputheaderRef.CORRELID = NULLIF(inputHeaderRef.*:CORRELID,'');
+--			SET outputheaderRef.USERID = NULLIF(inputHeaderRef.*:USERID,'');
+--			SET outputheaderRef.ENTITY = NULLIF(inputHeaderRef.*:ENTITY,'');
+--			SET outputheaderRef.BRANCH = NULLIF(inputHeaderRef.*:BRANCH,'');
+--			SET outputheaderRef.MODULEID = NULLIF(inputHeaderRef.*:MODULEID,'');
+--			SET outputheaderRef.SERVICE = NULLIF(inputHeaderRef.*:SERVICE,'');
+--			SET outputheaderRef.OPERATION = NULLIF(inputHeaderRef.*:OPERATION,'');
+--			SET outputheaderRef.SOURCE_OPERATION = NULLIF(inputHeaderRef.*:SOURCE_OPERATION,'');
+--			SET outputheaderRef.SOURCE_USERID = NULLIF(inputHeaderRef.*:SOURCE_USERID,'');
+--			SET outputheaderRef.DESTINATION = NULLIF(inputHeaderRef.*:DESTINATION,'');
+--			SET outputheaderRef.MULTITRIPID = NULLIF(inputHeaderRef.*:MULTITRIPID,'');
+--			SET outputheaderRef.FUNCTIONID = NULLIF(inputHeaderRef.*:FUNCTIONID,'');
+--			SET outputheaderRef.ACTION = NULLIF(inputHeaderRef.*:ACTION,'');
+--			SET outputheaderRef.MSGSTAT = NULLIF(inputHeaderRef.*:MSGSTAT,'');
+--			SET outputheaderRef.SNAPSHOTID = NULLIF(inputHeaderRef.*:SNAPSHOTID,'');
+--			SET outputheaderRef.PASSWORD = NULLIF(inputHeaderRef.*:PASSWORD,'');
+--
+--			DECLARE I INTEGER 1;
+--			DECLARE inRef REFERENCE TO inputHeaderRef.*:ADDL.*:PARAM[>];
+--			WHILE LASTMOVE(inRef) DO
+--				SET outputheaderRef.ADDL.PARAM[I].*:NAME = NULLIF(inRef.*:NAME,'');
+--				SET outputheaderRef.ADDL.PARAM[I].*:VALUE = NULLIF(inRef.*:VALUE,'');
+--				SET I = I + 1;
+--				MOVE inRef NEXTSIBLING REPEAT TYPE NAME;
+--			END WHILE;
+--
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.BRANCH_CODE = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:BRANCH_CODE,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.CUST_AC_NO = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:CUST_AC_NO,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.CCY = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:CCY,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.TRNDT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:TRNDT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.OPNBAL = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:OPNBAL,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.CURBAL = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:CURBAL,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.AVLBAL = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:AVLBAL,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.UNCOLAMT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:UNCOLAMT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.AVLCR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:AVLCR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.MTDTOVCR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:MTDTOVCR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.MTDTOVDR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:MTDTOVDR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_BKD_AMT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_BKD_AMT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACCR_DR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACCR_DR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACCR_CR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACCR_CR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.SUBLIMIT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:SUBLIMIT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.TODLIMIT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:TODLIMIT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.TOD_ST_DT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:TOD_ST_DT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.TOD_EXP_DT = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:TOD_EXP_DT,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_TANK_CR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_TANK_CR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_TANK_DR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_TANK_DR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_TANK_UNCOL = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_TANK_UNCOL,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_UNAUTH_DR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_UNAUTH_DR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_UNAUTH_TANK_DR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_UNAUTH_TANK_DR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_UNAUTH_CR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_UNAUTH_CR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_UNAUTH_TANK_CR = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_UNAUTH_TANK_CR,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_UNAUTH_UNCOL = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_UNAUTH_UNCOL,'');
+--			SET outputbodyRef."ACC-Balance".ACC_BAL.ACY_UNAUTH_TANK_UNCOL = NULLIF(inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:ACY_UNAUTH_TANK_UNCOL,'');
+--
+--			SET I = 1;
+--			MOVE inRef TO inputBodyRef.*:"ACC-Balance".*:ACC_BAL.*:INTLIQD[>];
+--			WHILE LASTMOVE(inRef) DO
+--				SET outputbodyRef."ACC-Balance".ACC_BAL.INTLIQD[I].*:INTPRD = NULLIF(inRef.*:INTPRD,'');
+--				SET outputbodyRef."ACC-Balance".ACC_BAL.INTLIQD[I].*:NXTLIQDT = NULLIF(inRef.*:NXTLIQDT,'');
+--				SET I = I + 1;
+--				MOVE inRef NEXTSIBLING REPEAT TYPE NAME;
+--			END WHILE;
+--
+--			SET I = 1;
+--			MOVE inRef TO inputBodyRef.*:FCUBS_ERROR_RESP.*:ERROR[>];
+--			WHILE LASTMOVE(inRef) Do
+--				SET outputbodyRef.FCUBS_ERROR_RESP.ERROR[I].ECODE = NULLIF(inRef.*:ECODE,'');
+--				SET outputbodyRef.FCUBS_ERROR_RESP.ERROR[I].EDESC = NULLIF(inRef.*:EDESC,'');
+--				SET I = I + 1;
+--				MOVE inRef NEXTSIBLING REPEAT TYPE NAME;
+--			END WHILE;
+--
+--			SET I = 1;
+--			MOVE inRef TO inputBodyRef.*:FCUBS_WARNING_RESP.*:WARNING[>];
+--			WHILE LASTMOVE(inRef) Do
+--				SET outputbodyRef.FCUBS_WARNING_RESP.WARNING[I].WCODE = NULLIF(inRef.*:WCODE,'');
+--				SET outputbodyRef.FCUBS_WARNING_RESP.WARNING[I].WDESC = NULLIF(inRef.*:WDESC,'');
+--				SET I = I + 1;
+--				MOVE inRef NEXTSIBLING REPEAT TYPE NAME;
+--			END WHILE;
+--  
+        set OutputRoot=InputRoot;
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.replyIdentifier = envRef.replyIdentifier;
+		PROPAGATE TO TERMINAL 'out' DELETE NONE;
+--		END IF;
+           
+		SET Environment.outputData = OutputRoot;
+		---------------------- Response Logging -------------------------
+		MOVE domainDataRef TO Environment.outputData.SOAP;
+		SET Environment.resPayload = getPayLoad(domainName,domainDataRef,encodeRef,ccidRef);
+		SET OutputRoot.HTTPResponseHeader = NULL;
+		SET OutputRoot.SOAP = NULL;
+		 CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+		 MOVE OutRef TO OutputRoot.XMLNSC;
+		  CALL PayloadLogging(envRef.id,Environment.reqPayload,'Channel_Response',ApplicationLabel,envRef.source,envRef.service,envRef.operation,envRef.created_by,OutRef);
+		  IF consoleLog_enable=TRUE THEN
+		  	LOG EVENT SEVERITY 1 CATALOG 'BIPmsgs' MESSAGE 2951 VALUES('AccountBalanceEnqChannel_Response: '||Environment.reqPayload);
+		  END IF;
+		   
+		-- CALL PayloadLogging(envRef.id,Environment.reqPayload,'CHANNEL_RESP',MessageFlowLabel,OutRef);
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,' -------- CHANNEL_RESP -------') INTO rc;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'CHANNEL_RESP data is: '||Environment.resPayload) INTO rc;
+
+	END;
+END MODULE;
+-------------------------------------------------------------------------------------------------
+CREATE COMPUTE MODULE AccountBalanceEnquiry_BuildExceptionResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL BuildExceptionResponse();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE BuildExceptionResponse() BEGIN
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'..............Error Logging Started...........') INTO rc;
+		--DECLARE inRef REFERENCE TO InputRoot.SOAP;
+		DECLARE envRef REFERENCE TO Environment.Variables;
+		DECLARE enRef REFERENCE TO Environment;
+		DECLARE outRefer,outRef REFERENCE TO OutputRoot;
+		--DECLARE encodeID INTEGER InputRoot.Properties.Encoding;
+		--DECLARE ccsID INTEGER InputRoot.Properties.CodedCharSetId;
+		DECLARE domainName CHARACTER FIELDNAME(InputBody);
+		DECLARE domainDataRef REFERENCE TO InputBody;
+		DECLARE excpRef REFERENCE TO InputRoot.XMLNSC.ExceptionDetails;
+		DECLARE excpPayload CHARACTER getPayLoad(domainName,domainDataRef,envRef.encoding,envRef.codedCharSetId);
+		CREATE LASTCHILD OF Environment AS enRef DOMAIN 'XMLNSC';
+		CREATE LASTCHILD OF enRef AS enRef NAMESPACE 'soapenv' NAME 'Envelope';
+		CREATE LASTCHILD OF enRef AS enRef NAMESPACE 'soapenv' NAME 'Body';
+		CREATE LASTCHILD OF enRef AS enRef NAMESPACE 'esb' NAME ApplicationLabel;
+		CALL BuildExceptionDetails(excpRef,enRef,ApplicationLabel);
+		SET envRef.userDefinedException = Environment.XMLNSC;
+		MOVE domainDataRef TO Environment.XMLNSC;
+		SET domainName = FIELDNAME(domainDataRef);
+		DECLARE resPayload CHAR getPayLoad(domainName,domainDataRef,envRef.encoding,envRef.codedCharSetId);
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'Application Built Exception:'||resPayload) INTO rc;
+		DECLARE inputRef REFERENCE TO InputRoot.XMLNSC.ExceptionDetails;
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+		CREATE LASTCHILD OF OutputRoot.XMLNSC NAME 'ExceptionDetails';
+		DECLARE outExcpRef REFERENCE TO OutputRoot.XMLNSC.ExceptionDetails;
+
+		DECLARE errMsg CHARACTER;
+		IF CONTAINS(inputRef.excpText,'connection refused') OR CONTAINS(inputRef.excpText,'SocketTimeoutException')THEN
+			SET errMsg = 'Backend System / Flexcube is down';
+		END IF;
+
+		SET outExcpRef.Msg_Id = envRef.id;
+		SET outExcpRef.ExceptionType = inputRef.excpType;
+		SET outExcpRef.ExceptionNumber = inputRef.excpNumber;
+		SET outExcpRef.ExceptionLable = inputRef.excpLable;
+		SET outExcpRef.ExceptionMessage = NULLIF(errMsg,'');
+		SET outExcpRef.ExceptionDescription = inputRef.excpText;
+		SET outExcpRef.ActualExceptionText = inputRef.actualExcpText;
+
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.replyIdentifier = envRef.replyIdentifier;
+		--CALL writeToLogFile(MessageFlowLabel,LOGGER_NAME,log_type,'..............End of Error Logging ...........') INTO rc;
+	END;
+END MODULE;
