@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="Fidelity_Bank_GhIPSS_Common/SF_Fidelity_Bank_GhIPSS_ExceptionHandler.subflow" nsPrefix="Fidelity_Bank_GhIPSS_Common_SF_Fidelity_Bank_GhIPSS_ExceptionHandler.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SF_Fidelity_Bank_GhIPSS_ExceptionHandler" bundleName="Fidelity_Bank_GhIPSS_Common/SF_Fidelity_Bank_GhIPSS_ExceptionHandler" pluginId="Fidelity_Bank_GhIPSS_Common"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Fidelity_Bank_GhIPSS_Common/icons/full/obj16/SF_Fidelity_Bank_GhIPSS_ExceptionHandler.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Fidelity_Bank_GhIPSS_Common/icons/full/obj30/SF_Fidelity_Bank_GhIPSS_ExceptionHandler.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="181,70">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="Fidelity_Bank_GhIPSS_Common/SF_Fidelity_Bank_GhIPSS_ExceptionHandler" pluginId="Fidelity_Bank_GhIPSS_Common"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="244,69" computeExpression="esql://routine/Fidelity_Bank_GhIPSS_Common#SF_Fidelity_Bank_GhIPSS_ExceptionHandler.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="BuildException"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="359,110" queueName="ESB.GHIPPS.EXCEPTIONQ">
+        <translation xmi:type="utility:ConstantString" string="MQ Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="361,32">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

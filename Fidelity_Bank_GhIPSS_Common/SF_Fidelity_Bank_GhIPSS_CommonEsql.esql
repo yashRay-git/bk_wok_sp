@@ -1,0 +1,101 @@
+BROKER SCHEMA Fidelity_Bank_GhIPSS_Common
+
+CREATE PROCEDURE prepareGhIPSSLogger (IN logPoint CHARACTER ,IN envValRef REFERENCE, IN OutputRoot REFERENCE)
+BEGIN
+	SET OutputRoot.XMLNSC.logData.logpoint = logPoint;
+	SET OutputRoot.XMLNSC.logData.payLoad = envValRef.logData;
+	SET OutputRoot.XMLNSC.logData.msgId = envValRef.msgId;
+	SET OutputRoot.XMLNSC.logData.serviceName = envValRef.application_name;
+	PROPAGATE TO LABEL 'Label_Logger' DELETE NONE;
+	SET OutputRoot.XMLNSC = NULL;
+END;
+
+CREATE PROCEDURE getCastedPayLoad (IN msgRef REFERENCE,IN envRef REFERENCE)  RETURNS CHARACTER
+BEGIN
+	DECLARE payload CHARACTER '';
+	SET payload = CAST(ASBITSTREAM(msgRef) AS CHARACTER CCSID envRef.ccsidRef ENCODING envRef.encodeRef);
+	RETURN payload;
+END;
+
+CREATE COMPUTE MODULE transformLogdata
+	CREATE FUNCTION Main () RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		RETURN TRUE;
+	END; 	
+END MODULE;
+
+CREATE PROCEDURE prepareGhIPSSErrorMessage (IN logPoint CHARACTER ,IN envValRef REFERENCE, IN OutputRoot REFERENCE)
+BEGIN
+	SET OutputRoot.XMLNSC.logData.logpoint = logPoint;
+	SET OutputRoot.XMLNSC.logData.payLoad = envValRef.logData;
+	SET OutputRoot.XMLNSC.logData.msgId = envValRef.msgId;
+	SET OutputRoot.XMLNSC.logData.serviceName = envValRef.application_name;
+	PROPAGATE TO LABEL 'Label_Logger' DELETE NONE;
+	SET OutputRoot.XMLNSC = NULL;
+END;
+
+CREATE PROCEDURE biller (IN operation CHARACTER, INOUT envRef REFERENCE)
+BEGIN
+	DECLARE dataRef REFERENCE TO envRef;
+	IF operation = 'INSERT' THEN
+		INSERT INTO Database.BILLERS (billerId,institutionId,name,accountNumber,branchcode,callbackurl,requestsource,status_ghipss,status_cbs,requesttimestamp)
+		VALUES (dataRef.billerId,'300324',dataRef.accountNumber,dataRef.name,dataRef.branchCode, 'https://callbackurl.com',dataRef.requestSource,dataRef.errorCode,dataRef.errorCode,current_timestamp);
+	ELSEIF operation = 'SELECT_QUERY' THEN
+		SET envRef.RTPresult[] = SELECT * FROM Database.billers AS b WHERE b.billerId = dataRef.msgId;
+	ELSEIF operation = 'SELECT_LIST' THEN
+		SET envRef.RTPresult[] = SELECT * FROM Database.billers AS b WHERE b.institutionId = dataRef.msgId;
+	ELSEIF operation = 'DELETE' THEN
+		DELETE FROM Database.BILLERS AS d WHERE d.BILLERID = envRef.billerId;
+	END IF;
+END;
+
+CREATE PROCEDURE biller_payment (IN envRef REFERENCE )
+BEGIN
+	INSERT INTO Database.BILLER_PAYMENT (
+	BILLID, BILLERID, BILLDATE, BILLAMOUNT, PAYERINSTITUTIONID, PAYERACCOUNTNUMBER, PAYERNAME,
+	BILLDESCRIPTION, STATUS, REQUESTTIMESTAMP, ERRORCODE, ERRORDESCRIPTION
+	)
+	VALUES (
+	envRef.BILLID , envRef.BILLERID , envRef.BILLDATE , envRef.BILLAMOUNT , envRef.PAYERINSTITUTIONID ,envRef.PAYERACCOUNTNUMBER ,
+	envRef.PAYERNAME , envRef.BILLDESCRIPTION ,envRef.STATUS ,envRef.REQUESTTIMESTAMP ,envRef.ERRORCODE ,envRef.ERRORDESCRIPTION
+	);
+END;
+
+CREATE PROCEDURE payer_payment (IN envRef REFERENCE )
+BEGIN
+	INSERT INTO Database.PAYER_PAYMENT (
+	BILLERID, BILLID, BILLDATE, BILLAMOUNT, BILLDESCRIPTION, BILLERNAME, BILLERINSTITUTIONID, BILLERACCOUNTNUMBER, PAYERNAME,
+	PAYERINSTITUTIONID, PAYERACCOUNTNUMBER, STATUS_USSD, STATUS_CBS, STATUS_RTSERVICE, STATUS_GHIPSS, REQUESTTIMESTAMP, ERRORCODE, ERRORDESCRIPTION
+	)
+	VALUES (
+	envRef.BILLERID , envRef.BILLID , envRef.BILLDATE , envRef.BILLAMOUNT , envRef.BILLDESCRIPTION , envRef.BILLERNAME , envRef.BILLERINSTITUTIONID , envRef.BILLERACCOUNTNUMBER ,envRef.PAYERNAME ,
+	envRef.PAYERINSTITUTIONID , envRef.PAYERACCOUNTNUMBER , envRef.STATUS_USSD , envRef.STATUS_CBS , envRef.STATUS_RTSERVICE , envRef.STATUS_GHIPSS , envRef.REQUESTTIMESTAMP , envRef.ERRORCODE ,envRef.ERRORDESCRIPTION
+	);
+END;
+
+CREATE PROCEDURE biller_notification (IN envRef REFERENCE )
+BEGIN
+	INSERT INTO Database.BILLER_NOTIFICATION (
+	BILLERID, BILLID, BILLDATE, BILLAMOUNT, BILLDESCRIPTION, PAYERNAME, PAYERINSTITUTIONID, PAYERACCOUNTNUMBER, STATUS, REQUESTTIMESTAMP
+	)
+	VALUES (
+	envRef.billerId , envRef.billId , envRef.billDate , envRef.billAmount , envRef.billDescription , envRef.payerName ,
+	envRef.payerInstitutionId, envRef.payerAccountNumber , envRef.status , envRef.requesttimestamp
+	);
+
+END;
+
+CREATE PROCEDURE payer_notification (IN envRef REFERENCE )
+BEGIN
+	INSERT INTO Database.PAYER_NOTIFICATION (
+	BILLERID, BILLID, PAYERACCOUNTNUMBER, PAYERNAME, PAYERBANKID, SESSIONID, STATUS, REQUESTTIMESTAMP, NOTIFICATIONTIMESTAMP
+	)
+	VALUES (
+	envRef.BILLERID , envRef.BILLID , envRef.PAYERACCOUNTNUMBER , envRef.PAYERNAME , envRef.PAYERBANKID , envRef.SESSIONID ,
+	envRef.STATUS , envRef.REQUESTTIMESTAMP ,envRef.NOTIFICATIONTIMESTAMP
+	);
+END;
+--CREATE PROCEDURE signature ( In Request CHARACTER) RETURNS CHARACTER
+--LANGUAGE JAVA
+--EXTERNAL NAME "digitalSignature.JSONSignature.digitalSign";

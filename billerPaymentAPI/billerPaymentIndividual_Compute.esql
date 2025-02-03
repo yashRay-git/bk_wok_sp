@@ -1,0 +1,105 @@
+PATH Fidelity_Bank_GhIPSS_Common;
+DECLARE RTPDSN EXTERNAL CHARACTER '';
+CREATE COMPUTE MODULE billerPaymentIndividual_processRequest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+		CREATE FIELD Environment.values;
+		DECLARE envValRef REFERENCE TO Environment.values;
+		SET envValRef.application_name = ApplicationLabel;
+		SET envValRef.msgId = InputRoot.JSON.Data.billerId;
+		SET envValRef.ccsidRef = InputRoot.Properties.CodedCharSetId;
+		SET envValRef.encodeRef = InputRoot.Properties.Encoding;
+		
+		--Logging code Start		
+		SET envValRef.logData = getCastedPayLoad(InputRoot.JSON,envValRef);
+		CALL prepareGhIPSSLogger('ChannelRequest',envValRef,OutputRoot);
+		--Logging code End
+		
+		DECLARE inRef REFERENCE TO InputRoot.JSON.Data;
+		SET OutputRoot = InputRoot;
+		DECLARE digitalSign CHARACTER;
+		DECLARE outRef REFERENCE TO OutputRoot.JSON.Data;
+		DECLARE jsonReq CHARACTER CAST(ASBITSTREAM(InputRoot.JSON.Data CCSID InputRoot.Properties.CodedCharSetId)AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId);
+		CALL signature (jsonReq) INTO digitalSign;
+		SET outRef.requestSignature = digitalSign;
+		
+		--Logging code Start		
+		SET envValRef.logData = getCastedPayLoad(OutputRoot.JSON,envValRef);
+		CALL prepareGhIPSSLogger('GHiPSSRequest',envValRef,OutputRoot);
+		--Logging code End
+		
+		PROPAGATE TO TERMINAL 'out1';
+		
+		DECLARE envRef REFERENCE TO Environment.Request.values;
+		
+		IF envRef.errorCode = '200' THEN
+--			INSERT INTO Database.BILLENROLLMENT (billerid,billid,billdate,billamount,payerinstitutionid,payeraccountnumber,payername,billdescription,requesttimestamp) 
+--			VALUES (inRef.billerId, inRef.billid, inRef.billdate, inRef.billamount, inRef.payerinstitutionid, inRef.payeraccountnumber, inRef.payername, inRef.billdescription ,CURRENT_TIMESTAMP);
+			SET OutputRoot.JSON.Data.errorCode = 200;
+			SET OutputRoot.JSON.Data.errorDescription = 'success';
+			
+			--Logging code Start		
+			SET envValRef.logData = getCastedPayLoad(OutputRoot.JSON,envValRef);
+			CALL prepareGhIPSSLogger('ChannelResponse',envValRef,OutputRoot);
+			--Logging code End
+		ELSE
+			
+		END IF;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE billerPaymentIndividual_processResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE envRef REFERENCE TO Environment.Request.values;
+		DECLARE envValRef REFERENCE TO Environment.values;
+		
+		IF InputRoot.JSON.Data.errorCode = '200' THEN
+			SET envRef.errorCode = 200;
+			SET envRef.errorDescription = 'success';
+			--Logging code Start		
+			SET envValRef.logData = getCastedPayLoad(InputRoot.JSON,envValRef);
+			CALL prepareGhIPSSLogger('GHiPSSResponse',envValRef,OutputRoot);
+			--Logging code End
+		END IF;
+			
+	END;
+END MODULE;
+
+CREATE PROCEDURE signature ( In Request CHARACTER) RETURNS CHARACTER
+LANGUAGE JAVA
+EXTERNAL NAME "digitalSignature.JSONSignature.digitalSign";

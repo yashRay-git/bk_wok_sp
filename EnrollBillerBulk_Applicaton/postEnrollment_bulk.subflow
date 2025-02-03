@@ -9,7 +9,7 @@
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="73,82">
         <translation xmi:type="utility:TranslatableString" key="Input" bundleName="postEnrollment_bulk" pluginId="EnrollBillerBulk_Applicaton"/>
       </nodes>
-      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="757,232">
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="772,223">
         <translation xmi:type="utility:TranslatableString" key="Output" bundleName="postEnrollment_bulk" pluginId="EnrollBillerBulk_Applicaton"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="190,82" computeExpression="esql://routine/#postEnrollment_bulk_CBS_Processing.Main" computeMode="all">

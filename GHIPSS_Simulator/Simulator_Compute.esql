@@ -1,0 +1,13 @@
+CREATE COMPUTE MODULE Simulator_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE res CHARACTER '{"errorCode":"200","errorDescription":"success"}';
+		DECLARE myblob BLOB CAST(res AS BLOB CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+		CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') PARSE(myblob); 
+	END;
+END MODULE;
