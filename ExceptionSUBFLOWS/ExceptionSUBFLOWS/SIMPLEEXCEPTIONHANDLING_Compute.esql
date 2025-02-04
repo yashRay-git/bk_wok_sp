@@ -98,6 +98,8 @@ CREATE COMPUTE MODULE SIMPLEEXCEPTIONHANDLING_Compute
 			SET OutputRoot.JSON.Data.ErrorDescription = errOutRef.ErrorDescription;
 		END IF;
 		--
+		
+		
 		-- DECLARE ref REFERENCE TO InputExceptionList.*[1];
 		-- DECLARE line, number, text, INSERTEXT CHARACTER;
 		-- DECLARE lastInsertText CHARACTER;
