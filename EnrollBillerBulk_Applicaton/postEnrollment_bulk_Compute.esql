@@ -1,5 +1,97 @@
 
 
+
+PATH com.fidilitybank.co.zw.common.esql;
+CREATE COMPUTE MODULE billerPaymentBulk_processRequest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		CALL CopyEntireMessage();
+		RETURN FALSE;
+	END;
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+
+		DECLARE inreq REFERENCE TO InputRoot.JSON.Data.transactions.[
+		1
+		];
+		DECLARE digitalSign CHARACTER;
+		DECLARE outRef REFERENCE TO OutputRoot.JSON.Data;
+
+		IF FIELDNAME(InputRoot.JSON.Data.transactions) is not null THEN
+			WHILE LASTMOVE(inreq) DO
+				DECLARE jsonReq CHARACTER CAST(ASBITSTREAM(inreq CCSID InputRoot.Properties.CodedCharSetId)AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId);
+				CALL signature (jsonReq) INTO digitalSign;
+				SET OutputRoot.JSON.Data = inreq;
+				SET outRef.requestSignature = digitalSign;
+				SET Environment.GipsRequest = OutputRoot.JSON.Data;
+				PROPAGATE TO TERMINAL 'out1';
+				MOVE inreq NEXTSIBLING;
+			END WHILE;
+			IF LASTMOVE(inreq) = False THEN
+
+				CREATE FIELD OutputRoot.JSON.Data;
+				DECLARE outref REFERENCE TO OutputRoot.JSON.Data;
+				CREATE LASTCHILD OF OutputRoot.JSON.Data IDENTITY(JSON.Array)transactions;
+				DECLARE i INTEGER 1;
+
+				DECLARE channlresp REFERENCE TO Environment.ChannelResponse.[
+				1
+				];
+
+				WHILE LASTMOVE(channlresp) DO
+					SET outref.transactions.Item[i
+					].billerId = channlresp.billerId;
+					SET outref.transactions.Item[i
+					].errorCode = channlresp.errorCode;
+					SET outref.transactions.Item[i
+					].errorDescription = channlresp.errorDescription;
+					SET i = i + 1;
+					MOVE channlresp NEXTSIBLING;
+				END WHILE;
+
+				propagate to terminal 'out';
+			END IF;
+		END IF;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE billerPaymentBulk_processResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN FALSE;
+	END;
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE Gippsresp REFERENCE TO InputRoot.JSON.Data;
+		DECLARE envref REFERENCE TO Environment.GipsRequest;
+		IF Gippsresp.errorCode = '200' THEN
+			--INSERTING TO RTP TABLE
+			CALL INSERT_BILLERS(envref.billId,
+			envref.billerId,
+			envref.billDate,
+			envref.billAmount,
+			envref.payerInstitutionId,
+			envref.payerAccountNumber,
+			envref.payerName,
+			envref.billDescription,
+			'Status',
+			envref.requestTimestamp,
+			Gippsresp.errorCode,
+			Gippsresp.errorDescription);
+		END IF;
+		SET Environment.ChannelResponse.{envref.billerId}.billerId = envref.billerId;
+		SET Environment.ChannelResponse.{envref.billerId}.errorCode = Gippsresp.errorCode;
+		SET Environment.ChannelResponse.{envref.billerId}.errorDescription = Gippsresp.errorDescription;
+
+
+
+	END;
+END MODULE;
+CREATE PROCEDURE signature ( In Request CHARACTER) RETURNS CHARACTER
+LANGUAGE JAVA
+EXTERNAL NAME "digitalSignature.JSONSignature.digitalSign";
+
 CREATE COMPUTE MODULE postEnrollment_bulk_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
