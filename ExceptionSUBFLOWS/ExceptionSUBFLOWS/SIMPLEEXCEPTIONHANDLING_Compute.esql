@@ -21,6 +21,36 @@ CREATE COMPUTE MODULE SIMPLEEXCEPTIONHANDLING_Compute
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
 		-- SET OutputRoot = InputRoot;
+                 
+                 
+   IF InputExceptionList.[1] is NOT NULL THEN
+   	
+		 DECLARE ref REFERENCE TO InputExceptionList.*[1];
+		 DECLARE line, number, text, INSERTEXT CHARACTER;
+		 DECLARE lastInsertText CHARACTER;
+		
+		 WHILE LASTMOVE(ref) DO
+		 MOVE ref LASTCHILD;
+		
+		 IF ref.Number IS NOT NULL THEN
+		 SET line = ref.Line;
+		 SET number = ref.Number;
+		 SET text = ref.Text;
+		 -- Iterate through Insert elements to find the last one
+		
+		 DECLARE insertRef REFERENCE TO ref.Insert[1];
+		 WHILE LASTMOVE(insertRef) DO
+		 SET lastInsertText = insertRef.Text; -- Keep updating with the current Insert text
+		 MOVE insertRef NEXTSIBLING;
+		 END WHILE;
+		
+		 SET INSERTEXT = lastInsertText; -- Final value of the last Insert text
+		 END IF;
+		 END WHILE;
+		   
+		propagate to TERMINAL 'out';
+    END IF;
+  
 
 		DECLARE statusCode REFERENCE TO InputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code";
 		DECLARE payload CHARACTER CAST((InputRoot.BLOB.BLOB) as CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
@@ -29,27 +59,7 @@ CREATE COMPUTE MODULE SIMPLEEXCEPTIONHANDLING_Compute
 		CREATE LASTCHILD OF Environment.JSON NAME 'Data';
 		-- SET Environment.JSON.Data = CAST( (InputRoot.BLOB.BLOB)AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
 		DECLARE errOutRef REFERENCE TO Environment.JSON.Data;
-		
-		  
-		
-		
-		
-		
-		 
-		
-		
-		 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				
 		IF statusCode = 500 THEN
 			-- SET errOutRef.requestId = RequestId;
 			SET errOutRef.Timestamp = CURRENT_TIMESTAMP;
@@ -99,32 +109,5 @@ CREATE COMPUTE MODULE SIMPLEEXCEPTIONHANDLING_Compute
 		END IF;
 		--
 		
-		
-		-- DECLARE ref REFERENCE TO InputExceptionList.*[1];
-		-- DECLARE line, number, text, INSERTEXT CHARACTER;
-		-- DECLARE lastInsertText CHARACTER;
-		--
-		-- WHILE LASTMOVE(ref) DO
-		-- MOVE ref LASTCHILD;
-		--
-		-- IF ref.Number IS NOT NULL THEN
-		-- SET line = ref.Line;
-		-- SET number = ref.Number;
-		-- SET text = ref.Text;
-		-- -- Iterate through Insert elements to find the last one
-		--
-		-- DECLARE insertRef REFERENCE TO ref.Insert[1];
-		-- WHILE LASTMOVE(insertRef) DO
-		-- SET lastInsertText = insertRef.Text; -- Keep updating with the current Insert text
-		-- MOVE insertRef NEXTSIBLING;
-		-- END WHILE;
-		--
-		-- SET INSERTEXT = lastInsertText; -- Final value of the last Insert text
-		-- END IF;
-		-- END WHILE;
-		--
-
-
-
 	END;
 END MODULE;

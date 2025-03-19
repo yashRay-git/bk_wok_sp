@@ -1,0 +1,38 @@
+DECLARE var SHARED INTEGER 1; 
+
+CREATE COMPUTE MODULE Mf_DynamicLogging_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+	--SET OutputRoot = InputRoot;
+		
+		SET OutputRoot.JSON.Data = InputRoot.XMLNSC;
+		
+		Propagate to TERMINAL 'out2';
+		
+		SET OutputRoot.DFDL.DynamicLog.record.Application_name = ApplicationLabel;
+		SET OutputRoot.DFDL.DynamicLog.record.Messageflow_name = MessageFlowLabel;
+		SET OutputRoot.DFDL.DynamicLog.record.Node_name = NodeLabel;
+		SET OutputRoot.DFDL.DynamicLog.record.EG_name = ExecutionGroupLabel;
+		SET OutputRoot.DFDL.DynamicLog.record.ChannelID = NULL;
+		SET OutputRoot.DFDL.DynamicLog.record.RequestID = var;
+		SET OutputRoot.DFDL.DynamicLog.record.Request_time = CAST (CURRENT_TIMESTAMP AS CHARACTER);
+		SET OutputRoot.DFDL.DynamicLog.record.Request_message = InputRoot.XMLNSC.name;
+		SET OutputRoot.DFDL.DynamicLog.record.Response_time = CAST (CURRENT_TIMESTAMP AS CHARACTER);
+		SET OutputRoot.DFDL.DynamicLog.record.Response_message = InputRoot.XMLNSC.name;
+		
+		SET OutputLocalEnvironment.Destination.File.Name = 'Audit_log_' || CAST (CURRENT_DATE as CHARACTER FORMAT 'dd-MM-yy');
+		
+		Propagate to TERMINAL 'out1';
+		
+		SET var = var+1;
+		
+	END;
+END MODULE;

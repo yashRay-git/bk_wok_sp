@@ -9,7 +9,7 @@
       <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="70,110" inputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\input" processedFileAction="moveToArchive" messageDomainProperty="XMLNSC" validateTiming="complete" waitInterval="20">
         <translation xmi:type="utility:ConstantString" string="File Input"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="682,110" outputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\output" outputFilename="200MB.txt" failedFileAction="moveToFailure" validateMaster="none" fileFtpServer="192.168.1.70:21" fileFtpUser="yash" fileFtpDirectory="C:\ftp\ftp">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="682,110" outputFilename="200MB.txt" outputMode="append" failedFileAction="moveToFailure" validateMaster="none" fileFtp="true" fileFtpServer="192.168.1.70:21" fileFtpUser="yash" fileFtpDirectory="C:\ftp\ftp">
         <translation xmi:type="utility:ConstantString" string="File Output"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

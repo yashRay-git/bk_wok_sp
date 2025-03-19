@@ -6,13 +6,15 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/12_23_FTP_FILE_TRASFER/icons/full/obj16/FTPFLOW.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/12_23_FTP_FILE_TRASFER/icons/full/obj30/FTPFLOW.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="70,70" inputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\New folder" processedFileAction="moveToArchive" messageDomainProperty="XMLNSC" fileFtp="true" fileFtpServer="192.168.2.211:21" fileFtpUser="mys">
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="70,70" inputDirectory="C:\Users\Sreenivas Bandaru\Documents\FileNodeDir\New folder" processedFileAction="moveToArchive" messageDomainProperty="XMLNSC" fileFtpServer="192.168.2.211:21" fileFtpUser="mys">
         <translation xmi:type="utility:ConstantString" string="File Input"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="610,90" outputDirectory="C:/demo" outputFilename="yash4.txt" fileFtp="true" fileFtpServer="192.168.2.211" fileFtpUser="mys">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="610,90" outputFilename="yash4.txt" fileFtp="true" fileFtpServer="192.168.2.211" fileFtpUser="mys" fileFtpRemoteOutputMode="append">
         <translation xmi:type="utility:ConstantString" string="File Output"/>
       </nodes>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in">
+        <bendPoints>354,9,-192,-11</bendPoints>
+      </connections>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>
