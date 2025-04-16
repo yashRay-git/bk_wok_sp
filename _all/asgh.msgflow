@@ -7,25 +7,25 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/_all/icons/full/obj16/asgh.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/_all/icons/full/obj30/asgh.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmTimeoutControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="-32,4">
+      <nodes xmi:type="ComIbmTimeoutControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="405,2">
         <translation xmi:type="utility:ConstantString" string="Timeout Control"/>
       </nodes>
-      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="-24,86" uniqueIdentifier="as">
+      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="439,81" uniqueIdentifier="as">
         <translation xmi:type="utility:ConstantString" string="Timeout Notification"/>
       </nodes>
-      <nodes xmi:type="ComIbmScheduler.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="-25,176" messageType="recordedMessage">
+      <nodes xmi:type="ComIbmScheduler.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="464,157" messageType="recordedMessage">
         <translation xmi:type="utility:ConstantString" string="Scheduler"/>
       </nodes>
-      <nodes xmi:type="ComIbmEmailInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="242,61" securityIdentity="mysec">
+      <nodes xmi:type="ComIbmEmailInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="717,6" securityIdentity="mysec">
         <translation xmi:type="utility:ConstantString" string="Email Input"/>
       </nodes>
-      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="223,145">
+      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="703,70">
         <translation xmi:type="utility:ConstantString" string="Email Output"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="477,37" orderMode="userDefined" logicalOrder="false" convert="true">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="-11,9" orderMode="userDefined" logicalOrder="false" convert="true">
         <translation xmi:type="utility:ConstantString" string="MQ Input"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="458,176">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="164,16">
         <translation xmi:type="utility:ConstantString" string="MQ Output"/>
       </nodes>
     </composition>
